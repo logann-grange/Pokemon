@@ -3,3 +3,4 @@ class Electric:
         self.weaknesses=["Ground"]
         self.resistances=["Electric","Flying","Steel"]
         self.immunities=[]
+        
