@@ -1,5 +1,6 @@
 from Pokemon import *
 from random import randint
+from dic_type import type_poke
 
 class Combat:
     def __init__(self,opponent,poke):
@@ -16,11 +17,11 @@ class Combat:
             return fight.oppo_attack()
 
     def attack(self):
-        
-        for element in dico_type:
+        mult=1
+        for element in type_poke:
             if element==self.poke.type:
-                for types in dico_type[element]:
-                    nv_dico=dico_type[element]
+                for types in type_poke[element]:
+                    nv_dico=type_poke[element]
                     if types==self.opponent.type:
                         mult=nv_dico[types]
 
@@ -32,10 +33,11 @@ class Combat:
         return fight.oppo_attack()
     
     def oppo_attack(self):
-        for element in dico_type:
+        mult=1
+        for element in type_poke:
             if element==self.opponent.type:
-                for types in dico_type[element]:
-                    nv_dico=dico_type[element]
+                for types in type_poke[element]:
+                    nv_dico=type_poke[element]
                     if types==self.poke.type:
                         mult=nv_dico[types]
         damage=self.opponent.attack
@@ -53,7 +55,7 @@ class Combat:
         
     
 
-pika=Pokemon(1,"Pika",1,1,180,50,50,5,780,"feu")
-leviator=Pokemon(1,"Leviator",1,1,180,50,50,5,780,"acier")
+pika=Pokemon(1,"Pika",1,1,180,50,50,5,780,"Electric")
+leviator=Pokemon(1,"Leviator",1,1,180,50,50,5,780,"Water")
 fight=Combat(pika,leviator)
 print(fight.heads_or_tails())
