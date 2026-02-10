@@ -1,0 +1,85 @@
+[
+    {
+        "id": "01",
+        "name": "Bulbizar",
+        "image" : "",
+        "type": "Grass",
+        "stats": {
+            "attack": 10,
+            "defense": 8,
+            "hp": 50
+        }
+    },
+    {
+        "id": "02",
+        "name": "Herbizar",
+        "image" : "",
+        "type": "Grass",
+        "stats": {
+            "attack": 30,
+            "defense": 24,
+            "hp": 150
+        }
+        
+    },
+    {
+        "id": "03",
+        "name": "Salamèche",
+        "image" : "",
+        "type": "Grass",
+        "stats": {
+            "attack": 30,
+            "defense": 24,
+            "hp": 150
+        }
+        
+    },
+    {
+        "id": "02",
+        "name": "Herbizar",
+        "image" : "",
+        "type": "Grass",
+        "stats": {
+            "attack": 30,
+            "defense": 24,
+            "hp": 150
+        }
+        
+    },
+    {
+        "id": "02",
+        "name": "Herbizar",
+        "image" : "",
+        "type": "Grass",
+        "stats": {
+            "attack": 30,
+            "defense": 24,
+            "hp": 150
+        }
+        
+    },
+    {
+        "id": "02",
+        "name": "Herbizar",
+        "image" : "",
+        "type": "Grass",
+        "stats": {
+            "attack": 30,
+            "defense": 24,
+            "hp": 150
+        }
+        
+    },
+    {
+        "id": "02",
+        "name": "Herbizar",
+        "image" : "",
+        "type": "Grass",
+        "stats": {
+            "attack": 30,
+            "defense": 24,
+            "hp": 150
+        }
+        
+    }
+]

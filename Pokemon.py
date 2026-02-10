@@ -10,6 +10,7 @@ class Pokemon() :
         self.defense = defense
         self.level = level
         self.xp = xp
+        self.find = False
 
     def level_up(self) :
         if self.xp <= 1000 * self.level*0.5 : #multiplier par un facteur d'xp
