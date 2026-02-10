@@ -16,56 +16,33 @@ class Combat:
             return fight.oppo_attack()
 
     def attack(self):
-
-        """
-        t1=self.poke.type
-        t2=self.opponent.type
-        first_type=t1[0]
-        o_first_type=t2[0]
-        for weak in first_type.weaknesses:
-            if o_first_type==weak:
-                damage=(self.poke.attack)*2
-
-        for resist in first_type.resistances:
-            if o_first_type==resist:
-                damage=(self.poke.attack)/2
-
-        for immun in first_type.immunities:
-            if o_first_type==immun:
-                damage=0
-        """
+        
+        for element in dico_type:
+            if element==self.poke.type:
+                for types in dico_type[element]:
+                    nv_dico=dico_type[element]
+                    if types==self.opponent.type:
+                        mult=nv_dico[types]
 
         damage=self.poke.attack
-        self.opponent.hp-=damage
+        self.opponent.hp-=damage*mult
         if self.opponent.hp<=0:
             return fight.end_game()
-        print(self.opponent.hp)
+        print(f"{self.opponent.name} a {self.opponent.hp} HP")
         return fight.oppo_attack()
     
     def oppo_attack(self):
-        """
-        t1=self.poke.type
-        t2=self.opponent.type
-        first_type=t1[0]
-        o_first_type=t2[0]
-        for weak in o_first_type.weaknesses:
-            if first_type==weak:
-                damage=(self.opponent.attack)*2
-
-        for resist in o_first_type.resistances:
-            if first_type==resist:
-                damage=(self.opponent.attack)/2
-
-        for immun in o_first_type.immunities:
-            if first_type==immun:
-                damage=0
-        """
-
+        for element in dico_type:
+            if element==self.opponent.type:
+                for types in dico_type[element]:
+                    nv_dico=dico_type[element]
+                    if types==self.poke.type:
+                        mult=nv_dico[types]
         damage=self.opponent.attack
-        self.poke.hp-=damage
+        self.poke.hp-=damage*mult
         if self.poke.hp<=0:
             return fight.end_game()
-        print(self.poke.hp)
+        print(f"{self.poke.name} a {self.poke.hp} HP")
         return fight.attack()
 
     def end_game(self):
@@ -76,9 +53,7 @@ class Combat:
         
     
 
-pika=Pokemon(1,"Pika",1,1,180,50,50,5,780)
-leviator=Pokemon(1,"Leviator",1,1,180,50,50,5,780)
+pika=Pokemon(1,"Pika",1,1,180,50,50,5,780,"feu")
+leviator=Pokemon(1,"Leviator",1,1,180,50,50,5,780,"acier")
 fight=Combat(pika,leviator)
-toast=randint(1,2)
 print(fight.heads_or_tails())
-
