@@ -36,7 +36,7 @@ class Pokedex() :
         displayed_pokemon = []
     
         for i in range(len(self.pokemon)) :
-            if self.search in self.pokemon[i].name or self.search == "":
+            if self.search.upper() in self.pokemon[i].name.upper() or self.search == "":
                 list_page.append(self.pokemon[i])
                 #vérifier si on doit créer une nouvelle page
                 if len(list_page)%page_size == 0:
@@ -46,8 +46,8 @@ class Pokedex() :
         if list_page:
             displayed_pokemon.append(list_page)
     
-        print(displayed_pokemon)
-        print(len(displayed_pokemon))
+        #print(displayed_pokemon)
+        #print(len(displayed_pokemon))
         return displayed_pokemon
 
     def type_filtring(self) :
