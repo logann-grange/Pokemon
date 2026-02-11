@@ -2,7 +2,7 @@ from Pokemon import Pokemon
 import json
 
 list_type = ["Fire", "Water", "Grass", "Rock", "Fighting", "Steel", "Dragon", "Ghost", "Poison", "Normal", "Flying", "Psy"]
-page_size = 5
+page_size = 18
 
 class Pokedex() :
 
@@ -19,7 +19,7 @@ class Pokedex() :
             content = json.load(file)
         
         for pokemon in content : 
-            list_pokemon.append(Pokemon(pokemon["id"], pokemon["name"], pokemon["image"], pokemon["type"], pokemon["stats"]["hp"], pokemon["stats"]["attack"], pokemon["stats"]["defense"], 0, 0))
+            list_pokemon.append(Pokemon(pokemon["id"], pokemon["name"], pokemon["type"],  pokemon["image"], pokemon["type"], pokemon["stats"]["hp"], pokemon["stats"]["attack"], pokemon["stats"]["defense"], 0, 0, pokemon["hidden"]))
 
         return list_pokemon
         
