@@ -11,7 +11,6 @@ class Pokedex() :
         self.search = ""
         self.displayed_pokemon = self.searching()
         self.page = 1
-        self.filter = ""
 
     def load_pokemon_list(self) :
         list_pokemon = []
@@ -45,19 +44,7 @@ class Pokedex() :
         #ajouter la dernière page si elle contient des Pokémon
         if list_page:
             displayed_pokemon.append(list_page)
-    
-        #print(displayed_pokemon)
-        #print(len(displayed_pokemon))
+            
         return displayed_pokemon
-
-    def type_filtring(self) :
-        pokemon_remaining = self.pokemon.copy()
-        filter_list = []
-        for type in list_type :
-            for pokemon in pokemon_remaining :
-                if pokemon.type == type :
-                    filter_list.append(pokemon)
-                    pokemon_remaining.remove(pokemon)
-        self.pokemon = filter_list
         
 

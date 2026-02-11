@@ -115,6 +115,7 @@ def display_search(pokedex, is_writting):
 #======== Saisie de la barre de recherche =========#
 def handle_search_input(pokedex, event, is_writting):
     if is_writting and event.type == pygame.KEYDOWN:
+        pokedex.page = 1
         if event.key == pygame.K_BACKSPACE:  # Effacer le dernier caractère
             pokedex.search = pokedex.search[:-1]
             pokedex.displayed_pokemon = pokedex.searching()
@@ -135,6 +136,9 @@ def handle_search_input(pokedex, event, is_writting):
 pygame.init()
 pygame.display.set_caption('Pokemon')
 pygame.mixer.init()
+pygame.mixer.music.load("assets/sons/music_fond.mp3")
+pygame.mixer.music.set_volume(0.7)
+pygame.mixer.music.play(-1)
 
 screen = pygame.display.set_mode((1080, 720))
 screen.fill((255, 255, 255), (0, 0, 1080, 720))
