@@ -10,9 +10,16 @@ def display_page(pokedex) :
     txt_page = font.render(str(pokedex.page), 1, (0, 0, 0))
     screen.blit(txt_page, (528, 622))
 
+def display_grid() :
+    for i in range(4) :
+        pygame.draw.line(screen, (160, 160, 160), (360, 442+(56*i)), (720, 442+(56*i)), 2)
+    for i in range(5) :
+        pygame.draw.line(screen, (160, 160, 160), (360+(59*(i+1)), 442), (360+(59*(i+1)), 610), 2)
+
+
 #======== Affichage de la grille des pokemon ========#
 def display_pokemon(pokedex) :
-    font = pygame.font.SysFont('Arial', 15, bold=False)
+    font = pygame.font.SysFont('Arial', 15, bold=True)
     list_rect = []
     row = 0
     column = 0
@@ -47,12 +54,23 @@ def display_info(pokedex, index_info, page) :
         txt_attack = font.render(f"attaque : {pokedex.displayed_pokemon[page-1][index_info].attack}", 1, (0, 0, 0))
         txt_defense = font.render(f"défense : {pokedex.displayed_pokemon[page-1][index_info].defense}", 1, (0, 0, 0))
 
+        # affichage des infos
         screen.blit(pygame.transform.scale(pygame.image.load(pokedex.displayed_pokemon[page-1][index_info].image), (155, 155)), (375, 215))
         screen.blit(txt_name,(400, 200))
         screen.blit(txt_type,(610, 200))
         screen.blit(txt_hp,(610, 230))
         screen.blit(txt_attack,(610, 260))
         screen.blit(txt_defense,(610, 290))
+
+def display_select_square(pokedex, index_info, page) :
+    if not pokedex.displayed_pokemon[page-1][index_info].hidden : # si pokemon trouver
+    # afficher l'encadrement
+        if page == pokedex.page :
+            column = index_info % 6
+            row = index_info // 6
+            pygame.draw.rect(screen, (0, 100, 250), pygame.Rect(360-3+(55+5)*column, 445-3+55*row, 61, 61), 10, 10)
+            pygame.draw.rect(screen, (255, 255, 255), pygame.Rect(360+(55+5)*column, 445+55*row, 55, 55), 10, 10)
+
 
 # Initialisation de pygame
 pygame.init()
@@ -75,9 +93,11 @@ while running :
     pygame.display.flip()
     screen.blit(pokedex_background, (260,0))
     display_page(pokedex)
-    list_rect = display_pokemon(pokedex)
+    display_grid()
     if is_info :
         display_info(pokedex, index_info, page_info)
+        display_select_square(pokedex, index_info, page_info)
+    list_rect = display_pokemon(pokedex)
 
     for event in pygame.event.get() :
 
@@ -97,6 +117,7 @@ while running :
                         is_info = True
                         index_info = i
                         page_info = pokedex.page
+
                         
 
 
