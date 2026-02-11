@@ -134,8 +134,10 @@ while running :
             # boutons de changement de page
             if btn_add_page.collidepoint(event.pos):
                 pokedex.switch_page(1)
+                pygame.mixer.Sound("assets/sons/bouton.mp3").play()
             elif btn_moins_page.collidepoint(event.pos):
                 pokedex.switch_page(-1)
+                pygame.mixer.Sound("assets/sons/bouton.mp3").play()
             # Clic sur un Pokémon
             for i in range(len(list_rect)):
                 if list_rect[i].collidepoint(event.pos):
