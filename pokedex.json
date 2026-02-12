@@ -3,12 +3,12 @@
         "id": "01",
         "name": "Bulbizarre",
         "image" : "assets/images/pokemon/1.png",
-        "type": "Grass",
+        "type": ["Grass"],
         "hidden" : false,
         "stats": {
-            "attack": 10,
-            "defense": 8,
-            "hp": 50
+            "attack": 49,
+            "defense": 49,
+            "hp": 45
         },
         "evo": "02",
         "sub_evo": ""
@@ -17,12 +17,12 @@
         "id": "02",
         "name": "Herbizarre",
         "image" : "assets/images/pokemon/2.png",
-        "type": "Grass",
+        "type": ["Grass"],
         "hidden" : false,
         "stats": {
-            "attack": 30,
-            "defense": 24,
-            "hp": 150
+            "attack": 62,
+            "defense": 63,
+            "hp": 60
         },
         "evo": "03",
         "sub_evo": "01"
@@ -32,12 +32,12 @@
         "id": "03",
         "name": "Florizarre",
         "image" : "assets/images/pokemon/3.png",
-        "type": "Grass",
+        "type": ["Grass", "Poison"],
         "hidden" : false,
         "stats": {
-            "attack": 30,
-            "defense": 24,
-            "hp": 150
+            "attack": 82,
+            "defense": 83,
+            "hp": 80
         },
         "evo": "",
         "sub_evo": "02"
@@ -47,12 +47,12 @@
         "id": "04",
         "name": "Salamèche",
         "image" : "assets/images/pokemon/4.png",
-        "type": "Grass",
+        "type": ["Fire"],
         "hidden" : false,
         "stats": {
-            "attack": 30,
-            "defense": 24,
-            "hp": 150
+            "attack": 52,
+            "defense": 43,
+            "hp": 39
         },
         "evo": "",
         "sub_evo": "05"
@@ -62,12 +62,12 @@
         "id": "05",
         "name": "Reptincelle",
         "image" : "assets/images/pokemon/5.png",
-        "type": "Grass",
+        "type": ["Fire"],
         "hidden" : false,
         "stats": {
-            "attack": 30,
-            "defense": 24,
-            "hp": 150
+            "attack": 64,
+            "defense": 58,
+            "hp": 58
         },
         "evo": "06",
         "sub_evo": "04"
@@ -77,12 +77,12 @@
         "id": "06",
         "name": "Dracofeu",
         "image" : "assets/images/pokemon/6.png",
-        "type": "Grass",
-        "hidden" : false,
+        "type": ["Fire, Flying"],
+        "hidden" : true,
         "stats": {
-            "attack": 30,
-            "defense": 24,
-            "hp": 150
+            "attack": 84,
+            "defense": 78,
+            "hp": 78
         },
         "evo": "",
         "sub_evo": "05"
@@ -92,12 +92,12 @@
         "id": "07",
         "name": "Carapuce",
         "image" : "assets/images/pokemon/7.png",
-        "type": "Water",
+        "type": ["Water"],
         "hidden" : true,
         "stats": {
-            "attack": 30,
-            "defense": 24,
-            "hp": 150
+            "attack": 48,
+            "defense": 65,
+            "hp": 44
         },
         "evo": "08",
         "sub_evo": ""
@@ -107,12 +107,12 @@
         "id": "08",
         "name": "Carabaffe",
         "image" : "assets/images/pokemon/8.png",
-        "type": "Water",
+        "type": ["Water"],
         "hidden" : false,
         "stats": {
-            "attack": 30,
-            "defense": 24,
-            "hp": 150
+            "attack": 63,
+            "defense": 80,
+            "hp": 59
         },
         "evo": "09",
         "sub_evo": "07"
@@ -122,12 +122,12 @@
         "id": "09",
         "name": "Tortank",
         "image" : "assets/images/pokemon/9.png",
-        "type": "Water",
+        "type": ["Water"],
         "hidden" : false,
         "stats": {
-            "attack": 30,
-            "defense": 24,
-            "hp": 150
+            "attack": 83,
+            "defense": 100,
+            "hp": 79
         },
         "evo": "",
         "sub_evo": "08"
@@ -137,12 +137,12 @@
         "id": "10",
         "name": "Aspicot",
         "image" : "assets/images/pokemon/10.png",
-        "type": "Insect",
+        "type": ["Insect"],
         "hidden" : false,
         "stats": {
-            "attack": 30,
-            "defense": 24,
-            "hp": 150
+            "attack": 35,
+            "defense": 30,
+            "hp": 40
         },
         "evo": "11",
         "sub_evo": ""
@@ -152,12 +152,12 @@
         "id": "11",
         "name": "Coconfort",
         "image" : "assets/images/pokemon/11.png",
-        "type": "Insect",
+        "type": ["Insect"],
         "hidden" : false,
         "stats": {
-            "attack": 30,
-            "defense": 24,
-            "hp": 150
+            "attack": 25,
+            "defense": 50,
+            "hp": 45
         },
         "evo": "12",
         "sub_evo": "10"
@@ -165,14 +165,14 @@
     },
     {
         "id": "12",
-        "name": "Dardagnan",
+        "name": "Dardargnan",
         "image" : "assets/images/pokemon/12.png",
-        "type": "Grass",
+        "type": ["Insect"],
         "hidden" : false,
         "stats": {
-            "attack": 30,
-            "defense": 24,
-            "hp": 150
+            "attack": 90,
+            "defense": 40,
+            "hp": 65
         },
         "evo": "",
         "sub_evo": "11"
@@ -182,12 +182,12 @@
         "id": "13",
         "name": "Ratata",
         "image" : "assets/images/pokemon/13.png",
-        "type": "Normal",
+        "type": ["Normal"],
         "hidden" : false,
         "stats": {
-            "attack": 30,
-            "defense": 24,
-            "hp": 150
+            "attack": 80,
+            "defense": 50,
+            "hp": 40
         },
         "evo": "14",
         "sub_evo": ""
@@ -197,12 +197,12 @@
         "id": "14",
         "name": "Ratatac",
         "image" : "assets/images/pokemon/14.png",
-        "type": "Normal",
+        "type": ["Normal"],
         "hidden" : false,
         "stats": {
-            "attack": 30,
-            "defense": 24,
-            "hp": 150
+            "attack": 100,
+            "defense": 65,
+            "hp": 75
         },
         "evo": "",
         "sub_evo": "13"
@@ -210,14 +210,14 @@
     },
     {
         "id": "15",
-        "name": "Roucoul",
+        "name": "Roucool",
         "image" : "assets/images/pokemon/15.png",
-        "type": "Flying",
+        "type": ["Flying"],
         "hidden" : false,
         "stats": {
-            "attack": 30,
-            "defense": 24,
-            "hp": 150
+            "attack": 35,
+            "defense": 35,
+            "hp": 40
         },
         "evo": "16",
         "sub_evo": ""
@@ -227,12 +227,12 @@
         "id": "16",
         "name": "Roucoups",
         "image" : "assets/images/pokemon/16.png",
-        "type": "Flying",
+        "type": ["Flying"],
         "hidden" : false,
         "stats": {
-            "attack": 30,
-            "defense": 24,
-            "hp": 150
+            "attack": 60,
+            "defense": 55,
+            "hp": 63
         },
         "evo": "17",
         "sub_evo": "15"
@@ -242,12 +242,12 @@
         "id": "17",
         "name": "Roucarnage",
         "image" : "assets/images/pokemon/17.png",
-        "type": "Flying",
+        "type": ["Flying"],
         "hidden" : false,
         "stats": {
-            "attack": 30,
-            "defense": 24,
-            "hp": 150
+            "attack": 80,
+            "defense": 75,
+            "hp": 83
         },
         "evo": "",
         "sub_evo": "16"
@@ -257,12 +257,12 @@
         "id": "18",
         "name": "Machop",
         "image" : "assets/images/pokemon/18.png",
-        "type": "Figthing",
+        "type": ["Figthing"],
         "hidden" : false,
         "stats": {
-            "attack": 30,
-            "defense": 24,
-            "hp": 150
+            "attack": 80,
+            "defense": 50,
+            "hp": 70
         },
         "evo": "19",
         "sub_evo": ""
@@ -271,12 +271,12 @@
         "id": "19",
         "name": "Machopeur",
         "image" : "assets/images/pokemon/19.png",
-        "type": "Figthing",
+        "type": ["Figthing"],
         "hidden" : false,
         "stats": {
             "attack": 30,
             "defense": 24,
-            "hp": 150
+            "hp": 80
         },
         "evo": "20",
         "sub_evo": "18"
@@ -286,12 +286,12 @@
         "id": "20",
         "name": "Macogneur",
         "image" : "assets/images/pokemon/20.png",
-        "type": "Figthing",
+        "type": ["Figthing"],
         "hidden" : false,
         "stats": {
-            "attack": 30,
-            "defense": 24,
-            "hp": 150
+            "attack": 130,
+            "defense": 80,
+            "hp": 90
         },
         "evo": "",
         "sub_evo": "19"
@@ -301,178 +301,238 @@
         "id": "21",
         "name": "Tadmorv",
         "image" : "assets/images/pokemon/21.png",
-        "type": "Poison",
+        "type": ["Poison"],
         "hidden" : false,
         "stats": {
-            "attack": 30,
-            "defense": 24,
-            "hp": 150
+            "attack": 80,
+            "defense": 50,
+            "hp": 80
         },
-        "evo": "",
-        "sub_evo": "02"
+        "evo": "22",
+        "sub_evo": ""
         
     },
     {
         "id": "22",
         "name": "Grotadmorv",
         "image" : "assets/images/pokemon/22.png",
-        "type": "Poison",
+        "type": ["Poison"],
         "hidden" : false,
         "stats": {
-            "attack": 30,
-            "defense": 24,
-            "hp": 150
+            "attack": 105,
+            "defense": 75,
+            "hp": 105
         },
         "evo": "",
-        "sub_evo": "02"
+        "sub_evo": "21"
         
     },
     {
         "id": "23",
         "name": "Abra",
         "image" : "assets/images/pokemon/23.png",
-        "type": "Psy",
+        "type": ["Psy"],
         "hidden" : false,
         "stats": {
-            "attack": 30,
-            "defense": 24,
-            "hp": 150
+            "attack": 105,
+            "defense": 40,
+            "hp": 25
         },
-        "evo": "",
-        "sub_evo": "02"
+        "evo": "24",
+        "sub_evo": ""
         
     },
     {
         "id": "24",
         "name": "Kadabra",
         "image" : "assets/images/pokemon/24.png",
-        "type": "Psy",
+        "type": ["Psy"],
         "hidden" : false,
         "stats": {
-            "attack": 30,
-            "defense": 24,
-            "hp": 150
+            "attack": 120,
+            "defense": 50,
+            "hp": 40
         },
-        "evo": "",
-        "sub_evo": "02"
+        "evo": "25",
+        "sub_evo": "23"
         
     },
     {
         "id": "25",
         "name": "Alakazam",
         "image" : "assets/images/pokemon/25.png",
-        "type": "Psy",
+        "type": ["Psy"],
         "hidden" : false,
         "stats": {
-            "attack": 30,
-            "defense": 24,
-            "hp": 150
+            "attack": 135,
+            "defense": 50,
+            "hp": 55
         },
-        "evo": "",
-        "sub_evo": "02"
+        "evo": "24",
+        "sub_evo": ""
         
     },
     {
         "id": "26",
         "name": "Fantominus",
         "image" : "assets/images/pokemon/26.png",
-        "type": "Ghost",
+        "type": ["Ghost", "Poison"],
         "hidden" : false,
         "stats": {
-            "attack": 30,
-            "defense": 24,
-            "hp": 150
+            "attack": 100,
+            "defense": 35,
+            "hp": 30
         },
-        "evo": "",
-        "sub_evo": "02"
+        "evo": "27",
+        "sub_evo": ""
         
     },
     {
         "id": "27",
         "name": "Spectrum",
         "image" : "assets/images/pokemon/27.png",
-        "type": "Ghost",
+        "type": ["Ghost", "Poison"],
         "hidden" : false,
         "stats": {
-            "attack": 30,
-            "defense": 24,
-            "hp": 150
+            "attack": 115,
+            "defense": 55,
+            "hp": 45
         },
-        "evo": "",
-        "sub_evo": "02"
+        "evo": "28",
+        "sub_evo": "26"
     },
     {
         "id": "28",
         "name": "Ectoplasma",
         "image" : "assets/images/pokemon/28.png",
-        "type": "Ghost",
+        "type": ["Ghost", "Poison"],
         "hidden" : false,
         "stats": {
-            "attack": 30,
-            "defense": 24,
-            "hp": 150
+            "attack": 130,
+            "defense": 75,
+            "hp": 60
         },
         "evo": "",
-        "sub_evo": "02"
+        "sub_evo": "27"
         
     },
     {
         "id": "29",
         "name": "Spykokwak",
         "image" : "assets/images/pokemon/29.png",
-        "type": "Spy",
+        "type": ["Water"],
         "hidden" : false,
         "stats": {
-            "attack": 30,
-            "defense": 24,
-            "hp": 150
+            "attack": 65,
+            "defense": 50,
+            "hp": 50
         },
-        "evo": "",
-        "sub_evo": "02"
+        "evo": "30",
+        "sub_evo": ""
     },
     {
         "id": "30",
         "name": "Akwakwak",
         "image" : "assets/images/pokemon/30.png",
-        "type": "Spy",
+        "type": ["Water"],
         "hidden" : false,
         "stats": {
-            "attack": 30,
-            "defense": 24,
-            "hp": 150
+            "attack": 95,
+            "defense": 80,
+            "hp": 80
         },
         "evo": "",
-        "sub_evo": "02"
+        "sub_evo": "29"
         
     },
     {
         "id": "31",
         "name": "Miaouss",
         "image" : "assets/images/pokemon/31.png",
-        "type": "Normal",
+        "type": ["Normal"],
         "hidden" : false,
         "stats": {
-            "attack": 30,
-            "defense": 24,
-            "hp": 150
+            "attack": 45,
+            "defense": 40,
+            "hp": 40
         },
-        "evo": "",
-        "sub_evo": "02"
+        "evo": "32",
+        "sub_evo": ""
         
     },
     {
         "id": "32",
         "name": "Persian",
         "image" : "assets/images/pokemon/32.png",
-        "type": "Normal",
+        "type": ["Normal"],
         "hidden" : false,
         "stats": {
-            "attack": 30,
-            "defense": 24,
-            "hp": 150
+            "attack": 70,
+            "defense": 60,
+            "hp": 65
         },
         "evo": "",
-        "sub_evo": "02"
+        "sub_evo": "31"
+        
+    },
+    {
+        "id": "33",
+        "name": "Magicarpe",
+        "image" : "assets/images/pokemon/33.png",
+        "type": ["Water"],
+        "hidden" : false,
+        "stats": {
+            "attack": 15,
+            "defense": 55,
+            "hp": 20
+        },
+        "evo": "34",
+        "sub_evo": ""
+        
+    },
+    {
+        "id": "34",
+        "name": "Leviator",
+        "image" : "assets/images/pokemon/34.png",
+        "type": ["Water"],
+        "hidden" : false,
+        "stats": {
+            "attack": 125,
+            "defense": 100,
+            "hp": 95
+        },
+        "evo": "",
+        "sub_evo": "33"
+        
+    },
+    {
+        "id": "35",
+        "name": "Onix",
+        "image" : "assets/images/pokemon/35.png",
+        "type": ["Rock"],
+        "hidden" : false,
+        "stats": {
+            "attack": 45,
+            "defense": 160,
+            "hp": 35
+        },
+        "evo": "36",
+        "sub_evo": ""
+        
+    },
+    {
+        "id": "36",
+        "name": "Steelix",
+        "image" : "assets/images/pokemon/36.png",
+        "type": ["Steel"],
+        "hidden" : false,
+        "stats": {
+            "attack": 85,
+            "defense": 200,
+            "hp": 75
+        },
+        "evo": "",
+        "sub_evo": "35"
         
     }
     
