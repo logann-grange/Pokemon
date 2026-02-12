@@ -20,6 +20,9 @@ def display_grid():
         pygame.draw.line(screen, (160, 160, 160), (337+border, 442+(56*i)), (735-border, 442+(56*i)), 2)
     for i in range(5):
         pygame.draw.line(screen, (160, 160, 160), (360+(59*(i+1)), 442), (360+(59*(i+1)), 610), 2)
+    
+    pygame.draw.line(screen, (160, 160, 160), (337, 370), (570, 370), 2)
+
 
 
 #======== Affichage des pokemon ========#
@@ -50,8 +53,8 @@ def display_pokemon(pokedex):
     return list_rect
 
 #======== Affichage des infos du pokemon ========#
-def display_info(pokedex, index_info, page):
-    if not pokedex.displayed_pokemon[page-1][index_info].hidden:  # si pokemon trouver
+def display_info(pokedex, index_info, page, is_writting):
+    if not is_writting and not pokedex.displayed_pokemon[page-1][index_info].hidden:  # si pokemon trouver
         font = pygame.font.SysFont('Arial', 20, bold=False)
         txt_name = font.render(str(pokedex.displayed_pokemon[page-1][index_info].name), 1, (0, 0, 0))
         txt_type = font.render(f"type : {pokedex.displayed_pokemon[page-1][index_info].type}", 1, (0, 0, 0))
@@ -59,6 +62,15 @@ def display_info(pokedex, index_info, page):
         txt_attack = font.render(f"attaque : {pokedex.displayed_pokemon[page-1][index_info].attack}", 1, (0, 0, 0))
         txt_defense = font.render(f"défense : {pokedex.displayed_pokemon[page-1][index_info].defense}", 1, (0, 0, 0))
 
+        #affichage des evo et sub_evo :
+        if pokedex.displayed_pokemon[page-1][index_info].sub_evo != "" :
+            sub_evo = pokedex.get_pokemon_by_id(pokedex.displayed_pokemon[page-1][index_info].sub_evo)
+            screen.blit(pygame.image.load(sub_evo.image), (350, 370))
+
+        if pokedex.displayed_pokemon[page-1][index_info].evo != "" :
+            evo = pokedex.get_pokemon_by_id(pokedex.displayed_pokemon[page-1][index_info].evo)
+            screen.blit(pygame.image.load(evo.image), (420, 370))
+    
         # affichage des infos
         screen.blit(pygame.transform.scale(pygame.image.load(pokedex.displayed_pokemon[page-1][index_info].image), (155, 155)), (375, 215))
         screen.blit(txt_name, (400, 200))
@@ -68,8 +80,8 @@ def display_info(pokedex, index_info, page):
         screen.blit(txt_defense, (610, 290))
 
 #======= Affichage de l'encadrement de la sélection ========#
-def display_select_square(pokedex, index_info, page, select_rect, hover_rect, is_hover):
-    if not pokedex.displayed_pokemon[page-1][index_info].hidden:  # si pokemon trouver
+def display_select_square(pokedex, index_info, page, select_rect, hover_rect, is_hover, is_writting):
+    if not is_writting and not pokedex.displayed_pokemon[page-1][index_info].hidden:  # si pokemon trouver
         # changement de couleur si souris sur le rect
         if select_rect == hover_rect and is_hover:
             color = (220, 220, 100)
@@ -172,8 +184,8 @@ while running:
     display_grid()
     
     if is_info:
-        display_info(pokedex, index_info, page_info)
-        display_select_square(pokedex, index_info, page_info, select_rect, new_hover_rect, is_hover)
+        display_info(pokedex, index_info, page_info, is_writting)
+        display_select_square(pokedex, index_info, page_info, select_rect, new_hover_rect, is_hover, is_writting)
 
     list_rect = display_pokemon(pokedex)
     search_rect = display_search(pokedex, is_writting)

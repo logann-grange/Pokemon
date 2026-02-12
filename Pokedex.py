@@ -18,7 +18,7 @@ class Pokedex() :
             content = json.load(file)
         
         for pokemon in content : 
-            list_pokemon.append(Pokemon(pokemon["id"], pokemon["name"], pokemon["type"],  pokemon["image"], pokemon["type"], pokemon["stats"]["hp"], pokemon["stats"]["attack"], pokemon["stats"]["defense"], 0, 0, pokemon["hidden"]))
+            list_pokemon.append(Pokemon(pokemon["id"], pokemon["name"], pokemon["type"],  pokemon["image"], pokemon["type"], pokemon["stats"]["hp"], pokemon["stats"]["attack"], pokemon["stats"]["defense"], 0, 0, pokemon["evo"], pokemon["sub_evo"], pokemon["hidden"]))
 
         return list_pokemon
         
@@ -44,7 +44,12 @@ class Pokedex() :
         #ajouter la dernière page si elle contient des Pokémon
         if list_page:
             displayed_pokemon.append(list_page)
-            
+
         return displayed_pokemon
+    
+    def get_pokemon_by_id(self, id) :
+        for pokemon in self.pokemon :
+            if pokemon.id == id :
+                return pokemon
         
 

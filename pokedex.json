@@ -9,7 +9,9 @@
             "attack": 10,
             "defense": 8,
             "hp": 50
-        }
+        },
+        "evo": "02",
+        "sub_evo": ""
     },
     {
         "id": "02",
@@ -21,7 +23,9 @@
             "attack": 30,
             "defense": 24,
             "hp": 150
-        }
+        },
+        "evo": "03",
+        "sub_evo": "01"
         
     },
     {
@@ -34,7 +38,9 @@
             "attack": 30,
             "defense": 24,
             "hp": 150
-        }
+        },
+        "evo": "",
+        "sub_evo": "02"
         
     },
     {
@@ -47,7 +53,9 @@
             "attack": 30,
             "defense": 24,
             "hp": 150
-        }
+        },
+        "evo": "",
+        "sub_evo": "05"
         
     },
     {
@@ -60,7 +68,9 @@
             "attack": 30,
             "defense": 24,
             "hp": 150
-        }
+        },
+        "evo": "06",
+        "sub_evo": "04"
         
     },
     {
@@ -68,12 +78,14 @@
         "name": "Dracofeu",
         "image" : "assets/images/pokemon/6.png",
         "type": "Grass",
-        "hidden" : true,
+        "hidden" : false,
         "stats": {
             "attack": 30,
             "defense": 24,
             "hp": 150
-        }
+        },
+        "evo": "",
+        "sub_evo": "05"
         
     },
     {
@@ -86,7 +98,9 @@
             "attack": 30,
             "defense": 24,
             "hp": 150
-        }
+        },
+        "evo": "08",
+        "sub_evo": ""
         
     },
     {
@@ -99,7 +113,9 @@
             "attack": 30,
             "defense": 24,
             "hp": 150
-        }
+        },
+        "evo": "09",
+        "sub_evo": "07"
         
     },
     {
@@ -112,7 +128,9 @@
             "attack": 30,
             "defense": 24,
             "hp": 150
-        }
+        },
+        "evo": "",
+        "sub_evo": "08"
         
     },
     {
@@ -125,7 +143,9 @@
             "attack": 30,
             "defense": 24,
             "hp": 150
-        }
+        },
+        "evo": "11",
+        "sub_evo": ""
         
     },
     {
@@ -138,7 +158,9 @@
             "attack": 30,
             "defense": 24,
             "hp": 150
-        }
+        },
+        "evo": "12",
+        "sub_evo": "10"
         
     },
     {
@@ -151,7 +173,9 @@
             "attack": 30,
             "defense": 24,
             "hp": 150
-        }
+        },
+        "evo": "",
+        "sub_evo": "11"
         
     },
     {
@@ -164,7 +188,9 @@
             "attack": 30,
             "defense": 24,
             "hp": 150
-        }
+        },
+        "evo": "14",
+        "sub_evo": ""
         
     },
     {
@@ -177,7 +203,9 @@
             "attack": 30,
             "defense": 24,
             "hp": 150
-        }
+        },
+        "evo": "",
+        "sub_evo": "13"
         
     },
     {
@@ -190,7 +218,9 @@
             "attack": 30,
             "defense": 24,
             "hp": 150
-        }
+        },
+        "evo": "16",
+        "sub_evo": ""
         
     },
     {
@@ -203,7 +233,9 @@
             "attack": 30,
             "defense": 24,
             "hp": 150
-        }
+        },
+        "evo": "17",
+        "sub_evo": "15"
         
     },
     {
@@ -216,7 +248,9 @@
             "attack": 30,
             "defense": 24,
             "hp": 150
-        }
+        },
+        "evo": "",
+        "sub_evo": "16"
         
     },
     {
@@ -229,8 +263,9 @@
             "attack": 30,
             "defense": 24,
             "hp": 150
-        }
-        
+        },
+        "evo": "19",
+        "sub_evo": ""
     },
     {
         "id": "19",
@@ -242,7 +277,9 @@
             "attack": 30,
             "defense": 24,
             "hp": 150
-        }
+        },
+        "evo": "20",
+        "sub_evo": "18"
         
     },
     {
@@ -255,7 +292,9 @@
             "attack": 30,
             "defense": 24,
             "hp": 150
-        }
+        },
+        "evo": "",
+        "sub_evo": "19"
         
     },
     {
@@ -268,7 +307,9 @@
             "attack": 30,
             "defense": 24,
             "hp": 150
-        }
+        },
+        "evo": "",
+        "sub_evo": "02"
         
     },
     {
@@ -281,7 +322,9 @@
             "attack": 30,
             "defense": 24,
             "hp": 150
-        }
+        },
+        "evo": "",
+        "sub_evo": "02"
         
     },
     {
@@ -294,7 +337,9 @@
             "attack": 30,
             "defense": 24,
             "hp": 150
-        }
+        },
+        "evo": "",
+        "sub_evo": "02"
         
     },
     {
@@ -307,7 +352,9 @@
             "attack": 30,
             "defense": 24,
             "hp": 150
-        }
+        },
+        "evo": "",
+        "sub_evo": "02"
         
     },
     {
@@ -320,7 +367,9 @@
             "attack": 30,
             "defense": 24,
             "hp": 150
-        }
+        },
+        "evo": "",
+        "sub_evo": "02"
         
     },
     {
@@ -333,7 +382,9 @@
             "attack": 30,
             "defense": 24,
             "hp": 150
-        }
+        },
+        "evo": "",
+        "sub_evo": "02"
         
     },
     {
@@ -346,8 +397,9 @@
             "attack": 30,
             "defense": 24,
             "hp": 150
-        }
-        
+        },
+        "evo": "",
+        "sub_evo": "02"
     },
     {
         "id": "28",
@@ -359,7 +411,9 @@
             "attack": 30,
             "defense": 24,
             "hp": 150
-        }
+        },
+        "evo": "",
+        "sub_evo": "02"
         
     },
     {
@@ -372,8 +426,9 @@
             "attack": 30,
             "defense": 24,
             "hp": 150
-        }
-        
+        },
+        "evo": "",
+        "sub_evo": "02"
     },
     {
         "id": "30",
@@ -385,7 +440,9 @@
             "attack": 30,
             "defense": 24,
             "hp": 150
-        }
+        },
+        "evo": "",
+        "sub_evo": "02"
         
     },
     {
@@ -398,7 +455,9 @@
             "attack": 30,
             "defense": 24,
             "hp": 150
-        }
+        },
+        "evo": "",
+        "sub_evo": "02"
         
     },
     {
@@ -411,7 +470,9 @@
             "attack": 30,
             "defense": 24,
             "hp": 150
-        }
+        },
+        "evo": "",
+        "sub_evo": "02"
         
     }
     
