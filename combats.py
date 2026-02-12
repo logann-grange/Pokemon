@@ -53,9 +53,4 @@ class Combat:
         elif self.opponent.hp>self.poke.hp<=0:
             return f"{self.opponent.name} win the fight"
         
-    
-
-pika=Pokemon(1,"Pika",1,1,180,50,50,5,780,"Electric")
-leviator=Pokemon(1,"Leviator",1,1,180,50,50,5,780,"Water")
-fight=Combat(pika,leviator)
-print(fight.heads_or_tails())
+fight=Combat()
