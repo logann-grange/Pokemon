@@ -13,15 +13,19 @@ def display_page(pokedex):
     screen.blit(txt_page, (528, 622))
 
 #=========== Affichage de la grille ===========#
-def display_grid():
+def display_grid(pokedex,is_hover, index_hover, page_hover, new_hover_rect, old_hover_rect):
+    pygame.draw.rect(screen, (20, 20, 20), pygame.Rect(337, 442, 402, 170), 25, 25)
+    pygame.draw.rect(screen, (255, 255, 255), pygame.Rect(362, 442, 352, 25))
+    pygame.draw.rect(screen, (255, 255, 255), pygame.Rect(362, 585, 352, 25))
+    display_hoover(pokedex,is_hover, index_hover, page_hover, new_hover_rect, old_hover_rect)
     for i in range(4):
         if i == 0 or i == 3:
-            border = 10
+            border = 0
         else:
             border = 0
-        pygame.draw.line(screen, (160, 160, 160), (337+border, 442+(56*i)), (735-border, 442+(56*i)), 2)
-    for i in range(5):
-        pygame.draw.line(screen, (160, 160, 160), (360+(59*(i+1)), 442), (360+(59*(i+1)), 610), 2)
+        pygame.draw.line(screen, (160, 160, 160), (337+24, 442+(56*i)), (735-20, 442+(56*i)), 2)
+    for i in range(7):
+        pygame.draw.line(screen, (160, 160, 160), (360+(59*(i)), 442), (360+(59*(i)), 610), 2)
     
     pygame.draw.line(screen, (160, 160, 160), (337, 370), (570, 370), 2)
 
@@ -115,23 +119,23 @@ def display_select_square(pokedex, index_info, page, select_rect, hover_rect, is
     if not is_writting and not pokedex.displayed_pokemon[page-1][index_info].hidden:  # si pokemon trouver
         # changement de couleur si souris sur le rect
         if select_rect == hover_rect and is_hover:
-            color = (220, 220, 100)
+            color = (255, 255, 150)
         else:
             color = (255, 255, 255)
         # afficher l'encadrement
         if page == pokedex.page:
             column = index_info % 6
             row = index_info // 6
-            pygame.draw.rect(screen, (0, 100, 250), pygame.Rect(360-3+(55+5)*column, 445-3+55*row, 61, 61), 10, 10)
-            pygame.draw.rect(screen, color, pygame.Rect(360+(55+5)*column, 445+55*row, 55, 55), 10, 10)
+            pygame.draw.rect(screen, (0, 100, 250), pygame.Rect(360-3+(55+5)*column, 445-3+55*row, 61+2, 61), 10, 10)
+            pygame.draw.rect(screen, color, pygame.Rect(360+(55+5)*column, 445+55*row, 55+2, 55), 10, 10)
 
-def display_hoover(pokedex, index, page, new_rect, old_rect=None):
-    if not pokedex.displayed_pokemon[page-1][index].hidden:  # si pokemon trouver
+def display_hoover(pokedex, is_hover, index, page, new_rect, old_rect=None):
+    if is_hover and not pokedex.displayed_pokemon[page-1][index].hidden:  # si pokemon trouver
         # afficher l'encadrement
         if page == pokedex.page:
             column = index % 6
             row = index // 6
-            pygame.draw.rect(screen, (220, 220, 100), pygame.Rect(360+(54+5)*column, 443+55*row, 59, 57))
+            pygame.draw.rect(screen, (255, 255, 150), pygame.Rect(360+(54+5)*column, 443+55*row, 59, 57))
         if new_rect != old_rect:
             pygame.mixer.Sound("assets/sons/hover.mp3").play()
 
@@ -179,7 +183,7 @@ def handle_search_input(pokedex, event, is_writting, is_info, index_info):
 
 def display_animated_img(last_update, current_frame) :
     # Charger le PNG animé
-    apng = Image.open("assets/images/pokemon/pikachu.png")
+    apng = Image.open("assets/images/pokemon/dardargnan.png")
     # Extraire toutes les frames
     frames = []
     durations = []
@@ -205,7 +209,6 @@ def display_animated_img(last_update, current_frame) :
     # Animation
     
     now = pygame.time.get_ticks()
-    print(now-last_update)
     if now - last_update > durations[current_frame]:
         current_frame = (current_frame + 1) % len(frames)
         last_update = now
@@ -252,11 +255,8 @@ while running:
     screen.blit(pokedex_background, (260, 0))
     display_page(pokedex)
     
-    if is_hover:
-        display_hoover(pokedex, index_hover, page_hover, new_hover_rect, old_hover_rect)
-    
-    display_grid()
-    last_update, current_frame = display_animated_img(last_update, current_frame)
+    display_grid(pokedex,is_hover, index_hover, page_hover, new_hover_rect, old_hover_rect)
+    #last_update, current_frame = display_animated_img(last_update, current_frame)
     
     if is_info:
         list_rect_evo = display_info(get_pokemon_by_index(pokedex, index_info, page_info), is_writting)
