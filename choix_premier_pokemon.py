@@ -2,6 +2,7 @@ from Pokemon import Pokemon
 import json
 import pygame
 import os
+from PIL import Image 
 
 
 class MenuChoixPokemon:
@@ -10,6 +11,8 @@ class MenuChoixPokemon:
         self.script_dir = os.path.dirname(os.path.abspath(__file__))
         self.pokemon_starter_list = [1, 4, 7]       
         self.pokemon_starter = []
+        self._apng_cache = {}
+        self._anim_state = {}
         self.choix_premier_pokemon()
         self.screen = pygame.display.set_mode((800, 600))
         self.background = pygame.image.load(os.path.join(self.script_dir, "Asset", "Professor", "lab_background.jfif"))
@@ -29,7 +32,60 @@ class MenuChoixPokemon:
         new_size = (int(img_w * scale), int(img_h * scale))
         return pygame.transform.smoothscale(image, new_size)
     
+
+    def display_animated_img(self, apng_path, center_pos, state_key, scale=1.0):
+        # Charger et mettre en cache les frames d'un APNG.
+        if apng_path not in self._apng_cache:
+            apng = Image.open(apng_path)
+            frames = []
+            durations = []
+
+            try:
+                while True:
+                    # Convertir en RGBA pour la compatibilité
+                    frame = apng.convert("RGBA")
+
+                    # Convertir PIL Image en Pygame Surface
+                    mode = frame.mode
+                    size = frame.size
+                    data = frame.tobytes()
+                    frame_surface = pygame.image.fromstring(data, size, mode)
+
+                    frames.append(frame_surface)
+                    durations.append(apng.info.get("duration", 100))
+
+                    apng.seek(apng.tell() + 1)
+            except EOFError:
+                pass
+
+            if not frames:
+                return
+
+            self._apng_cache[apng_path] = (frames, durations)
+
+        frames, durations = self._apng_cache[apng_path]
+
+        if state_key not in self._anim_state:
+            self._anim_state[state_key] = {
+                "last_update": pygame.time.get_ticks(),
+                "current_frame": 0,
+            }
+
+        state = self._anim_state[state_key]
+        now = pygame.time.get_ticks()
+        duration = durations[state["current_frame"]] if durations else 100
+        if now - state["last_update"] > duration:
+            state["current_frame"] = (state["current_frame"] + 1) % len(frames)
+            state["last_update"] = now
+
+        frame = frames[state["current_frame"]]
+        if scale != 1.0:
+            new_size = (int(frame.get_width() * scale), int(frame.get_height() * scale))
+            frame = pygame.transform.smoothscale(frame, new_size)
+        frame_rect = frame.get_rect(center=center_pos)
+        self.screen.blit(frame, frame_rect)
     
+        
     def dialogue_professeur_chen(self):
         font_path = os.path.join(self.script_dir, "Asset", "menue", "Pixeled.ttf")
         if os.path.exists(font_path):
@@ -98,6 +154,7 @@ class MenuChoixPokemon:
             clock.tick(15)  # 15 caractères par seconde
     
     
+    
     def choix_premier_pokemon(self):
         with open(os.path.join(self.script_dir, 'pokedex.json')) as f:
             data = json.load(f)    
@@ -120,6 +177,7 @@ class MenuChoixPokemon:
     
     def affichage_choix_pokemon(self):
         running = True
+
         while running:
             mouse_pos = pygame.mouse.get_pos()
             for event in pygame.event.get():
@@ -143,20 +201,21 @@ class MenuChoixPokemon:
                 image = pygame.image.load(image_path)
                 image_rect = image.get_rect(topleft=(200 + i*200, 300))
                 
-                # Appliquer un effet de zoom si la souris est au-dessus de l'image
+                # Animation APNG: zoom au survol, animation normale sinon
                 if image_rect.collidepoint(mouse_pos):
-                    zoomed_image = pygame.transform.scale(image, (int(image.get_width() * 1.2), int(image.get_height() * 1.2)))
-                    zoomed_rect = zoomed_image.get_rect(center=image_rect.center)
-                    self.screen.blit(zoomed_image, zoomed_rect)
+                    self.display_animated_img(image_path, image_rect.center, f"starter_{pokemon.id}", scale=1.2)
                 else:
-                    self.screen.blit(image, image_rect)
+                    self.display_animated_img(image_path, image_rect.center, f"starter_{pokemon.id}")
                 
             pygame.display.flip()
             
         pygame.quit()
 
 def lancer_choix_pokemon():
+    
     """Fonction pour lancer le choix du premier Pokémon"""
+    
+    
     demarre = MenuChoixPokemon()
     if demarre.dialogue_professeur_chen():
         return demarre.affichage_choix_pokemon()
