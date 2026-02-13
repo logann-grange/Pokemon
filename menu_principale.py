@@ -1,7 +1,10 @@
 import os
 import pygame
 import menu_choix_jeu
+import Feuille
 
+pygame.display.set_caption("Pokemon")
+screen = pygame.display.set_mode((800, 600))
 
 menu_background = pygame.image.load("./Asset/menue/background_menu.jpg")
 button_play = pygame.image.load("./Asset/menue/Jouer.png")
@@ -10,9 +13,9 @@ button_option = pygame.image.load("./Asset/menue/Option.png")
 button_option_hover = pygame.image.load("./Asset/menue/Option_hover.png")
 button_quit = pygame.image.load("./Asset/menue/Quitter.png")
 buitton_quit_hover = pygame.image.load("./Asset/menue/Quitter_hover.png")
-screen = pygame.display.set_mode((800, 600))
-pygame.display.set_caption("Pokemon")
-
+leaf = pygame.image.load("./Asset/menue/leaf.png")
+clock = pygame.time.Clock()
+leafs = Feuille.init_leafs(leaf, 25)
 
 pygame.init()
 running = True
@@ -20,6 +23,11 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if button_play.get_rect(topleft=(300, 200)).collidepoint(event.pos):
+                menu_choix_jeu.menu_choix_jeu()
+            if button_quit.get_rect(topleft=(300, 400)).collidepoint(event.pos):
+                running = False
 
     screen.blit(menu_background, (0, 0))
     mouse_pos = pygame.mouse.get_pos()
@@ -38,11 +46,14 @@ while running:
     else:
         screen.blit(button_quit, (300, 400))    
 
+    for leaf in leafs:
+        leaf.update()
+    for leaf in leafs:
+        leaf.draw(screen)
+    
+    
+    
     pygame.display.flip()
-    if event.type == pygame.MOUSEBUTTONDOWN:
-        if button_play.get_rect(topleft=(300, 200)).collidepoint(mouse_pos):
-            menu_choix_jeu.menu_choix_jeu()
-        if button_quit.get_rect(topleft=(300, 400)).collidepoint(mouse_pos): 
-            running = False    
+    clock.tick(60)
             
 pygame.quit()
