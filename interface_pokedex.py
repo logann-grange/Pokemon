@@ -132,11 +132,12 @@ def display_select_square(pokedex):
     #         pygame.draw.rect(screen, color, pygame.Rect(360+(55+5)*column, 445+55*row, 55+2, 55), 10, 10)
     
     if pokedex.selected_pokemon != None :
-        for i in range(len(pokedex.displayed_pokemon[pokedex.page-1])) :
-            if pokedex.displayed_pokemon[pokedex.page-1][i] == pokedex.selected_pokemon :
-                column = i % 6
-                row = i // 6
-                pygame.draw.rect(screen, (0, 100, 250), pygame.Rect(360-3+(55+5)*column, 445-3+55*row, 61+2, 61), 4, 10)
+        if len(pokedex.displayed_pokemon) > 0 :
+            for i in range(len(pokedex.displayed_pokemon[pokedex.page-1])) :
+                if pokedex.displayed_pokemon[pokedex.page-1][i] == pokedex.selected_pokemon :
+                    column = i % 6
+                    row = i // 6
+                    pygame.draw.rect(screen, (0, 100, 250), pygame.Rect(360-3+(55+5)*column, 445-3+55*row, 61+2, 61), 4, 10)
                 
 def display_hoover(pokedex, is_hover, index, page, new_rect, old_rect=None):
     if is_hover:
