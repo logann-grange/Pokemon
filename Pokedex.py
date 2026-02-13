@@ -11,6 +11,8 @@ class Pokedex() :
         self.search = ""
         self.displayed_pokemon = self.searching()
         self.page = 1
+        self.selected_pokemon = None
+        self.num_unlock = self.get_num_unlock()
 
     def load_pokemon_list(self) :
         list_pokemon = []
@@ -51,5 +53,17 @@ class Pokedex() :
         for pokemon in self.pokemon :
             if pokemon.id == id :
                 return pokemon
+    
+    def select_pokemon(self, pokemon) :
+        if not pokemon.hidden :
+            self.selected_pokemon = pokemon
+
+    def get_num_unlock(self) :
+        num = 0
+        for pokemon in self.pokemon :
+            if not pokemon.hidden :
+                num += 1
+        return num
+        
         
 

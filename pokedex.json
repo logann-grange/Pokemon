@@ -123,7 +123,7 @@
         "name": "Tortank",
         "image" : "assets/images/pokemon/9.png",
         "type": ["Water"],
-        "hidden" : false,
+        "hidden" : true,
         "stats": {
             "attack": 83,
             "defense": 100,
@@ -138,7 +138,7 @@
         "name": "Aspicot",
         "image" : "assets/images/pokemon/10.png",
         "type": ["Insect"],
-        "hidden" : false,
+        "hidden" : true,
         "stats": {
             "attack": 35,
             "defense": 30,
@@ -200,7 +200,7 @@
         "type": ["Normal"],
         "hidden" : false,
         "stats": {
-            "attack": 100,
+            "attack": 120,
             "defense": 65,
             "hp": 75
         },
