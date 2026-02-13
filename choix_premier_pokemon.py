@@ -144,11 +144,11 @@ class MenuChoixPokemon:
             displayed_text = text[:char_index]
             text_lines = wrap_text(displayed_text, font, max_width)
             
-            y_offset = 365
+            y_offset = 390 # Position de départ du texte dans la boîte
             for line in text_lines:
                 text_surface = font.render(line, True, (255, 255, 255))
-                self.screen.blit(text_surface, (50, y_offset))
-                y_offset += 20  # Espacement entre les lignes
+                self.screen.blit(text_surface, (55, y_offset))
+                y_offset += 30  # Espacement entre les lignes
             
             pygame.display.flip()
             clock.tick(15)  # 15 caractères par seconde
@@ -177,6 +177,8 @@ class MenuChoixPokemon:
     
     def affichage_choix_pokemon(self):
         running = True
+        base_scale = 2
+        hover_scale = 2.4
 
         while running:
             mouse_pos = pygame.mouse.get_pos()
@@ -191,8 +193,39 @@ class MenuChoixPokemon:
                         
                         if image_rect.collidepoint(mouse_pos):
                             print(f"Vous avez choisi {pokemon.name} !")
+                            pokemon_data = {
+                                "id": pokemon.id,
+                                "name": pokemon.name,
+                                "type": pokemon.type,
+                                "hp": pokemon.hp,
+                                "attack": pokemon.attack,
+                                "defense": pokemon.defense,
+                                "level": pokemon.level,
+                                "xp": pokemon.xp
+                            }
+                            # Charger l'équipe actuelle
+                            try:
+                                with open('equipe.json', 'r') as f:
+                                    equipe = json.load(f)
+                            except (FileNotFoundError, json.JSONDecodeError):
+                                equipe = []
+                            # S'assurer que equipe est bien une liste
+                            if not isinstance(equipe, list):
+                                equipe = []
+                            # Ajouter le pokémon à l'équipe
+                            equipe.append(pokemon_data)
+                            # Sauvegarder l'équipe mise à jour
+                            with open('equipe.json', 'w') as f:
+                                json.dump(equipe, f, indent=4, ensure_ascii=False)
+                            with open('pokedex.json', 'r') as f:
+                                pokedex_data = json.load(f)
+                            for p in pokedex_data:
+                                if int(p['id']) == pokemon.id:
+                                    p['hidden'] = False
+                                    break
+                            with open('pokedex.json', 'w') as f:
+                                json.dump(pokedex_data, f, indent=4, ensure_ascii=False)
                             running = False
-                            return pokemon
             
             self.screen.blit(self.background, self.background_rect)
             
@@ -203,9 +236,9 @@ class MenuChoixPokemon:
                 
                 # Animation APNG: zoom au survol, animation normale sinon
                 if image_rect.collidepoint(mouse_pos):
-                    self.display_animated_img(image_path, image_rect.center, f"starter_{pokemon.id}", scale=1.2)
+                    self.display_animated_img(image_path, image_rect.center, f"starter_{pokemon.id}", scale=hover_scale)
                 else:
-                    self.display_animated_img(image_path, image_rect.center, f"starter_{pokemon.id}")
+                    self.display_animated_img(image_path, image_rect.center, f"starter_{pokemon.id}", scale=base_scale)
                 
             pygame.display.flip()
             

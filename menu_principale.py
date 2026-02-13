@@ -12,10 +12,10 @@ button_play_hover = pygame.image.load("./Asset/menue/Jouer_hover.png")
 button_option = pygame.image.load("./Asset/menue/Option.png")
 button_option_hover = pygame.image.load("./Asset/menue/Option_hover.png")
 button_quit = pygame.image.load("./Asset/menue/Quitter.png")
-buitton_quit_hover = pygame.image.load("./Asset/menue/Quitter_hover.png")
+button_quit_hover = pygame.image.load("./Asset/menue/Quitter_hover.png")
 leaf = pygame.image.load("./Asset/menue/leaf.png")
 clock = pygame.time.Clock()
-leafs = Feuille.init_leafs(leaf, 25)
+leafs = Feuille.init_leafs(leaf, 20)
 
 pygame.init()
 running = True
@@ -42,7 +42,7 @@ while running:
     else:
         screen.blit(button_option, (300, 300))
     if button_quit.get_rect(topleft=(300, 400)).collidepoint(mouse_pos): 
-        screen.blit(buitton_quit_hover, (300, 400))
+        screen.blit(button_quit_hover, (300, 400))
     else:
         screen.blit(button_quit, (300, 400))    
 
