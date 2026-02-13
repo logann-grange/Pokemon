@@ -176,6 +176,14 @@ def animation_evolution(pokemon_name):
     return next_pokemon
     
 def evolution(pokemon_name):
+    try:
+        with open('equipe.json', 'r', encoding='utf-8') as f:
+            equipe = json.load(f)
+    except (json.JSONDecodeError, FileNotFoundError):
+        equipe = []
+    if not isinstance(equipe, list):
+        equipe = []
+    
     load_animated_background(background_apng_path)
 
     # Lancer l'animation une seule fois
@@ -183,6 +191,22 @@ def evolution(pokemon_name):
 
     # Charger l'image du pokémon évolué si l'évolution a réussi
     if evolved_pokemon:
+        # Remplacer l'ancien pokémon dans l'equipe
+        for i, p in enumerate(equipe):
+            if str(p.get('name', '')).lower() == pokemon_name.lower():
+                equipe[i] = {
+                    "id": evolved_pokemon['id'],
+                    "name": evolved_pokemon['name'],
+                    "type": evolved_pokemon.get('type'),
+                    "hp": evolved_pokemon.get('stats', {}).get('hp', 0),
+                    "attack": evolved_pokemon.get('stats', {}).get('attack', 0),
+                    "defense": evolved_pokemon.get('stats', {}).get('defense', 0),
+                    "level": p.get('level', 1),
+                    "xp": p.get('xp', 0)
+                }
+                break
+        with open('equipe.json', 'w', encoding='utf-8') as f:
+            json.dump(equipe, f, indent=4, ensure_ascii=False)
         evolved_path = f"./Asset/front/{int(evolved_pokemon['id'])}.png"
         load_animated_background(evolved_path)
     else:
@@ -200,10 +224,11 @@ def evolution(pokemon_name):
         # Afficher le pokémon évolué animé
         if evolved_path:
             draw_animated_pokemon(screen, evolved_path, (400, 300), scale=2.0)
-        
+            
+
         pygame.display.flip()
         clock.tick(60)
 
-evolution("Spykokwak")
+evolution("Carabaffe")
 
     
