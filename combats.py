@@ -2,6 +2,7 @@ from Pokemon import *
 from random import randint
 from dic_type import type_poke
 
+
 class Combat:
     def __init__(self,opponent,poke):
         self.opponent=opponent
@@ -10,11 +11,11 @@ class Combat:
     def heads_or_tails(self):
         hot=int(input("Heads or Tails ? (1 or 2)"))
         if hot==randint(1,2):
-            print("You start !")
-            return fight.attack()
+            print(hot)
+            return "You start !"
         else:
-            print("Your oppenent starts !")
-            return fight.oppo_attack()
+            print(hot)
+            return "Your opponent starts !"
 
     def attack(self):
         mult=1
@@ -52,5 +53,12 @@ class Combat:
             return f"{self.poke.name} win the fight"
         elif self.opponent.hp>self.poke.hp<=0:
             return f"{self.opponent.name} win the fight"
-        
-fight=Combat()
+
+
+    
+fight=Combat("pika","leviator")
+
+
+#ajout attaque avec et sans multiplicateur
+#ajout pokball
+#ajout fuite
