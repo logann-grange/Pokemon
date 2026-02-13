@@ -1,7 +1,7 @@
 from Pokemon import Pokemon
 import json
 
-list_type = ["Fire", "Water", "Grass", "Rock", "Fighting", "Steel", "Dragon", "Ghost", "Poison", "Normal", "Flying", "Psy"]
+list_type = ["Fire", "Water","Electric", "Grass", "Rock","Ground", "Fighting", "Steel", "Dragon", "Ghost", "Poison", "Normal", "Flying", "Psy", "Ice", "Darkness", "Fairy"]
 page_size = 18
 
 class Pokedex() :
@@ -26,8 +26,10 @@ class Pokedex() :
         
     def switch_page(self, direction) :
         self.page = (self.page + direction) % (len(self.displayed_pokemon)+1)
-        if self.page == 0 :
+        if self.page == 0 and direction == 1:
             self.page = 1
+        if self.page == 0 and direction == -1:
+            self.page = len(self.displayed_pokemon)
 
     def display_pokemon(self) :
         return self.displayed_pokemon[self.page]

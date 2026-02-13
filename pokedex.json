@@ -406,7 +406,7 @@
         "name": "Ectoplasma",
         "image" : "assets/images/pokemon/28.png",
         "type": ["Ghost", "Poison"],
-        "hidden" : false,
+        "hidden" : true,
         "stats": {
             "attack": 130,
             "defense": 75,
@@ -534,7 +534,353 @@
         "evo": "",
         "sub_evo": "35"
         
+    },
+    {
+        "id": "37",
+        "name": "Zorua",
+        "image" : "assets/images/pokemon/37.png",
+        "type": ["Darkness"],
+        "hidden" : false,
+        "stats": {
+            "attack": 40,
+            "defense": 40,
+            "hp": 75
+        },
+        "evo": "38",
+        "sub_evo": ""
+        
+    },
+    {
+        "id": "38",
+        "name": "Zoruark",
+        "image" : "assets/images/pokemon/38.png",
+        "type": ["Darkness"],
+        "hidden" : false,
+        "stats": {
+            "attack": 120,
+            "defense": 60,
+            "hp": 60
+        },
+        "evo": "",
+        "sub_evo": "37"
+        
+    },
+    {
+        "id": "39",
+        "name": "Pichu",
+        "image" : "assets/images/pokemon/39.png",
+        "type": ["Electric"],
+        "hidden" : true,
+        "stats": {
+            "attack": 120,
+            "defense": 60,
+            "hp": 60
+        },
+        "evo": "40",
+        "sub_evo": ""
+        
+    },
+    {
+        "id": "40",
+        "name": "Pikachu",
+        "image" : "assets/images/pokemon/40.png",
+        "type": ["Electric"],
+        "hidden" : false,
+        "stats": {
+            "attack": 120,
+            "defense": 60,
+            "hp": 60
+        },
+        "evo": "41",
+        "sub_evo": "39"
+        
+    },
+    {
+        "id": "41",
+        "name": "Raichu",
+        "image" : "assets/images/pokemon/41.png",
+        "type": ["Electric"],
+        "hidden" : false,
+        "stats": {
+            "attack": 120,
+            "defense": 60,
+            "hp": 60
+        },
+        "evo": "",
+        "sub_evo": "40"
+        
+    },
+    {
+        "id": "42",
+        "name": "Riolu",
+        "image" : "assets/images/pokemon/42.png",
+        "type": ["Fighting"],
+        "hidden" : false,
+        "stats": {
+            "attack": 70,
+            "defense": 40,
+            "hp": 40
+        },
+        "evo": "43",
+        "sub_evo": ""
+        
+    },
+    {
+        "id": "43",
+        "name": "Lucario",
+        "image" : "assets/images/pokemon/43.png",
+        "type": ["Fighting", "Steel"],
+        "hidden" : false,
+        "stats": {
+            "attack": 115,
+            "defense": 70,
+            "hp": 70
+        },
+        "evo": "",
+        "sub_evo": "42"
+        
+    },
+    {
+        "id": "44",
+        "name": "Fanécire",
+        "image" : "assets/images/pokemon/44.png",
+        "type": ["Ghost", "Fire"],
+        "hidden" : false,
+        "stats": {
+            "attack": 65,
+            "defense": 55,
+            "hp": 50
+        },
+        "evo": "45",
+        "sub_evo": ""
+        
+    },
+    {
+        "id": "45",
+        "name": "Mélancolux",
+        "image" : "assets/images/pokemon/45.png",
+        "type": ["Ghost", "Fire"],
+        "hidden" : false,
+        "stats": {
+            "attack": 95,
+            "defense": 60,
+            "hp": 60
+        },
+        "evo": "46",
+        "sub_evo": "44"
+        
+    },
+    {
+        "id": "46",
+        "name": "Lugulabre",
+        "image" : "assets/images/pokemon/46.png",
+        "type": ["Ghost", "Fire"],
+        "hidden" : false,
+        "stats": {
+            "attack": 140,
+            "defense": 90,
+            "hp": 60
+        },
+        "evo": "",
+        "sub_evo": "45"
+        
+    },
+    {
+        "id": "47",
+        "name": "Marcacrin",
+        "image" : "assets/images/pokemon/47.png",
+        "type": ["Ice", "Ground"],
+        "hidden" : false,
+        "stats": {
+            "attack": 50,
+            "defense": 40,
+            "hp": 50
+        },
+        "evo": "48",
+        "sub_evo": ""
+        
+    },
+    {
+        "id": "48",
+        "name": "Cochignon",
+        "image" : "assets/images/pokemon/48.png",
+        "type": ["Ice", "Ground"],
+        "hidden" : false,
+        "stats": {
+            "attack": 100,
+            "defense": 80,
+            "hp": 100
+        },
+        "evo": "49",
+        "sub_evo": "47"
+        
+    },
+    {
+        "id": "49",
+        "name": "Mamochon",
+        "image" : "assets/images/pokemon/49.png",
+        "type": ["Ice", "Ground"],
+        "hidden" : false,
+        "stats": {
+            "attack": 130,
+            "defense": 80,
+            "hp": 110
+        },
+        "evo": "",
+        "sub_evo": "48"
+        
+    },
+    {
+        "id": "50",
+        "name": "Tranchodon",
+        "image" : "assets/images/pokemon/50.png",
+        "type": ["Dragon"],
+        "hidden" : false,
+        "stats": {
+            "attack": 147,
+            "defense": 90,
+            "hp": 76
+        },
+        "evo": "",
+        "sub_evo": ""
+        
+    },
+    {
+        "id": "51",
+        "name": "Scalpion",
+        "image" : "assets/images/pokemon/51.png",
+        "type": ["Darkness", "Steel"],
+        "hidden" : false,
+        "stats": {
+            "attack": 85,
+            "defense": 70,
+            "hp": 45
+        },
+        "evo": "52",
+        "sub_evo": ""
+        
+    },
+    {
+        "id": "52",
+        "name": "Scalproie",
+        "image" : "assets/images/pokemon/52.png",
+        "type": ["Darkness", "Steel"],
+        "hidden" : false,
+        "stats": {
+            "attack": 125,
+            "defense": 100,
+            "hp": 65
+        },
+        "evo": "",
+        "sub_evo": "51"
+        
+    },
+    {
+        "id": "53",
+        "name": "Etourmi",
+        "image" : "assets/images/pokemon/53.png",
+        "type": ["Flying", "Normal"],
+        "hidden" : false,
+        "stats": {
+            "attack": 55,
+            "defense": 30,
+            "hp": 40
+        },
+        "evo": "54",
+        "sub_evo": ""
+        
+    },
+    {
+        "id": "54",
+        "name": "Etourvol",
+        "image" : "assets/images/pokemon/54.png",
+        "type": ["Flying", "Normal"],
+        "hidden" : false,
+        "stats": {
+            "attack": 75,
+            "defense": 50,
+            "hp": 55
+        },
+        "evo": "55",
+        "sub_evo": "53"
+        
+    },
+    {
+        "id": "55",
+        "name": "Etouraptor",
+        "image" : "assets/images/pokemon/55.png",
+        "type": ["Flying", "Normal"],
+        "hidden" : false,
+        "stats": {
+            "attack": 120,
+            "defense": 70,
+            "hp": 85
+        },
+        "evo": "",
+        "sub_evo": "54"
+        
+    },
+    {
+        "id": "56",
+        "name": "Granbull",
+        "image" : "assets/images/pokemon/56.png",
+        "type": ["Fairy"],
+        "hidden" : false,
+        "stats": {
+            "attack": 120,
+            "defense": 75,
+            "hp": 90
+        },
+        "evo": "",
+        "sub_evo": ""
+        
+    },
+    {
+        "id": "57",
+        "name": "Grinkot",
+        "image" : "assets/images/pokemon/57.png",
+        "type": ["Dragon", "Ground"],
+        "hidden" : false,
+        "stats": {
+            "attack": 70,
+            "defense": 45,
+            "hp": 58
+        },
+        "evo": "58",
+        "sub_evo": ""
+        
+    },
+    {
+        "id": "58",
+        "name": "Carmache",
+        "image" : "assets/images/pokemon/58.png",
+        "type": ["Dragon", "Ground"],
+        "hidden" : false,
+        "stats": {
+            "attack": 90,
+            "defense": 65,
+            "hp": 68
+        },
+        "evo": "59",
+        "sub_evo": "57"
+        
+    },
+    {
+        "id": "59",
+        "name": "Carchacrok",
+        "image" : "assets/images/pokemon/59.png",
+        "type": ["Dragon", "Ground"],
+        "hidden" : false,
+        "stats": {
+            "attack": 130,
+            "defense": 95,
+            "hp": 108
+        },
+        "evo": "",
+        "sub_evo": "58"
+        
     }
+    
     
 
 ]

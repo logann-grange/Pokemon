@@ -48,8 +48,10 @@ def display_pokemon(pokedex):
                 screen.blit(img_pokemon, (360+(55+5)*column, 445+55*row))
                 txt_id = font.render(str(pokemon.id), 1, (0, 0, 0))
             else:
-                img_black = img_pokemon.copy()
-                img_black.fill((0, 0, 0), special_flags=pygame.BLEND_RGB_MULT)
+                # Créer un masque noir à partir de l'image
+                mask = pygame.mask.from_surface(img_pokemon)
+                img_black = mask.to_surface(setcolor=(0, 0, 0, 255), unsetcolor=(0, 0, 0, 0))
+    
                 screen.blit(img_black, (360+(55+5)*column, 445+55*row))
                 txt_id = font.render(str(pokemon.id), 1, (200, 0, 0))
 
@@ -86,24 +88,26 @@ def display_info(pokedex, page, is_writting):
         list_rect_evo = []
         if pokedex.selected_pokemon.sub_evo != "" :
             sub_evo = pokedex.get_pokemon_by_id(pokedex.selected_pokemon.sub_evo)
-            img_sub_evo = pygame.image.load(sub_evo.image)
+            img_sub_evo = pygame.transform.scale(pygame.image.load(sub_evo.image), (55, 55))
+            
             if not sub_evo.hidden :
                 screen.blit(img_sub_evo, (350, 370))
             else :
-                img_sub_evo_black = img_sub_evo.copy()
-                img_sub_evo_black.fill((0, 0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                screen.blit(img_sub_evo_black, (350, 370))
+                # Créer un masque noir à partir de l'image
+                mask = pygame.mask.from_surface(img_sub_evo)
+                img_black = mask.to_surface(setcolor=(0, 0, 0, 255), unsetcolor=(0, 0, 0, 0))
+                screen.blit(img_black, (350, 370))
         list_rect_evo.append(pygame.Rect(350, 370, 55, 55))
 
         if pokedex.selected_pokemon.evo != "" :
             evo = pokedex.get_pokemon_by_id(pokedex.selected_pokemon.evo)
-            img_evo = pygame.image.load(evo.image)
+            img_evo = pygame.transform.scale(pygame.image.load(evo.image), (55, 55))
             if not evo.hidden :
                 screen.blit(img_evo, (490, 370))
             else :
-                img_evo_black = img_evo.copy()
-                img_evo_black.fill((0, 0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                screen.blit(img_evo_black, (490, 370))
+                mask = pygame.mask.from_surface(img_evo)
+                img_black = mask.to_surface(setcolor=(0, 0, 0, 255), unsetcolor=(0, 0, 0, 0))
+                screen.blit(img_black, (490, 370))
         list_rect_evo.append(pygame.Rect(490, 370, 55, 55))
 
         # affichage des infos
@@ -118,20 +122,6 @@ def display_info(pokedex, page, is_writting):
 
 #======= Affichage de l'encadrement de la sélection ========#
 def display_select_square(pokedex):
-    # if not is_writting and not pokedex.displayed_pokemon[page-1][index_info].hidden:  # si pokemon trouver
-    #     pokedex.selected_pokemon = pokedex.displayed_pokemon[page-1][index_info]
-    #     # changement de couleur si souris sur le rect
-    #     if select_rect == hover_rect and is_hover:
-    #         color = (255, 255, 150)
-    #     else:
-    #         color = (255, 255, 255)
-    #     # afficher l'encadrement
-    #     if page == pokedex.page:
-    #         column = index_info % 6
-    #         row = index_info // 6
-    #         pygame.draw.rect(screen, (0, 100, 250), pygame.Rect(360-3+(55+5)*column, 445-3+55*row, 61+2, 61), 10, 10)
-    #         pygame.draw.rect(screen, color, pygame.Rect(360+(55+5)*column, 445+55*row, 55+2, 55), 10, 10)
-    
     if pokedex.selected_pokemon != None :
         if len(pokedex.displayed_pokemon) > 0 :
             for i in range(len(pokedex.displayed_pokemon[pokedex.page-1])) :
@@ -337,18 +327,19 @@ while running:
                     pygame.mixer.Sound("assets/sons/bouton.mp3").play()
 
             # Clic sur evo
-            for i in range(len(list_rect_evo)):
-                if list_rect_evo[i].collidepoint(event.pos):
-                    list_evo = [pokedex.selected_pokemon.sub_evo, pokedex.selected_pokemon.evo]
-                    if list_evo[i] != "" :
-                        is_info = True
-                        #index_info = i
-                        #page_info = pokedex.page
-                        #select_rect = list_rect[i]
-                        #pokedex.selected_pokemon = pokedex.displayed_pokemon[page_info][index_info]
-                        pokedex.select_pokemon(pokedex.get_pokemon_by_id(list_evo[i]))
-                        if not pokedex.get_pokemon_by_id(list_evo[i]).hidden :
-                            pygame.mixer.Sound("assets/sons/bouton.mp3").play()
+            if list_rect_evo != None :
+                for i in range(len(list_rect_evo)):
+                    if list_rect_evo[i].collidepoint(event.pos):
+                        list_evo = [pokedex.selected_pokemon.sub_evo, pokedex.selected_pokemon.evo]
+                        if list_evo[i] != "" :
+                            is_info = True
+                            #index_info = i
+                            #page_info = pokedex.page
+                            #select_rect = list_rect[i]
+                            #pokedex.selected_pokemon = pokedex.displayed_pokemon[page_info][index_info]
+                            pokedex.select_pokemon(pokedex.get_pokemon_by_id(list_evo[i]))
+                            if not pokedex.get_pokemon_by_id(list_evo[i]).hidden :
+                                pygame.mixer.Sound("assets/sons/bouton.mp3").play()
 
 
         if event.type == pygame.MOUSEMOTION:  # si la souris bouge
