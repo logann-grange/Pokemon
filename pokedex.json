@@ -732,44 +732,44 @@
     },
     {
         "id": "50",
-        "name": "Tranchodon",
+        "name": "Coupenotte",
         "image" : "assets/images/pokemon/50.png",
+        "type": ["Dragon"],
+        "hidden" : false,
+        "stats": {
+            "attack": 87,
+            "defense": 60,
+            "hp": 46
+        },
+        "evo": "51",
+        "sub_evo": ""
+        
+    },
+    {
+        "id": "51",
+        "name": "Incisache",
+        "image" : "assets/images/pokemon/51.png",
+        "type": ["Dragon"],
+        "hidden" : false,
+        "stats": {
+            "attack": 117,
+            "defense": 70,
+            "hp": 66
+        },
+        "evo": "52",
+        "sub_evo": "50"
+        
+    },
+    {
+        "id": "52",
+        "name": "Tranchodon",
+        "image" : "assets/images/pokemon/52.png",
         "type": ["Dragon"],
         "hidden" : false,
         "stats": {
             "attack": 147,
             "defense": 90,
             "hp": 76
-        },
-        "evo": "",
-        "sub_evo": ""
-        
-    },
-    {
-        "id": "51",
-        "name": "Scalpion",
-        "image" : "assets/images/pokemon/51.png",
-        "type": ["Darkness", "Steel"],
-        "hidden" : false,
-        "stats": {
-            "attack": 85,
-            "defense": 70,
-            "hp": 45
-        },
-        "evo": "52",
-        "sub_evo": ""
-        
-    },
-    {
-        "id": "52",
-        "name": "Scalproie",
-        "image" : "assets/images/pokemon/52.png",
-        "type": ["Darkness", "Steel"],
-        "hidden" : false,
-        "stats": {
-            "attack": 125,
-            "defense": 100,
-            "hp": 65
         },
         "evo": "",
         "sub_evo": "51"
@@ -878,6 +878,81 @@
         },
         "evo": "",
         "sub_evo": "58"
+        
+    },
+    {
+        "id": "60",
+        "name": "Embrylex",
+        "image" : "assets/images/pokemon/60.png",
+        "type": ["Rock", "Ground"],
+        "hidden" : false,
+        "stats": {
+            "attack": 64,
+            "defense": 50,
+            "hp": 50
+        },
+        "evo": "61",
+        "sub_evo": ""
+        
+    },
+    {
+        "id": "61",
+        "name": "Ymphect",
+        "image" : "assets/images/pokemon/61.png",
+        "type": ["Rock", "Ground"],
+        "hidden" : false,
+        "stats": {
+            "attack": 84,
+            "defense": 70,
+            "hp": 70
+        },
+        "evo": "62",
+        "sub_evo": "60"
+        
+    },
+    {
+        "id": "62",
+        "name": "Tyranocif",
+        "image" : "assets/images/pokemon/62.png",
+        "type": ["Rock", "Darkness"],
+        "hidden" : false,
+        "stats": {
+            "attack": 134,
+            "defense": 110,
+            "hp": 100
+        },
+        "evo": "",
+        "sub_evo": "61"
+        
+    },
+    {
+        "id": "63",
+        "name": "Scalpion",
+        "image" : "assets/images/pokemon/63.png",
+        "type": ["Darkness", "Steel"],
+        "hidden" : false,
+        "stats": {
+            "attack": 85,
+            "defense": 70,
+            "hp": 45
+        },
+        "evo": "64",
+        "sub_evo": ""
+        
+    },
+    {
+        "id": "64",
+        "name": "Scalproie",
+        "image" : "assets/images/pokemon/64.png",
+        "type": ["Darkness", "Steel"],
+        "hidden" : false,
+        "stats": {
+            "attack": 125,
+            "defense": 100,
+            "hp": 65
+        },
+        "evo": "",
+        "sub_evo": "63"
         
     }
     
