@@ -93,6 +93,7 @@ def display_info(pokedex, page, is_writting):
                 img_sub_evo_black = img_sub_evo.copy()
                 img_sub_evo_black.fill((0, 0, 0), special_flags=pygame.BLEND_RGB_MULT)
                 screen.blit(img_sub_evo_black, (350, 370))
+        list_rect_evo.append(pygame.Rect(350, 370, 55, 55))
 
         if pokedex.selected_pokemon.evo != "" :
             evo = pokedex.get_pokemon_by_id(pokedex.selected_pokemon.evo)
@@ -103,7 +104,7 @@ def display_info(pokedex, page, is_writting):
                 img_evo_black = img_evo.copy()
                 img_evo_black.fill((0, 0, 0), special_flags=pygame.BLEND_RGB_MULT)
                 screen.blit(img_evo_black, (490, 370))
-            list_rect_evo.append(pygame.Rect(420, 370, 55, 55))
+        list_rect_evo.append(pygame.Rect(490, 370, 55, 55))
 
         # affichage des infos
         screen.blit(pygame.transform.scale(pygame.image.load(pokedex.selected_pokemon.image), (155, 155)), (375, 215))
@@ -334,6 +335,21 @@ while running:
                     #pokedex.selected_pokemon = pokedex.displayed_pokemon[page_info][index_info]
                     pokedex.select_pokemon(pokedex.displayed_pokemon[pokedex.page-1][i])
                     pygame.mixer.Sound("assets/sons/bouton.mp3").play()
+
+            # Clic sur evo
+            for i in range(len(list_rect_evo)):
+                if list_rect_evo[i].collidepoint(event.pos):
+                    list_evo = [pokedex.selected_pokemon.sub_evo, pokedex.selected_pokemon.evo]
+                    if list_evo[i] != "" :
+                        is_info = True
+                        #index_info = i
+                        #page_info = pokedex.page
+                        #select_rect = list_rect[i]
+                        #pokedex.selected_pokemon = pokedex.displayed_pokemon[page_info][index_info]
+                        pokedex.select_pokemon(pokedex.get_pokemon_by_id(list_evo[i]))
+                        if not pokedex.get_pokemon_by_id(list_evo[i]).hidden :
+                            pygame.mixer.Sound("assets/sons/bouton.mp3").play()
+
 
         if event.type == pygame.MOUSEMOTION:  # si la souris bouge
             is_hover = False  # Réinitialiser le hover

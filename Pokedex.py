@@ -54,7 +54,7 @@ class Pokedex() :
             if pokemon.id == id :
                 return pokemon
     
-    def select_pokemon(self, pokemon) :
+    def select_pokemon(self, pokemon:Pokemon) :
         if not pokemon.hidden :
             self.selected_pokemon = pokemon
 
