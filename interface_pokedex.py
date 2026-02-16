@@ -1,16 +1,12 @@
 import pygame
 from Pokedex import Pokedex
-from Pokemon import Pokemon
-from PIL import Image
-
-
-pokedex = Pokedex()
 
 #======== Affichage du numéro de la page ==========#
 def display_page(pokedex):
     font = pygame.font.SysFont('Arial', 35, bold=True)
     txt_page = font.render(str(pokedex.page), 1, (0, 0, 0))
     screen.blit(txt_page, (528, 622))
+    return pygame.Rect(453, 620, 45, 45), pygame.Rect(580, 620, 45, 45)
 
 #=========== Affichage de la grille ===========#
 def display_grid(pokedex,is_hover, index_hover, page_hover, new_hover_rect, old_hover_rect):
@@ -19,10 +15,6 @@ def display_grid(pokedex,is_hover, index_hover, page_hover, new_hover_rect, old_
     pygame.draw.rect(screen, (255, 255, 255), pygame.Rect(362, 585, 352, 25))
     display_hoover(pokedex,is_hover, index_hover, page_hover, new_hover_rect, old_hover_rect)
     for i in range(4):
-        if i == 0 or i == 3:
-            border = 0
-        else:
-            border = 0
         pygame.draw.line(screen, (160, 160, 160), (337+24, 442+(56*i)), (735-20, 442+(56*i)), 2)
     for i in range(7):
         pygame.draw.line(screen, (160, 160, 160), (360+(59*(i)), 442), (360+(59*(i)), 610), 2)
@@ -30,8 +22,7 @@ def display_grid(pokedex,is_hover, index_hover, page_hover, new_hover_rect, old_
     pygame.draw.line(screen, (160, 160, 160), (337, 370), (570, 370), 2)
 
 
-
-#======== Affichage des pokemon ========#
+#======== Affichage des pokemon dans la grille ========#
 def display_pokemon(pokedex):
     font = pygame.font.SysFont('Arial', 15, bold=True)
     list_rect = []
@@ -48,9 +39,9 @@ def display_pokemon(pokedex):
                 screen.blit(img_pokemon, (360+(55+5)*column, 445+55*row))
                 txt_id = font.render(str(pokemon.id), 1, (0, 0, 0))
             else:
-                # Créer un masque noir à partir de l'image
+                # si pokemon caché créer un masque noir à partir de l'image
                 mask = pygame.mask.from_surface(img_pokemon)
-                img_black = mask.to_surface(setcolor=(0, 0, 0, 255), unsetcolor=(0, 0, 0, 0))
+                img_black = mask.to_surface(setcolor=(0, 0, 0, 240), unsetcolor=(0, 0, 0, 0))
     
                 screen.blit(img_black, (360+(55+5)*column, 445+55*row))
                 txt_id = font.render(str(pokemon.id), 1, (200, 0, 0))
@@ -63,6 +54,7 @@ def display_pokemon(pokedex):
 def get_pokemon_by_index(pokedex, index_info, page) :
     if index_info < 1000 :
         return pokedex.displayed_pokemon[page-1][index_info]
+
 
 #======== Affichage des infos du pokemon ========#
 def display_info(pokedex, page, is_writting): 
@@ -82,7 +74,6 @@ def display_info(pokedex, page, is_writting):
         txt_attack = font.render(f"attaque : {pokedex.selected_pokemon.attack}", 1, (0, 0, 0))
         txt_defense = font.render(f"défense : {pokedex.selected_pokemon.defense}", 1, (0, 0, 0))
         txt_type = font.render(f"type :", 1, (0, 0, 0))
-
 
         #affichage des evo et sub_evo :
         list_rect_evo = []
@@ -105,6 +96,7 @@ def display_info(pokedex, page, is_writting):
             if not evo.hidden :
                 screen.blit(img_evo, (490, 370))
             else :
+                # Créer un masque noir à partir de l'image
                 mask = pygame.mask.from_surface(img_evo)
                 img_black = mask.to_surface(setcolor=(0, 0, 0, 255), unsetcolor=(0, 0, 0, 0))
                 screen.blit(img_black, (490, 370))
@@ -120,6 +112,7 @@ def display_info(pokedex, page, is_writting):
 
         return list_rect_evo
 
+
 #======= Affichage de l'encadrement de la sélection ========#
 def display_select_square(pokedex):
     if pokedex.selected_pokemon != None :
@@ -129,7 +122,9 @@ def display_select_square(pokedex):
                     column = i % 6
                     row = i // 6
                     pygame.draw.rect(screen, (0, 100, 250), pygame.Rect(360-3+(55+5)*column, 445-3+55*row, 61+2, 61), 4, 10)
-                
+
+
+#======= Affichage de l'effet de survol =========#  
 def display_hoover(pokedex, is_hover, index, page, new_rect, old_rect=None):
     if is_hover:
         column = index % 6
@@ -141,18 +136,20 @@ def display_hoover(pokedex, is_hover, index, page, new_rect, old_rect=None):
                 if new_rect != old_rect:
                     pygame.mixer.Sound("assets/sons/hover.mp3").play()
 
+
+#========== Affichage de la fenêtre des pokemon cachés ===========#
 def display_hidden_window(pokedex, is_hover, index, page) :
     if is_hover and page == pokedex.page :
         if pokedex.displayed_pokemon[page-1][index].hidden:
             font = pygame.font.SysFont('Arial', 15, bold=True)
             txt_hidden = font.render("Non découvert", 1, (0, 0, 0))
+            # change la direction de la fenêtre en fonction de l'emplacement de la case
             if index % 6 <= 2 :
                 x = 100
             else :
                 x = 0
-            #rajouter une fenetre
             pygame.draw.rect(screen, (200, 50, 50), pygame.Rect(pygame.mouse.get_pos()[0]-x, pygame.mouse.get_pos()[1]-20, 100, 20))
-            pygame.draw.rect(screen, (0, 0, 0), pygame.Rect(pygame.mouse.get_pos()[0]-x, pygame.mouse.get_pos()[1]-20, 100, 20), 1)  # Bordure
+            pygame.draw.rect(screen, (0, 0, 0), pygame.Rect(pygame.mouse.get_pos()[0]-x, pygame.mouse.get_pos()[1]-20, 100, 20), 1)
             screen.blit(txt_hidden, (pygame.mouse.get_pos()[0]+5-x, pygame.mouse.get_pos()[1]-19))
 
 
@@ -180,7 +177,6 @@ def display_search(pokedex, is_writting):
 def handle_search_input(pokedex, event, is_writting, is_info, index_info):
     if is_writting and event.type == pygame.KEYDOWN:
         pokedex.page = 1
-        #is_info = False  # Réinitialiser l'affichage lors de la recherche
         index_info = None  # Réinitialiser l'index lors de la recherche
         
         if event.key == pygame.K_BACKSPACE:  # Effacer le dernier caractère
@@ -198,45 +194,11 @@ def handle_search_input(pokedex, event, is_writting, is_info, index_info):
     
     return is_writting, is_info, index_info
 
+
 def display_num_unlock(pokedex) :
     font = pygame.font.SysFont('Arial', 15, bold=True)
     txt_num_unlock = font.render(f"Trouvé : {pokedex.num_unlock} / {len(pokedex.pokemon)}", 1, (0, 0, 0))
     screen.blit(txt_num_unlock, (648, 610))
-
-def display_animated_img(last_update, current_frame) :
-    # Charger le PNG animé
-    apng = Image.open("assets/images/pokemon/dardargnan.png")
-    # Extraire toutes les frames
-    frames = []
-    durations = []
-
-    try:
-        while True:
-            # Convertir en RGBA pour la compatibilité
-            frame = apng.convert("RGBA")
-        
-            # Convertir PIL Image en Pygame Surface
-            mode = frame.mode
-            size = frame.size
-            data = frame.tobytes()
-            frame_surface = pygame.image.fromstring(data, size, mode)
-        
-            frames.append(frame_surface)
-            durations.append(apng.info.get('duration', 100))
-        
-            apng.seek(apng.tell() + 1)
-    except EOFError:
-        pass
-
-    # Animation
-    
-    now = pygame.time.get_ticks()
-    if now - last_update > durations[current_frame]:
-        current_frame = (current_frame + 1) % len(frames)
-        last_update = now
-    # Affichage
-    screen.blit(frames[current_frame], (250, 250))
-    return last_update, current_frame
 
 
 # Initialisation de pygame
@@ -246,136 +208,112 @@ pygame.mixer.init()
 pygame.mixer.music.load("assets/sons/music_fond.mp3")
 pygame.mixer.music.set_volume(0.7)
 pygame.mixer.music.play(-1)
-clock = pygame.time.Clock()
 
 screen = pygame.display.set_mode((1080, 720))
 screen.fill((255, 255, 255), (0, 0, 1080, 720))
 pokedex_background = pygame.image.load("assets/images/pokedex2.jpg")
 
-btn_add_page = pygame.Rect(580, 620, 45, 45)
-btn_moins_page = pygame.Rect(453, 620, 45, 45)
-
-list_rect = []
-index_info = None
-is_info = False
-page_info = 1
-running = True
-is_hover = False
-index_hover = None
-page_hover = 1
-select_rect = None
-new_hover_rect = None
-old_hover_rect = None
-search_rect = None
-is_writting = False
-list_rect_evo = []
-last_update = pygame.time.get_ticks()
-current_frame = 0
-
-while running:
-    pygame.display.flip()
-    screen.blit(pokedex_background, (260, 0))
-    display_page(pokedex)
+def open_pokedex(pokedex) : 
     
-    display_grid(pokedex,is_hover, index_hover, page_hover, new_hover_rect, old_hover_rect)
-    display_num_unlock(pokedex)
-    #last_update, current_frame = display_animated_img(last_update, current_frame)
-    
-    if is_info:
-        #list_rect_evo = display_info(get_pokemon_by_index(pokedex, index_info, page_info), is_writting)
-        list_rect_evo = display_info(pokedex,page_info, is_writting)
-        #display_select_square(pokedex, index_info, page_info, select_rect, new_hover_rect, is_hover, is_writting)
-        display_select_square(pokedex)
+    list_rect = []
+    index_info = None
+    is_info = False
+    page_info = 1
+    running = True
+    is_hover = False
+    index_hover = None
+    page_hover = 1
+    new_hover_rect = None
+    old_hover_rect = None
+    search_rect = None
+    is_writting = False
+    list_rect_evo = []    
 
-    list_rect = display_pokemon(pokedex)
-    search_rect = display_search(pokedex, is_writting)
-    display_hidden_window(pokedex, is_hover, index_hover, page_hover)
+    while running:
+        pygame.display.flip()
+        screen.blit(pokedex_background, (260, 0))
+        btn_page = display_page(pokedex)
 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
+        display_grid(pokedex,is_hover, index_hover, page_hover, new_hover_rect, old_hover_rect)
+        display_num_unlock(pokedex)
 
-        is_writting, is_info, index_info = handle_search_input(pokedex, event, is_writting, is_info, index_info)
+        if is_info:
+            list_rect_evo = display_info(pokedex,page_info, is_writting)
+            display_select_square(pokedex)
 
-        if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
-            # boutons de changement de page
-            if btn_add_page.collidepoint(event.pos):
-                pokedex.switch_page(1)
-                #is_info = False  # Réinitialiser l'affichage
-                #index_info = None  # Réinitialiser l'index
-                pygame.mixer.Sound("assets/sons/bouton.mp3").play()
-            elif btn_moins_page.collidepoint(event.pos):
-                pokedex.switch_page(-1)
-                #is_info = False  # Réinitialiser l'affichage
-                #index_info = None  # Réinitialiser l'index
-                pygame.mixer.Sound("assets/sons/bouton.mp3").play()
-            # bar de recherche
-            elif search_rect.collidepoint(event.pos):
-                is_writting = True  # Activer l'écriture
-            else:
-                is_writting = False  # Désactiver si clic ailleurs
+        list_rect = display_pokemon(pokedex)
+        search_rect = display_search(pokedex, is_writting)
+        display_hidden_window(pokedex, is_hover, index_hover, page_hover)
 
-            # Clic sur un Pokémon
-            for i in range(len(list_rect)):
-                if list_rect[i].collidepoint(event.pos):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+            is_writting, is_info, index_info = handle_search_input(pokedex, event, is_writting, is_info, index_info)
+
+            if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
+                # boutons de changement de page
+                if btn_page[1].collidepoint(event.pos):
+                    pokedex.switch_page(1)
+                    pygame.mixer.Sound("assets/sons/bouton.mp3").play()
+                elif btn_page[0].collidepoint(event.pos):
+                    pokedex.switch_page(-1)
+                    pygame.mixer.Sound("assets/sons/bouton.mp3").play()
+                # bar de recherche
+                elif search_rect.collidepoint(event.pos):
+                    is_writting = True  # Activer l'écriture
+                else:
+                    is_writting = False  # Désactiver si clic ailleurs
+                # Clic sur Pokemon
+                for i in range(len(list_rect)):
+                    if list_rect[i].collidepoint(event.pos):
+                        is_info = True
+                        index_info = i
+                        page_info = pokedex.page
+                        pokedex.select_pokemon(pokedex.displayed_pokemon[pokedex.page-1][i])
+                        pygame.mixer.Sound("assets/sons/bouton.mp3").play()
+                # Clic sur evo
+                if list_rect_evo != None :
+                    for i in range(len(list_rect_evo)):
+                        if list_rect_evo[i].collidepoint(event.pos):
+                            list_evo = [pokedex.selected_pokemon.sub_evo, pokedex.selected_pokemon.evo]
+                            if list_evo[i] != "" :
+                                is_info = True
+                                pokedex.select_pokemon(pokedex.get_pokemon_by_id(list_evo[i]))
+                                if not pokedex.get_pokemon_by_id(list_evo[i]).hidden :
+                                    pygame.mixer.Sound("assets/sons/bouton.mp3").play()
+
+            if event.type == pygame.MOUSEMOTION:  # si la souris bouge
+                is_hover = False  # Réinitialiser le hover
+                for i in range(len(list_rect)):  # Vérifier si la souris survole un Pokemon
+                    if list_rect[i].collidepoint(event.pos):
+                        is_hover = True
+                        index_hover = i
+                        page_hover = pokedex.page
+                        old_hover_rect = new_hover_rect
+                        new_hover_rect = list_rect[i]
+                        break
+                        
+            # parcours avec les flèches
+            if event.type == pygame.KEYDOWN:
+                if event.key in [pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN] :
+                    add_index = 0
+                    match event.key :
+                        case pygame.K_LEFT:
+                            add_index = -1
+                        case pygame.K_RIGHT:
+                            add_index = 1
+                        case pygame.K_UP:
+                            add_index = -6
+                        case pygame.K_DOWN:
+                            add_index = 6    
+                    index_info = pokedex.change_displayed_index(add_index, page_info)
                     is_info = True
-                    index_info = i
+                    pokedex.select_pokemon(pokedex.displayed_pokemon[pokedex.page-1][index_info])
                     page_info = pokedex.page
-                    select_rect = list_rect[i]
-                    #pokedex.selected_pokemon = pokedex.displayed_pokemon[page_info][index_info]
-                    pokedex.select_pokemon(pokedex.displayed_pokemon[pokedex.page-1][i])
                     pygame.mixer.Sound("assets/sons/bouton.mp3").play()
 
-            # Clic sur evo
-            if list_rect_evo != None :
-                for i in range(len(list_rect_evo)):
-                    if list_rect_evo[i].collidepoint(event.pos):
-                        list_evo = [pokedex.selected_pokemon.sub_evo, pokedex.selected_pokemon.evo]
-                        if list_evo[i] != "" :
-                            is_info = True
-                            #index_info = i
-                            #page_info = pokedex.page
-                            #select_rect = list_rect[i]
-                            #pokedex.selected_pokemon = pokedex.displayed_pokemon[page_info][index_info]
-                            pokedex.select_pokemon(pokedex.get_pokemon_by_id(list_evo[i]))
-                            if not pokedex.get_pokemon_by_id(list_evo[i]).hidden :
-                                pygame.mixer.Sound("assets/sons/bouton.mp3").play()
 
-
-        if event.type == pygame.MOUSEMOTION:  # si la souris bouge
-            is_hover = False  # Réinitialiser le hover
-            for i in range(len(list_rect)):  # Vérifier si la souris survole un Pokémon
-                if list_rect[i].collidepoint(event.pos):
-                    is_hover = True
-                    index_hover = i
-                    page_hover = pokedex.page
-                    old_hover_rect = new_hover_rect
-                    new_hover_rect = list_rect[i]
-                    break
-        
-        
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                index_info = pokedex.change_displayed_index(-1, page_info)
-                is_info = True
-                pokedex.select_pokemon(pokedex.displayed_pokemon[pokedex.page-1][index_info])
-                page_info = pokedex.page
-                pygame.mixer.Sound("assets/sons/bouton.mp3").play()
-            elif event.key == pygame.K_RIGHT:
-                index_info = pokedex.change_displayed_index(1, page_info)
-                is_info = True
-                page_info = pokedex.page
-                pokedex.select_pokemon(pokedex.displayed_pokemon[pokedex.page-1][index_info])
-                pygame.mixer.Sound("assets/sons/bouton.mp3").play()
-            elif event.key == pygame.K_UP:
-                index_info = pokedex.change_displayed_index(-6, page_info)
-                is_info = True
-                page_info = pokedex.page
-                pokedex.select_pokemon(pokedex.displayed_pokemon[pokedex.page-1][index_info])
-                pygame.mixer.Sound("assets/sons/bouton.mp3").play()
-            elif event.key == pygame.K_DOWN:
-                index_info = pokedex.change_displayed_index(6, page_info)
-                is_info = True
-                page_info = pokedex.page
-                pokedex.select_pokemon(pokedex.displayed_pokemon[pokedex.page-1][index_info])
-                pygame.mixer.Sound("assets/sons/bouton.mp3").play()
+#===== Programme principal =====#
+pokedex = Pokedex()
+open_pokedex(pokedex)

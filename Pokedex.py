@@ -92,7 +92,7 @@ class Pokedex() :
             if page_index != 0 :
                 self.switch_page(-1)
                 return len(self.displayed_pokemon[self.page-1])-1
-            return max_len - 1
+            return current_index
 
         # Vérifier que l'index est valide
         if new_index < 0 or new_index >= max_len:
@@ -110,10 +110,3 @@ class Pokedex() :
 
         # Si aucune case valide trouvée, rester sur place
         return current_index
-        
-
-
-
-        
-        
-
