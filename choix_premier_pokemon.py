@@ -172,8 +172,10 @@ class MenuChoixPokemon:
                     stats.get('attack', 0),
                     stats.get('defense', 0),
                     pokemon.get('level', 1),
-                    pokemon.get('xp', 0)
-                ))
+                    pokemon.get('xp', 0),
+                    pokemon.get('evo', None),
+                    pokemon.get('sub_evo', None),
+                    ))
     
     def affichage_choix_pokemon(self):
         running = True
