@@ -66,6 +66,54 @@ class Pokedex() :
             if not pokemon.hidden :
                 num += 1
         return num
+    
+    def get_index_from_pokemon(self, pokemon) :
+        for i in range(len(self.displayed_pokemon[self.page-1])) :
+            if self.displayed_pokemon[self.page-1][i] == pokemon :
+                return i
+    
+    def change_displayed_index(self, num, page):
+        if self.selected_pokemon == None or page != self.page:
+            return 0
+
+        current_index = self.get_index_from_pokemon(self.selected_pokemon)
+        new_index = current_index + num
+    
+        page_index = self.page - 1
+        max_len = len(self.displayed_pokemon[page_index])
+
+        # Vérifications des limites
+        if (num == 6 and new_index >= max_len) or (num == -6 and new_index < 0):
+            return current_index
+        elif num == 1 and new_index >= 18:
+            self.switch_page(1)
+            return 0
+        elif num == -1 and new_index < 0:
+            if page_index != 0 :
+                self.switch_page(-1)
+                return len(self.displayed_pokemon[self.page-1])-1
+            return max_len - 1
+
+        # Vérifier que l'index est valide
+        if new_index < 0 or new_index >= max_len:
+            return current_index
+
+        # Sauter les cases cachées - vérifier avant d'accéder
+        max_attempts = 20  # Sécurité
+        attempts = 0
+    
+        while 0 <= new_index < max_len and attempts < max_attempts:
+            if not self.displayed_pokemon[page_index][new_index].hidden:
+                return new_index  # Case valide trouvée !
+            new_index += num
+            attempts += 1
+
+        # Si aucune case valide trouvée, rester sur place
+        return current_index
+        
+
+
+
         
         
 

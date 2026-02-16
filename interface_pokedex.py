@@ -352,3 +352,30 @@ while running:
                     old_hover_rect = new_hover_rect
                     new_hover_rect = list_rect[i]
                     break
+        
+        
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                index_info = pokedex.change_displayed_index(-1, page_info)
+                is_info = True
+                pokedex.select_pokemon(pokedex.displayed_pokemon[pokedex.page-1][index_info])
+                page_info = pokedex.page
+                pygame.mixer.Sound("assets/sons/bouton.mp3").play()
+            elif event.key == pygame.K_RIGHT:
+                index_info = pokedex.change_displayed_index(1, page_info)
+                is_info = True
+                page_info = pokedex.page
+                pokedex.select_pokemon(pokedex.displayed_pokemon[pokedex.page-1][index_info])
+                pygame.mixer.Sound("assets/sons/bouton.mp3").play()
+            elif event.key == pygame.K_UP:
+                index_info = pokedex.change_displayed_index(-6, page_info)
+                is_info = True
+                page_info = pokedex.page
+                pokedex.select_pokemon(pokedex.displayed_pokemon[pokedex.page-1][index_info])
+                pygame.mixer.Sound("assets/sons/bouton.mp3").play()
+            elif event.key == pygame.K_DOWN:
+                index_info = pokedex.change_displayed_index(6, page_info)
+                is_info = True
+                page_info = pokedex.page
+                pokedex.select_pokemon(pokedex.displayed_pokemon[pokedex.page-1][index_info])
+                pygame.mixer.Sound("assets/sons/bouton.mp3").play()
