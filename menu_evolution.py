@@ -311,6 +311,14 @@ def evolution(pokemon_name):
         with open('equipe.json', 'w', encoding='utf-8') as f:
             json.dump(equipe, f, indent=4, ensure_ascii=False)
         evolved_path = f"./Asset/front/{int(evolved_pokemon['id'])}.png"
+        with open('pokedex.json', 'r', encoding='utf-8') as f:
+            pokedex_data = json.load(f)
+        for p in pokedex_data:
+            if int(p['id']) == int(evolved_pokemon['id']):
+                p['hidden'] = False
+        
+        with open('pokedex.json', 'w', encoding='utf-8') as f:
+            json.dump(pokedex_data, f, indent=4, ensure_ascii=False)
         load_animated_background(evolved_path)
     else:
         evolved_path = None
@@ -331,4 +339,4 @@ def evolution(pokemon_name):
         pygame.display.flip()
         clock.tick(60)
 
-# evolution("Carapuce")  # Test - commenter pour eviter l'execution automatique
+#evolution("Carapuce")  # Test - commenter pour eviter l'execution automatique
