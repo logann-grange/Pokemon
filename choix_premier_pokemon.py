@@ -14,14 +14,14 @@ class MenuChoixPokemon:
         self._apng_cache = {}
         self._anim_state = {}
         self.choix_premier_pokemon()
-        self.screen = pygame.display.set_mode((800, 600))
+        self.screen = pygame.display.set_mode((1080, 720))
         self.background = pygame.image.load(os.path.join(self.script_dir, "Asset", "Professor", "lab_background.jfif"))
         self.background = self._scale_to_cover(self.background, self.screen.get_size())
         self.background_rect = self.background.get_rect(center=self.screen.get_rect().center)
         self.professeur_chen = pygame.image.load(os.path.join(self.script_dir, "Asset", "Professor", "Professor_Oak.png"))
         self.professeur_chen = pygame.transform.scale(self.professeur_chen, (250, 300))
         self.dialogue_box=pygame.image.load(os.path.join(self.script_dir, "Asset", "Professor", "dialogue_box.png"))
-        self.dialogue_box=pygame.transform.scale(self.dialogue_box, (800, 200))
+        self.dialogue_box=pygame.transform.scale(self.dialogue_box, (1080, 200))
         self.music = pygame.mixer.Sound(os.path.join(self.script_dir, "Asset", "Professor", "professor_theme.mp3"))
     
     def _scale_to_cover(self, image, target_size):
@@ -99,7 +99,7 @@ class MenuChoixPokemon:
         char_index = 0
         clock = pygame.time.Clock()
         text_complete = False
-        max_width = 700  # Largeur max du texte dans la boîte (800 - 100 pour les marges)
+        max_width = 900  # Largeur max du texte dans la boîte (1080 - 100 pour les marges)
         
         def wrap_text(text, font, max_width):
             """Divise le texte en lignes selon la largeur maximale"""
@@ -151,7 +151,7 @@ class MenuChoixPokemon:
             y_offset = 390 # Position de départ du texte dans la boîte
             for line in text_lines:
                 text_surface = font.render(line, True, (255, 255, 255))
-                self.screen.blit(text_surface, (55, y_offset))
+                self.screen.blit(text_surface, (90, y_offset))
                 y_offset += 30  # Espacement entre les lignes
             
             pygame.display.flip()
@@ -195,7 +195,7 @@ class MenuChoixPokemon:
                     for i, pokemon in enumerate(self.pokemon_starter):
                         image_path = os.path.join(self.script_dir, "Asset", "front", f"{int(pokemon.id)}.png")
                         image = pygame.image.load(image_path)
-                        image_rect = image.get_rect(topleft=(200 + i*200, 300))
+                        image_rect = image.get_rect(topleft=(240 + i*280, 330))
                         
                         if image_rect.collidepoint(mouse_pos):
                             print(f"Vous avez choisi {pokemon.name} !")
@@ -238,7 +238,7 @@ class MenuChoixPokemon:
             for i, pokemon in enumerate(self.pokemon_starter):
                 image_path = os.path.join(self.script_dir, "Asset", "front", f"{int(pokemon.id)}.png")
                 image = pygame.image.load(image_path)
-                image_rect = image.get_rect(topleft=(200 + i*200, 300))
+                image_rect = image.get_rect(topleft=(240 + i*280, 330))
                 
                 # Animation APNG: zoom au survol, animation normale sinon
                 if image_rect.collidepoint(mouse_pos):

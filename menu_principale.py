@@ -6,7 +6,7 @@ import Feuille
 pygame.init()
 
 pygame.display.set_caption("Pokemon")
-screen = pygame.display.set_mode((800, 600))
+screen = pygame.display.set_mode((1080, 720))
 
 menu_background = pygame.image.load("./Asset/menue/background_menu.jpg")
 button_play = pygame.image.load("./Asset/menue/Jouer.png")
@@ -34,45 +34,45 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         if event.type == pygame.MOUSEBUTTONDOWN:
-            if button_play.get_rect(topleft=(300, 200)).collidepoint(event.pos):
+            if button_play.get_rect(topleft=(390, 250)).collidepoint(event.pos):
                 menu_choix_jeu.menu_choix_jeu()
-            if button_quit.get_rect(topleft=(300, 400)).collidepoint(event.pos):
+            if button_quit.get_rect(topleft=(390, 500)).collidepoint(event.pos):
                 running = False
 
     screen.blit(menu_background, (0, 0))
     mouse_pos = pygame.mouse.get_pos()
 
     # Bouton Play
-    is_hovering_play = button_play.get_rect(topleft=(300, 200)).collidepoint(mouse_pos)
+    is_hovering_play = button_play.get_rect(topleft=(390, 250)).collidepoint(mouse_pos)
     if is_hovering_play:
-        screen.blit(button_play_hover, (300, 200))
+        screen.blit(button_play_hover, (390, 250))
         if not prev_hover_play:
             hover_sound.play()
         prev_hover_play = True
     else:
-        screen.blit(button_play, (300, 200))
+        screen.blit(button_play, (390, 250))
         prev_hover_play = False
 
     # Bouton Option
-    is_hovering_option = button_option.get_rect(topleft=(300, 300)).collidepoint(mouse_pos)
+    is_hovering_option = button_option.get_rect(topleft=(390, 375)).collidepoint(mouse_pos)
     if is_hovering_option:
-        screen.blit(button_option_hover, (300, 300))
+        screen.blit(button_option_hover, (390, 375))
         if not prev_hover_option:
             hover_sound.play()
         prev_hover_option = True
     else:
-        screen.blit(button_option, (300, 300))
+        screen.blit(button_option, (390, 375))
         prev_hover_option = False
     
     # Bouton Quit
-    is_hovering_quit = button_quit.get_rect(topleft=(300, 400)).collidepoint(mouse_pos)
+    is_hovering_quit = button_quit.get_rect(topleft=(390, 500)).collidepoint(mouse_pos)
     if is_hovering_quit:
-        screen.blit(button_quit_hover, (300, 400))
+        screen.blit(button_quit_hover, (390, 500))
         if not prev_hover_quit:
             hover_sound.play()
         prev_hover_quit = True
     else:
-        screen.blit(button_quit, (300, 400))
+        screen.blit(button_quit, (390, 500))
         prev_hover_quit = False    
 
     for leaf in leafs:

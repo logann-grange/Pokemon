@@ -19,8 +19,8 @@ def get_leafs():
 class Feuille:
     def __init__(self, image):
         self.image = image
-        self.x=random.randint(800, 900)
-        self.y=random.randint(100, 450)
+        self.x=random.randint(1080, 1180)
+        self.y=random.randint(100, 570)
         self.speed_y=random.uniform(-0.5, 0.5)
         self.speed_x=random.uniform(-2, -4)
         self.rotation=random.randint(0, 360)
@@ -40,14 +40,14 @@ class Feuille:
         self.rotation+=self.rotation_speed
         
         if self.y < -50:
-            self.y = 600 + 50
-        elif self.y > 600 + 50:
+            self.y = 720 + 50
+        elif self.y > 720 + 50:
             self.y = -50
         
         
         if self.x < -50:
-            self.x = random.randint(800, 900)
-            self.y = random.randint(100, 450)
+            self.x = random.randint(1080, 1180)
+            self.y = random.randint(100, 570)
             
     def draw(self, screen):
         rotated_image=pygame.transform.rotate(self.image,self.rotation)

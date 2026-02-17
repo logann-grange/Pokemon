@@ -7,11 +7,11 @@ from PIL import Image
 pygame.mixer.pre_init(44100, -16, 2, 512)
 pygame.init()
 pygame.display.set_caption("Menu Evolution")
-screen = pygame.display.set_mode((800, 600))
+screen = pygame.display.set_mode((1080, 720))
 clock = pygame.time.Clock()
 background_apng_path = "./Asset/Evolution_anime/background_evolution.gif"
 text_box_image = pygame.image.load("./Asset/Professor/dialogue_box.png")
-text_box_image =pygame.transform.scale(text_box_image, (800, 200))
+text_box_image =pygame.transform.scale(text_box_image, (1080, 200))
 font=pygame.font.Font("./Asset/menue/Pixeled.ttf", 15)
 
 evolve_sound = pygame.mixer.Sound("./Asset/Evolution_anime/music/Evolve.mp3")
@@ -172,12 +172,12 @@ def animation_evolution(pokemon_name, evolve_channel=None):
         
         # Afficher le pokémon actuel en blanc
         if current_pokemon == 0:
-            draw_animated_pokemon(screen, pokemon_path, (400, 300), scale=2.0, white_filter=True)
+            draw_animated_pokemon(screen, pokemon_path, (540, 360), scale=3.0, white_filter=True)
         else:
-            draw_animated_pokemon(screen, evolution_path, (400, 300), scale=2.0, white_filter=True)
+            draw_animated_pokemon(screen, evolution_path, (540, 360), scale=3.0, white_filter=True)
         
         # Afficher le texte progressivement
-        screen.blit(text_box_image, (0, 350))
+        screen.blit(text_box_image, (0, 450))
         
         if char_index_p1 < len(text_phase1):
             frame_counter_p1 += 1
@@ -186,10 +186,10 @@ def animation_evolution(pokemon_name, evolve_channel=None):
                 frame_counter_p1 = 0
         
         displayed_text = text_phase1[:char_index_p1]
-        wrapped_lines = wrap_text(displayed_text, font, 780)
+        wrapped_lines = wrap_text(displayed_text, font, 980)
         for i, line in enumerate(wrapped_lines):
             line_surface = font.render(line, True, (255, 255, 255))
-            screen.blit(line_surface, (50, 370 + i * 20))
+            screen.blit(line_surface, (350, 520 + i * 20))
         
         frames_since_switch += 1
         pygame.display.flip()
@@ -209,10 +209,10 @@ def animation_evolution(pokemon_name, evolve_channel=None):
     
     for _ in range(phase2_frames):
         draw_animated_background(screen, background_apng_path)
-        draw_animated_pokemon(screen, evolution_path, (400, 300), scale=2.0)
+        draw_animated_pokemon(screen, evolution_path, (540, 360), scale=3.0)
         
         # Afficher le texte progressivement
-        screen.blit(text_box_image, (0, 350))
+        screen.blit(text_box_image, (0, 450))
         
         if char_index_p2 < len(text_phase2):
             frame_counter_p2 += 1
@@ -221,10 +221,10 @@ def animation_evolution(pokemon_name, evolve_channel=None):
                 frame_counter_p2 = 0
         
         displayed_text = text_phase2[:char_index_p2]
-        wrapped_lines = wrap_text(displayed_text, font, 780)
+        wrapped_lines = wrap_text(displayed_text, font, 980)
         for i, line in enumerate(wrapped_lines):
             line_surface = font.render(line, True, (255, 255, 255))
-            screen.blit(line_surface, (50, 370 + i * 20))
+            screen.blit(line_surface, (250, 520 + i * 20))
         
         pygame.display.flip()
         clock.tick(60)
@@ -334,9 +334,9 @@ def evolution(pokemon_name):
         
         # Afficher le pokémon évolué animé
         if evolved_path:
-            draw_animated_pokemon(screen, evolved_path, (400, 300), scale=2.0)
+            draw_animated_pokemon(screen, evolved_path, (540, 360), scale=3.0)
 
         pygame.display.flip()
         clock.tick(60)
 
-#evolution("Carapuce")  # Test - commenter pour eviter l'execution automatique
+#evolution("Carmache")  # Test - commenter pour eviter l'execution automatique

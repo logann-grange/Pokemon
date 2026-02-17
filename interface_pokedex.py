@@ -209,11 +209,10 @@ pygame.mixer.music.load("Asset/sons/music_fond.mp3")
 pygame.mixer.music.set_volume(0.7)
 pygame.mixer.music.play(-1)
 
-screen = pygame.display.set_mode((1080, 720))
-screen.fill((255, 255, 255), (0, 0, 1080, 720))
-pokedex_background = pygame.image.load("Asset/image/pokedex2.jpg")
+screen = None
+pokedex_background = None
 
-def open_pokedex(pokedex) : 
+def open_pokedex(pokedex, background_surface=None) : 
     
     list_rect = []
     index_info = None
@@ -231,6 +230,8 @@ def open_pokedex(pokedex) :
 
     while running:
         pygame.display.flip()
+        if background_surface is not None:
+            screen.blit(background_surface, (0, 0))
         screen.blit(pokedex_background, (260, 0))
         btn_page = display_page(pokedex)
 
@@ -315,5 +316,14 @@ def open_pokedex(pokedex) :
 
 
 #===== Programme principal =====#
-pokedex = Pokedex()
-open_pokedex(pokedex)
+def afficher_interface_pokedex(background_surface=None) :
+    global screen, pokedex_background
+    screen = pygame.display.set_mode((1080, 720))
+    if background_surface is not None:
+        background_surface = pygame.transform.scale(background_surface, screen.get_size())
+    #screen.fill((255, 255, 255), (0, 0, 1080, 720))
+    pokedex_background = pygame.image.load("Asset/image/pokedex2.png")    
+    pokedex = Pokedex()
+    open_pokedex(pokedex, background_surface)
+
+   
