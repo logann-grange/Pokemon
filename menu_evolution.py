@@ -331,4 +331,4 @@ def evolution(pokemon_name):
         pygame.display.flip()
         clock.tick(60)
 
-evolution("Carapuce")
+# evolution("Carapuce")  # Test - commenter pour eviter l'execution automatique

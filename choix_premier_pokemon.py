@@ -22,6 +22,7 @@ class MenuChoixPokemon:
         self.professeur_chen = pygame.transform.scale(self.professeur_chen, (250, 300))
         self.dialogue_box=pygame.image.load(os.path.join(self.script_dir, "Asset", "Professor", "dialogue_box.png"))
         self.dialogue_box=pygame.transform.scale(self.dialogue_box, (800, 200))
+        self.music = pygame.mixer.Sound(os.path.join(self.script_dir, "Asset", "Professor", "professor_theme.mp3"))
     
     def _scale_to_cover(self, image, target_size):
         target_w, target_h = target_size
@@ -119,6 +120,9 @@ class MenuChoixPokemon:
                 lines.append(current_line.rstrip())
             
             return lines
+        
+        pygame.mixer.music.stop()  # Arreter la musique du menu
+        self.music.play(-1)  # Joue la musique en boucle
         
         while running:
             for event in pygame.event.get():

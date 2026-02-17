@@ -3,6 +3,8 @@ import pygame
 import menu_choix_jeu
 import Feuille
 
+pygame.init()
+
 pygame.display.set_caption("Pokemon")
 screen = pygame.display.set_mode((800, 600))
 
@@ -17,7 +19,15 @@ leaf = pygame.image.load("./Asset/menue/leaf.png")
 clock = pygame.time.Clock()
 leafs = Feuille.init_leafs(leaf, 20)
 
-pygame.init()
+pygame.mixer.music.load("./Asset/menue/menu_music.mp3")
+pygame.mixer.music.play(-1)
+hover_sound = pygame.mixer.Sound("./Asset/menue/hover.mp3")
+
+# Variables pour tracker l'etat de hover precedent
+prev_hover_play = False
+prev_hover_option = False
+prev_hover_quit = False
+
 running = True
 while running:
     for event in pygame.event.get():
@@ -32,19 +42,38 @@ while running:
     screen.blit(menu_background, (0, 0))
     mouse_pos = pygame.mouse.get_pos()
 
-    if button_play.get_rect(topleft=(300, 200)).collidepoint(mouse_pos):
+    # Bouton Play
+    is_hovering_play = button_play.get_rect(topleft=(300, 200)).collidepoint(mouse_pos)
+    if is_hovering_play:
         screen.blit(button_play_hover, (300, 200))
+        if not prev_hover_play:
+            hover_sound.play()
+        prev_hover_play = True
     else:
         screen.blit(button_play, (300, 200))
+        prev_hover_play = False
 
-    if button_option.get_rect(topleft=(300, 300)).collidepoint(mouse_pos):
+    # Bouton Option
+    is_hovering_option = button_option.get_rect(topleft=(300, 300)).collidepoint(mouse_pos)
+    if is_hovering_option:
         screen.blit(button_option_hover, (300, 300))
+        if not prev_hover_option:
+            hover_sound.play()
+        prev_hover_option = True
     else:
         screen.blit(button_option, (300, 300))
-    if button_quit.get_rect(topleft=(300, 400)).collidepoint(mouse_pos): 
+        prev_hover_option = False
+    
+    # Bouton Quit
+    is_hovering_quit = button_quit.get_rect(topleft=(300, 400)).collidepoint(mouse_pos)
+    if is_hovering_quit:
         screen.blit(button_quit_hover, (300, 400))
+        if not prev_hover_quit:
+            hover_sound.play()
+        prev_hover_quit = True
     else:
-        screen.blit(button_quit, (300, 400))    
+        screen.blit(button_quit, (300, 400))
+        prev_hover_quit = False    
 
     for leaf in leafs:
         leaf.update()

@@ -5,6 +5,8 @@ import Feuille
 import json
 import os
 
+pygame.init()
+
 pygame.display.set_caption("Menu Choix Jeu")
 screen = pygame.display.set_mode((800, 600))
 clock = pygame.time.Clock()
@@ -16,10 +18,14 @@ button_load_game = pygame.image.load("./Asset/menue/charger_partie.png")
 button_load_game_hover = pygame.image.load("./Asset/menue/charger_partie_hover.png")
 leaf = pygame.image.load("./Asset/menue/leaf.png")
 leafs = Feuille.init_leafs(leaf, 20)
+hover_sound = pygame.mixer.Sound("./Asset/menue/hover.mp3")
 
+# Variables pour tracker l'etat de hover precedent
+prev_hover_new_game = False
+prev_hover_load_game = False
 
-pygame.init()
 def menu_choix_jeu():
+    global prev_hover_new_game, prev_hover_load_game
     running = True
     while running:
         for event in pygame.event.get():
@@ -51,13 +57,21 @@ def menu_choix_jeu():
 
         if button_new_game.get_rect(topleft=(300, 200)).collidepoint(mouse_pos):
             screen.blit(button_new_game_hover, (300, 200))
+            if not prev_hover_new_game:
+                hover_sound.play()
+            prev_hover_new_game = True
         else:
             screen.blit(button_new_game, (300, 200))
+            prev_hover_new_game = False
 
         if button_load_game.get_rect(topleft=(300, 300)).collidepoint(mouse_pos):
             screen.blit(button_load_game_hover, (300, 300))
+            if not prev_hover_load_game:
+                hover_sound.play()
+            prev_hover_load_game = True
         else:
             screen.blit(button_load_game, (300, 300))
+            prev_hover_load_game = False
             
         pygame.display.flip()
         clock.tick(60)
