@@ -22,19 +22,25 @@ button_pokedex_hover = pygame.image.load("./Asset/menue/button_pokedex_hover.png
 leaf = pygame.image.load("./Asset/menue/leaf.png")
 leafs = Feuille.init_leafs(leaf, 20)
 hover_sound = pygame.mixer.Sound("./Asset/menue/hover.mp3")
+button_return = pygame.image.load("./Asset/menue/button_return.png")
+button_return_hover = pygame.image.load("./Asset/menue/button_return_hover.png")
 
 # Variables pour tracker l'etat de hover precedent
 prev_hover_new_game = False
 prev_hover_load_game = False
 prev_hover_pokedex = False
+prev_hover_return = False
 def menu_choix_jeu():
-    global prev_hover_new_game, prev_hover_load_game, prev_hover_pokedex
+    global prev_hover_new_game, prev_hover_load_game, prev_hover_pokedex, prev_hover_return
     running = True
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    running = False
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if button_new_game.get_rect(topleft=(390, 250)).collidepoint(event.pos):
                     with open('equipe.json', 'w') as f:
@@ -50,6 +56,8 @@ def menu_choix_jeu():
                     print("Charger partie sélectionnée")
                 elif button_pokedex.get_rect(topleft=(390, 510)).collidepoint(event.pos):
                     interface_pokedex.afficher_interface_pokedex(screen.copy())
+                elif button_return.get_rect(topleft=(40, 30)).collidepoint(event.pos):
+                    running = False
         mouse_pos = pygame.mouse.get_pos()
 
         screen.blit(menu_background, (0, 0))
@@ -85,6 +93,15 @@ def menu_choix_jeu():
         else:
             screen.blit(button_pokedex, (390, 510))
             prev_hover_pokedex = False
+
+        if button_return.get_rect(topleft=(40, 30)).collidepoint(mouse_pos):
+            screen.blit(button_return_hover, (40, 30))
+            if not prev_hover_return:
+                hover_sound.play()
+            prev_hover_return = True
+        else:
+            screen.blit(button_return, (40, 30))
+            prev_hover_return = False
             
         pygame.display.flip()
         clock.tick(60)
