@@ -7,22 +7,29 @@ class Pokemon() :
         self.name = name
         self.image = image
         self.coord = coord
-        self.hp = hp
-        self.attack = attack
-        self.defense = defense
+        self.hp = hp*2*level//100 + 10 + level
+        self.attack = attack*2*level//100 + 5
+        self.defense = defense*2*level//100 + 5
         self.level = level
         self.xp = xp
         self.find = False
         self.type = type
-        self.hidden = hidden
+        self.hidden = hidden    
         self.evo = evo
         self.sub_evo = sub_evo
+        self.hp_base = hp
+        self.attack_base = attack
+        self.defense_base = defense
         #self.pokedex_id
 
     def level_up(self) :
         if self.xp <= 1000 * self.level*0.5 : #multiplier par un facteur d'xp
             self.level += 1
             self.xp -=  1000 * self.level
+            self.hp= (self.hp_base*2*self.level)//100 + 10 + self.level
+            self.attack = (self.attack_base*2*self.level)//100 + 5
+            self.defense = (self.defense_base*2*self.level)//100 + 5
+            self.evolve()
 
     def get_inf_form(self) :
         for i in range(len(self.family)) :
