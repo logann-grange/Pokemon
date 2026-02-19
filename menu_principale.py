@@ -1,6 +1,7 @@
 import os
 import pygame
 import menu_choix_jeu
+import menu_option
 import Feuille
 
 pygame.init()
@@ -22,6 +23,10 @@ leafs = Feuille.init_leafs(leaf, 20)
 pygame.mixer.music.load("./Asset/menue/menu_music.mp3")
 pygame.mixer.music.play(-1)
 hover_sound = pygame.mixer.Sound("./Asset/menue/hover.mp3")
+saved_audio = menu_option.load_audio_options()
+menu_option.apply_audio_options(saved_audio)
+_, sfx_volume = menu_option.get_effective_volumes(saved_audio)
+hover_sound.set_volume(sfx_volume)
 
 # Variables pour tracker l'etat de hover precedent
 prev_hover_play = False
@@ -36,6 +41,11 @@ while running:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if button_play.get_rect(topleft=(390, 250)).collidepoint(event.pos):
                 menu_choix_jeu.menu_choix_jeu()
+            if button_option.get_rect(topleft=(390, 375)).collidepoint(event.pos):
+                options = menu_option.menu_option(screen)
+                menu_option.apply_audio_options(options)
+                _, sfx_volume = menu_option.get_effective_volumes(options)
+                hover_sound.set_volume(sfx_volume)
             if button_quit.get_rect(topleft=(390, 500)).collidepoint(event.pos):
                 running = False
 

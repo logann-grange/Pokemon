@@ -5,6 +5,7 @@ import Feuille
 import json
 import os
 import interface_pokedex
+import menu_option
 
 pygame.init()
 
@@ -32,6 +33,11 @@ prev_hover_pokedex = False
 prev_hover_return = False
 def menu_choix_jeu():
     global prev_hover_new_game, prev_hover_load_game, prev_hover_pokedex, prev_hover_return
+    audio_options = menu_option.load_audio_options()
+    menu_option.apply_audio_options(audio_options)
+    _, sfx_volume = menu_option.get_effective_volumes(audio_options)
+    hover_sound.set_volume(sfx_volume)
+
     running = True
     while running:
         for event in pygame.event.get():

@@ -1,5 +1,33 @@
 import pygame
 from Pokedex import Pokedex
+import menu_option
+
+
+_sfx_cache = {}
+
+
+def _current_audio_options():
+    return menu_option.load_audio_options()
+
+
+def _current_sfx_volume():
+    options = _current_audio_options()
+    _, sfx_volume = menu_option.get_effective_volumes(options)
+    return sfx_volume
+
+
+def _apply_music_volume_for_pokedex():
+    options = _current_audio_options()
+    music_volume, _ = menu_option.get_effective_volumes(options)
+    pygame.mixer.music.set_volume(music_volume)
+
+
+def play_sfx(sound_path):
+    if sound_path not in _sfx_cache:
+        _sfx_cache[sound_path] = pygame.mixer.Sound(sound_path)
+    sound = _sfx_cache[sound_path]
+    sound.set_volume(_current_sfx_volume())
+    sound.play()
 
 #======== Affichage du numéro de la page ==========#
 def display_page(pokedex):
@@ -134,7 +162,7 @@ def display_hoover(pokedex, is_hover, index, page, new_rect, old_rect=None):
             if not pokedex.displayed_pokemon[page-1][index].hidden : # si pokemon trouver
                 pygame.draw.rect(screen, (255, 255, 150), pygame.Rect(360+(54+5)*column, 443+55*row, 59, 57))
                 if new_rect != old_rect:
-                    pygame.mixer.Sound("Asset/sons/hover.mp3").play()
+                    play_sfx("Asset/sons/hover.mp3")
 
 
 #========== Affichage de la fenêtre des pokemon cachés ===========#
@@ -206,13 +234,14 @@ pygame.init()
 pygame.display.set_caption('Pokemon')
 pygame.mixer.init()
 pygame.mixer.music.load("Asset/sons/music_fond.mp3")
-pygame.mixer.music.set_volume(0.7)
+_apply_music_volume_for_pokedex()
 pygame.mixer.music.play(-1)
 
 screen = None
 pokedex_background = None
 
 def open_pokedex(pokedex, background_surface=None) : 
+    _apply_music_volume_for_pokedex()
     
     list_rect = []
     index_info = None
@@ -256,10 +285,10 @@ def open_pokedex(pokedex, background_surface=None) :
                 # boutons de changement de page
                 if btn_page[1].collidepoint(event.pos):
                     pokedex.switch_page(1)
-                    pygame.mixer.Sound("Asset/sons/bouton.mp3").play()
+                    play_sfx("Asset/sons/bouton.mp3")
                 elif btn_page[0].collidepoint(event.pos):
                     pokedex.switch_page(-1)
-                    pygame.mixer.Sound("Asset/sons/bouton.mp3").play()
+                    play_sfx("Asset/sons/bouton.mp3")
                 # bar de recherche
                 elif search_rect.collidepoint(event.pos):
                     is_writting = True  # Activer l'écriture
@@ -272,7 +301,7 @@ def open_pokedex(pokedex, background_surface=None) :
                         index_info = i
                         page_info = pokedex.page
                         pokedex.select_pokemon(pokedex.displayed_pokemon[pokedex.page-1][i])
-                        pygame.mixer.Sound("Asset/sons/bouton.mp3").play()
+                        play_sfx("Asset/sons/bouton.mp3")
                 # Clic sur evo
                 if list_rect_evo != None :
                     for i in range(len(list_rect_evo)):
@@ -282,7 +311,7 @@ def open_pokedex(pokedex, background_surface=None) :
                                 is_info = True
                                 pokedex.select_pokemon(pokedex.get_pokemon_by_id(list_evo[i]))
                                 if not pokedex.get_pokemon_by_id(list_evo[i]).hidden :
-                                    pygame.mixer.Sound("Asset/sons/bouton.mp3").play()
+                                    play_sfx("Asset/sons/bouton.mp3")
 
             if event.type == pygame.MOUSEMOTION:  # si la souris bouge
                 is_hover = False  # Réinitialiser le hover
@@ -312,7 +341,7 @@ def open_pokedex(pokedex, background_surface=None) :
                     is_info = True
                     pokedex.select_pokemon(pokedex.displayed_pokemon[pokedex.page-1][index_info])
                     page_info = pokedex.page
-                    pygame.mixer.Sound("Asset/sons/bouton.mp3").play()
+                    play_sfx("Asset/sons/bouton.mp3")
 
 
 #===== Programme principal =====#

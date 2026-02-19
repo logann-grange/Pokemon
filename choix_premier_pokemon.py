@@ -3,6 +3,7 @@ import json
 import pygame
 import os
 from PIL import Image 
+import menu_option
 
 
 class MenuChoixPokemon:
@@ -23,6 +24,13 @@ class MenuChoixPokemon:
         self.dialogue_box=pygame.image.load(os.path.join(self.script_dir, "Asset", "Professor", "dialogue_box.png"))
         self.dialogue_box=pygame.transform.scale(self.dialogue_box, (1080, 200))
         self.music = pygame.mixer.Sound(os.path.join(self.script_dir, "Asset", "Professor", "professor_theme.mp3"))
+        self.apply_audio_options()
+
+    def apply_audio_options(self):
+        audio_options = menu_option.load_audio_options()
+        music_volume, _ = menu_option.get_effective_volumes(audio_options)
+        self.music.set_volume(music_volume)
+        pygame.mixer.music.set_volume(music_volume)
     
     def _scale_to_cover(self, image, target_size):
         target_w, target_h = target_size
@@ -121,6 +129,7 @@ class MenuChoixPokemon:
             
             return lines
         
+        self.apply_audio_options()
         pygame.mixer.music.stop()  # Arreter la musique du menu
         self.music.play(-1)  # Joue la musique en boucle
         
@@ -175,7 +184,7 @@ class MenuChoixPokemon:
                     stats.get('hp', 0),
                     stats.get('attack', 0),
                     stats.get('defense', 0),
-                    pokemon.get('level', 1),
+                    pokemon.get('level', 5),
                     pokemon.get('xp', 0),
                     pokemon.get('evo', None),
                     pokemon.get('sub_evo', None),
@@ -204,8 +213,11 @@ class MenuChoixPokemon:
                                 "name": pokemon.name,
                                 "type": pokemon.type,
                                 "hp": pokemon.hp,
+                                "hp_base": pokemon.hp_base,
                                 "attack": pokemon.attack,
+                                "attack_base": pokemon.attack_base,
                                 "defense": pokemon.defense,
+                                "defense_base": pokemon.defense_base,
                                 "level": pokemon.level,
                                 "xp": pokemon.xp
                             }

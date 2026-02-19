@@ -2,6 +2,7 @@ import pygame
 import sys
 import json
 from PIL import Image
+import menu_option
 
 
 pygame.mixer.pre_init(44100, -16, 2, 512)
@@ -16,6 +17,13 @@ font=pygame.font.Font("./Asset/menue/Pixeled.ttf", 15)
 
 evolve_sound = pygame.mixer.Sound("./Asset/Evolution_anime/music/Evolve.mp3")
 congrats_sound = pygame.mixer.Sound("./Asset/Evolution_anime/music/congratulation.mp3")
+
+
+def apply_evolution_audio_options():
+    audio_options = menu_option.load_audio_options()
+    _, sfx_volume = menu_option.get_effective_volumes(audio_options)
+    evolve_sound.set_volume(sfx_volume)
+    congrats_sound.set_volume(sfx_volume)
 
 
 
@@ -252,6 +260,7 @@ def wrap_text(text, font, max_width):
  
     
 def evolution(pokemon_name):
+    apply_evolution_audio_options()
     try:
         with open('equipe.json', 'r', encoding='utf-8') as f:
             equipe = json.load(f)
@@ -273,37 +282,28 @@ def evolution(pokemon_name):
         # Remplacer l'ancien pokémon dans l'equipe
         for i, p in enumerate(equipe):
             if str(p.get('name', '')).lower() == pokemon_name.lower():
-                # Recuperer les stats du pokemon de base
-                current_hp = p.get('hp', 0)
-                current_attack = p.get('attack', 0)
-                current_defense = p.get('defense', 0)
+               
+                level = p.get('level', 1)
+
+                # Calculer les nouvelles stats en fonction de l'évolution
+                evo_hp = evolved_pokemon['stats']['hp']
+                evo_attack = evolved_pokemon['stats']['attack']
+                evo_defense = evolved_pokemon['stats']['defense']
                 
-                # Recuperer les stats de l'evolution
-                evo_hp = evolved_pokemon.get('stats', {}).get('hp', 0)
-                evo_attack = evolved_pokemon.get('stats', {}).get('attack', 0)
-                evo_defense = evolved_pokemon.get('stats', {}).get('defense', 0)
-                
-                # Comparer et garder les meilleures stats + 5
-                final_hp = current_hp if current_hp > evo_hp else evo_hp
-                final_attack = current_attack if current_attack > evo_attack else evo_attack
-                final_defense = current_defense if current_defense > evo_defense else evo_defense
-                
-                # Ajouter 5 aux stats gardees
-                if current_hp > evo_hp:
-                    final_hp += 5
-                if current_attack > evo_attack:
-                    final_attack += 5
-                if current_defense > evo_defense:
-                    final_defense += 5
-                
+                final_hp =   evo_hp*2*level//100 + 10 + level
+                final_attack = evo_attack*2*level//100 + 5
+                final_defense = evo_defense*2*level//100 + 5
                 
                 equipe[i] = {
                     "id": evolved_pokemon['id'],
                     "name": evolved_pokemon['name'],
                     "type": evolved_pokemon.get('type'),
                     "hp": final_hp,
+                    "hp_base": evo_hp,
                     "attack": final_attack,
+                    "attack_base": evo_attack,
                     "defense": final_defense,
+                    "defense_base": evo_defense,
                     "level": p.get('level', 1),
                     "xp": p.get('xp', 0)
                 }
@@ -339,4 +339,4 @@ def evolution(pokemon_name):
         pygame.display.flip()
         clock.tick(60)
 
-#evolution("Carmache")  # Test - commenter pour eviter l'execution automatique
+#evolution("Carapuce")  # Test - commenter pour eviter l'execution automatique
