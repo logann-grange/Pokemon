@@ -14,6 +14,11 @@ class Combat:
         self.font=font
         self.etat=etat
         self.screen=screen
+        global px_hp
+        global px_hp_a
+        px_hp=140/self.poke.hp
+        px_hp_a=140/self.opponent.hp
+        
 
 
     def attack_mult(self):
@@ -30,8 +35,7 @@ class Combat:
         self.opponent.full_hp=False
         if self.opponent.hp<=0:
             return self.end_game()
-        else:
-            return self.oppo_attack()
+        
         
         
     
@@ -42,8 +46,6 @@ class Combat:
         self.opponent.full_hp=False
         if self.opponent.hp<=0:
             return self.end_game()
-        else:
-            return self.oppo_attack()
         
 
     def oppo_attack(self):
@@ -60,6 +62,7 @@ class Combat:
             return self.end_game()
         self.poke.degat_recu+=damage
         self.poke.full_hp=False
+        
 
     #barre de vie 
     def hp_lvl(self):
@@ -76,15 +79,15 @@ class Combat:
         self.screen.blit(txt_hp_adv,(800,690))
         if self.poke.full_hp==True:
             pygame.draw.rect(self.screen,(0,0,0),(155,655,140,20))
-        elif self.poke.degat_recu>0:
-            longueur=140/self.poke.degat_recu
+        else:
+            longueur=px_hp*self.poke.hp
             pygame.draw.rect(self.screen,(0,0,0),(155,655,longueur,20))
         pygame.draw.rect(self.screen,(255,255,255),(750,650,150,30))
         if self.opponent.full_hp==True:
             pygame.draw.rect(self.screen,(0,0,0),(755,655,140,20))
         else:
-            longueur=140/self.opponent.degat_recu
-            pygame.draw.rect(self.screen,(0,0,0),(755,655,longueur,20))
+            longueur_a=px_hp_a*self.opponent.hp
+            pygame.draw.rect(self.screen,(0,0,0),(755,655,longueur_a,20))
 
     def end_game(self):
 
@@ -114,7 +117,7 @@ class Combat:
 
     
         elif self.etat==FIN:
-            self.screen.fill((255,255,255))
+            self.screen.fill((0,0,0))
             if self.poke.hp<=0:
                 self.screen.blit(txt_lose,(500,240))
             elif self.opponent.hp<=0:
@@ -125,6 +128,5 @@ class Combat:
             
 
 
-#ajout attaque avec et sans multiplicateur
 #ajout pokball
 #ajout fuite
