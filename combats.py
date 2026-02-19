@@ -3,20 +3,18 @@ from random import randint
 from dic_type import type_poke
 import pygame
 
-end_font=pygame.font.SysFont("Arial",45)
-
-txt_win="YOU WIN !"
-txt_win= end_font.render(txt_win,True,(0,0,155))
-txt_lose="YOU LOSE !"
-txt_lose= end_font.render(txt_lose,True,(255,0,0))
-txt_catch="YOU CATCH IT"
-txt_catch=end_font.render(txt_catch,True,(0,0,255))
+FIN="fin"
+COMBAT="combat"
 
 class Combat:
-    def __init__(self,opponent,poke,screen=None):
+    def __init__(self,opponent,poke,hp_font,font,etat,screen=None):
         self.opponent=opponent
         self.poke=poke
+        self.hp_font=hp_font
+        self.font=font
+        self.etat=etat
         self.screen=screen
+
 
     def attack_mult(self):
         mult=1
@@ -26,19 +24,20 @@ class Combat:
                     nv_dico=type_poke[element]
                     if types==self.opponent.type:
                         mult=nv_dico[types]
-        print(f"{self.opponent.name} a {self.opponent.hp} HP")
         damage=self.poke.attack
         self.opponent.hp-=damage*mult
-        if self.opponent.hp<=0:
-            return self.end_game()
-        
         self.opponent.degat_recu+=damage
         self.opponent.full_hp=False
+        if self.opponent.hp<=0:
+            return self.end_game()
+        else:
+            return self.oppo_attack()
+        
+        
     
     def attack (self):
         damage=self.poke.attack
         self.opponent.hp-=damage
-        print(f"{self.opponent.name} a {self.opponent.hp} HP")
         self.opponent.degat_recu+=damage
         self.opponent.full_hp=False
         if self.opponent.hp<=0:
@@ -59,20 +58,27 @@ class Combat:
         self.poke.hp-=damage*mult
         if self.poke.hp<=0:
             return self.end_game()
-        print(f"{self.poke.name} a {self.poke.hp} HP")
         self.poke.degat_recu+=damage
         self.poke.full_hp=False
-        return self.attack()
 
     #barre de vie 
     def hp_lvl(self):
+
+        txt_hp_poke = str(self.poke.hp)
+        txt_hp_poke += "HP"
+        txt_hp_poke=self.hp_font.render(txt_hp_poke, True, (0,0,0))
+        txt_hp_adv = str(self.opponent.hp)
+        txt_hp_adv += "HP"
+        txt_hp_adv=self.hp_font.render(txt_hp_adv, True, (0,0,0))
+
         pygame.draw.rect(self.screen,(255,255,255),(150,650,150,30))
+        self.screen.blit(txt_hp_poke,(200,690))
+        self.screen.blit(txt_hp_adv,(800,690))
         if self.poke.full_hp==True:
             pygame.draw.rect(self.screen,(0,0,0),(155,655,140,20))
-        else:
-            if self.poke.degat_recu>0:
-                longueur=140/self.poke.degat_recu
-                pygame.draw.rect(self.screen,(0,0,0),(155,655,longueur,20))
+        elif self.poke.degat_recu>0:
+            longueur=140/self.poke.degat_recu
+            pygame.draw.rect(self.screen,(0,0,0),(155,655,longueur,20))
         pygame.draw.rect(self.screen,(255,255,255),(750,650,150,30))
         if self.opponent.full_hp==True:
             pygame.draw.rect(self.screen,(0,0,0),(755,655,140,20))
@@ -81,16 +87,42 @@ class Combat:
             pygame.draw.rect(self.screen,(0,0,0),(755,655,longueur,20))
 
     def end_game(self):
-        if self.opponent.hp<=0:
-            screen.blit(txt_win,(380,160))
-        elif self.poke.hp<=0:
-            screen.blit(txt_lose,(380,160))
-        else:
-            screen.blit(txt_catch,(380,160))
 
+        txt_win="YOU WIN !"
+        txt_win= self.font.render(txt_win,True,(0,0,155))
+        txt_lose="YOU LOSE !"
+        txt_lose= self.font.render(txt_lose,True,(255,0,0))
+        txt_catch="YOU CATCH IT"
+        txt_catch=self.font.render(txt_catch,True,(0,0,255))
+        temps_debut=0
+        temps_debut=pygame.time.get_ticks()
+        
+
+        if self.etat==COMBAT:
+            if self.opponent.hp<=0:
+                if pygame.time.get_ticks()- temps_debut<=100000:
+                    self.screen.blit(txt_win,(380,160))
+                    self.etat=FIN
+            elif self.poke.hp<=0:
+                if pygame.time.get_ticks()- temps_debut<=100000:
+                    self.screen.blit(txt_lose,(380,160))
+                    self.etat=FIN
+            else:
+                if pygame.time.get_ticks()- temps_debut<=100000:
+                    self.screen.blit(txt_catch,(380,160))
+                    self.etat=FIN
 
     
+        elif self.etat==FIN:
+            self.screen.fill((255,255,255))
+            if self.poke.hp<=0:
+                self.screen.blit(txt_lose,(500,240))
+            elif self.opponent.hp<=0:
+                self.screen.blit(txt_win,(500,240))
+            else:
+                self.screen.blit(self.screen,txt_catch(500,240))
 
+            
 
 
 #ajout attaque avec et sans multiplicateur

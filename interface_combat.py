@@ -3,15 +3,19 @@ from combats import *
 from Pokemon import *
 
 
+etat=COMBAT
 pygame.init()
 pygame.display.set_caption('Pokemon')
 pygame.mixer.init()
 font = pygame.font.SysFont("Arial",16)
+end_font = pygame.font.SysFont("Arial",45)
+hp_font = pygame.font.SysFont("Arial", 12)
 screen= pygame.display.set_mode((1080,720))
 temps_debut=0
 running=True
 poke_turn=True
 adv_turn=False
+
 
 #initialisation des textes
 
@@ -57,9 +61,9 @@ dracofeu = pygame.image.load("Asset/front/dracofeu.png")
 draco = Mon_Pokemon(1,"Dracofeu",dracofeu,(co_x,co_y),250,100,50,9,3500,"Fire")
 
 carabaffe=pygame.image.load("Asset/front/carabaffe.png")
-cara=Pokemon_Adverse(1,"Carabaffe",carabaffe,(co_x,co_y),120,30,20,7,1200,"Water")
+cara=Pokemon_Adverse(1,"Carabaffe",carabaffe,(co_x,co_y),250,30,20,7,1200,"Ice")
 
-fight=Combat(draco,cara,screen=screen)
+fight=Combat(draco,cara,hp_font,end_font,COMBAT,screen=screen)
 
 #fonctions
 
@@ -70,7 +74,7 @@ def fonctionnement (poke,adv):
     global temps_debut
     global running
     global poke_turn
-    global adv_turn
+    global adv_turnFalse
     global co_x
     
     if poke_turn==False:
@@ -93,21 +97,17 @@ def fonctionnement (poke,adv):
         btn = pygame.draw.rect(screen,(255,0,0),(350,500,180,30))
         bttn = pygame.draw.rect(screen, (150,150,0), (350,550,180,30))  
         btnn = pygame.draw.rect(screen, (0,0,255), (350,600,180,30))
-        print(adv.hp)
         for event in pygame.event.get():
             if event.type==pygame.MOUSEBUTTONUP:
                 if event.button==1:                        
                     if btn.collidepoint(event.pos):
                         fight.attack_mult()
-                        if adv.hp<=0:
-                            fight.end_game()    
-                        else:
-                            fight.oppo_attack()
+                        
                         
                     elif bttn.collidepoint(event.pos):
                         fight.attack()
-                        if adv.hp<=0:
-                            return fight.end_game()
+
+                        
                     """
                     elif btnn.collidepoint(event.pos):
                         fight.#pokeball
@@ -122,37 +122,47 @@ def fonctionnement (poke,adv):
 
 running=True
 while running:
+    print("poke", fight.poke.hp)
+    print("oppo", fight.opponent.hp)
+    if fight.etat==COMBAT:
     
-    
+        
+        screen.fill((101,211,255))
+        pygame.draw.rect(screen,(0,255,0),(0,360,1080,360)) 
+        fight.hp_lvl()
 
-    screen.fill((101,211,255))
-    pygame.draw.rect(screen,(0,255,0),(0,360,1080,360)) 
-    fight.hp_lvl()
-    
-    #clouds
-    if x>1080:
-        x=-250
-    x+=0.1
-    sky(x,150)
-    if x2<-250:
-        x2=1080
-    x2-=0.1
-    sky(x2,75)
-    if x4<-600:
-        x4=1080
-    x4-=0.1
-    screen.blit(big_cloud,(x4,-150))
-    if x3>1080:
-        x3=-250
-    x3+=0.2
-    sky(x3,50)
+        #clouds
+        if x>1080:
+            x=-250
+        x+=0.1
+        sky(x,150)
+        if x2<-250:
+            x2=1080
+        x2-=0.1
+        sky(x2,75)
+        if x4<-600:
+            x4=1080
+        x4-=0.1
+        screen.blit(big_cloud,(x4,-150))
+        if x3>1080:
+            x3=-250
+        x3+=0.2
+        sky(x3,50)
 
-    draco.afficher()
-    cara.afficher()
-    fonctionnement(draco,cara)
-    if pygame.time.get_ticks()- temps_debut<=3000:
-        screen.blit(txt_erreur,(450,500))
-    #button pause
-    pygame.draw.rect(screen,(0,0,0),(10,10,50,50))  
+        draco.afficher()
+        cara.afficher()
+        fonctionnement(draco,cara)
+        if pygame.time.get_ticks()- temps_debut<=3000:
+            screen.blit(txt_erreur,(450,500))
+        #button pause
+        pygame.draw.rect(screen,(0,0,0),(10,10,50,50))  
+
+    elif fight.etat==FIN:
+        fight.end_game()
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+                running = False
+
     pygame.display.flip()
     
