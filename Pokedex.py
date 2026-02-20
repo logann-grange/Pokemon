@@ -7,20 +7,23 @@ page_size = 18
 class Pokedex() :
 
     def __init__(self) :
-        self.pokemon = self.load_pokemon_list()
+        self.pokemon = self.load_pokemon_list("pokedex")
         self.search = ""
         self.displayed_pokemon = self.searching()
         self.page = 1
         self.selected_pokemon = None
         self.num_unlock = self.get_num_unlock()
 
-    def load_pokemon_list(self) :
+    def load_pokemon_list(self, file_name) :
         list_pokemon = []
-        with open("pokedex.json", "r", encoding="utf-8") as file :
+        with open(f"{file_name}.json", "r", encoding="utf-8") as file :
             content = json.load(file)
         
-        for pokemon in content : 
-            list_pokemon.append(Pokemon(pokemon["id"], pokemon["name"], pokemon["type"],  pokemon["image"], pokemon["type"], pokemon["stats"]["hp"], pokemon["stats"]["attack"], pokemon["stats"]["defense"], 0, 0, pokemon["evo"], pokemon["sub_evo"], pokemon["hidden"]))
+        for pokemon in content :
+            if file_name == "pokedex" :
+                list_pokemon.append(Pokemon(None, pokemon["name"], pokemon["id"], pokemon["type"],  pokemon["image"], pokemon["type"], pokemon["stats"]["hp"], pokemon["stats"]["attack"], pokemon["stats"]["defense"], 0, 0, pokemon["evo"], pokemon["sub_evo"], pokemon["hidden"]))
+            elif file_name == "equipe" :
+                list_pokemon.append(Pokemon(pokemon["id"], pokemon["name"], None, pokemon["type"],  pokemon["image"], pokemon["type"], pokemon["stats"]["hp"], pokemon["stats"]["attack"], pokemon["stats"]["defense"], 0, 0, pokemon["evo"], pokemon["sub_evo"], pokemon["hidden"], index_team = pokemon["index_team"]))
 
         return list_pokemon
         
@@ -51,9 +54,9 @@ class Pokedex() :
 
         return displayed_pokemon
     
-    def get_pokemon_by_id(self, id) :
+    def get_pokemon_by_id(self, pokedex_id) :
         for pokemon in self.pokemon :
-            if pokemon.id == id :
+            if pokemon.pokedex_id == pokedex_id :
                 return pokemon
     
     def select_pokemon(self, pokemon:Pokemon) :

@@ -37,14 +37,14 @@ def display_pokemon(pokedex, screen):
             img_pokemon = pygame.transform.scale(pygame.image.load(pokemon.image), (55, 55))
             if not pokemon.hidden:
                 screen.blit(img_pokemon, (360+(55+5)*column, 445+55*row))
-                txt_id = font.render(str(pokemon.id), 1, (0, 0, 0))
+                txt_id = font.render(str(pokemon.pokedex_id), 1, (0, 0, 0))
             else:
                 # si pokemon caché créer un masque noir à partir de l'image
                 mask = pygame.mask.from_surface(img_pokemon)
                 img_black = mask.to_surface(setcolor=(0, 0, 0, 240), unsetcolor=(0, 0, 0, 0))
     
                 screen.blit(img_black, (360+(55+5)*column, 445+55*row))
-                txt_id = font.render(str(pokemon.id), 1, (200, 0, 0))
+                txt_id = font.render(str(pokemon.pokedex_id), 1, (200, 0, 0))
 
             screen.blit(txt_id, (400+(55+5)*column, 440+55*row))
             column += 1

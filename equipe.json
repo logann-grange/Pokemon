@@ -1,0 +1,125 @@
+[
+    {
+        "id": "01",
+        "name": "Bulbizarre",
+        "image": "assets/images/pokemon/1.png",
+        "type": [
+            "Grass"
+        ],
+        "hidden": false,
+        "stats": {
+            "attack": 49,
+            "defense": 49,
+            "hp": 45
+        },
+        "evo": "02",
+        "sub_evo": "",
+        "level": 5,
+        "index_team": 1
+    },
+    {
+        "id": "02",
+        "name": "Carapuce",
+        "image": "assets/images/pokemon/7.png",
+        "type": [
+            "Water"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 48,
+            "defense": 65,
+            "hp": 44
+        },
+        "evo": "08",
+        "sub_evo": "",
+        "level": 5,
+        "index_team": 2
+    },
+    {
+        "id": "03",
+        "name": "Carapuce",
+        "image": "assets/images/pokemon/7.png",
+        "type": [
+            "Water"
+        ],
+        "hidden": false,
+        "stats": {
+            "attack": 48,
+            "defense": 65,
+            "hp": 44
+        },
+        "evo": "08",
+        "sub_evo": "",
+        "level": 5,
+        "index_team": 1
+    },
+    {
+        "id": "04",
+        "name": "Ratatac",
+        "image": "assets/images/pokemon/14.png",
+        "type": [
+            "Normal"
+        ],
+        "hidden": false,
+        "stats": {
+            "attack": 120,
+            "defense": 65,
+            "hp": 75
+        },
+        "evo": "",
+        "sub_evo": "13",
+        "index_team": 3
+    },
+    {
+        "id": "06",
+        "name": "Dracofeu",
+        "image": "assets/images/pokemon/6.png",
+        "type": [
+            "Fire, Flying"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 84,
+            "defense": 78,
+            "hp": 78
+        },
+        "evo": "",
+        "sub_evo": "05",
+        "index_team": 3
+    },
+    {
+        "id": "27",
+        "name": "Spectrum",
+        "image": "assets/images/pokemon/27.png",
+        "type": [
+            "Ghost",
+            "Poison"
+        ],
+        "hidden": false,
+        "stats": {
+            "attack": 115,
+            "defense": 55,
+            "hp": 45
+        },
+        "evo": "28",
+        "sub_evo": "26",
+        "index_team": null
+    },
+    {
+        "id": "29",
+        "name": "Spykokwak",
+        "image": "assets/images/pokemon/29.png",
+        "type": [
+            "Water"
+        ],
+        "hidden": false,
+        "stats": {
+            "attack": 65,
+            "defense": 50,
+            "hp": 50
+        },
+        "evo": "30",
+        "sub_evo": "",
+        "index_team": 0
+    }
+]

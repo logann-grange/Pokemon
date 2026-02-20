@@ -1,6 +1,6 @@
 class Pokemon() :
 
-    def __init__(self, id, name, type, image, coord, hp, attack, defense, level, xp, evo=None,sub_evo=None, hidden=False) :
+    def __init__(self, id, name, pokedex_id, type, image, coord, hp, attack, defense, level, xp, evo=None,sub_evo=None, hidden=False, index_team=None) :
         self.id = id
         self.name = name
         self.image = image
@@ -15,8 +15,12 @@ class Pokemon() :
         self.hidden = hidden
         self.evo = evo
         self.sub_evo = sub_evo
-        #self.pokedex_id
+        self.index_team = index_team
+        self.pokedex_id = pokedex_id
 
+    def __str__(self):
+        return f"{self.name} {self.index_team}"
+    
     def level_up(self) :
         if self.xp <= 1000 * self.level*0.5 : #multiplier par un facteur d'xp
             self.level += 1
