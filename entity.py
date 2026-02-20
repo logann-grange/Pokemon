@@ -28,6 +28,7 @@ class Entity(pygame.sprite.Sprite) :
         self.attack_chance = 0
         self.map = ""
         self.able_pc = False
+        self.pc = None
 
 
 
@@ -78,9 +79,15 @@ class Entity(pygame.sprite.Sprite) :
                     if self.map == "foret" :
                         self.attack_chance += 1
                         self.attack()
+
+                if self.check_collision_pc(next_pos):
+                    self.able_pc = True
+                else :
+                    self.able_pc = False
             else:
                 self.step = 0
                 self.animation_walk = False
+                
 
 
     def get_all_images(self) :
@@ -122,7 +129,7 @@ class Entity(pygame.sprite.Sprite) :
             if self.hitbox.colliderect(switch.hitbox) :
                 self.change_map = switch
                 return True
-            
+    
         self.speed = 1
 
     def add_collision(self, collision) :
@@ -136,8 +143,16 @@ class Entity(pygame.sprite.Sprite) :
                 return True
         return False
     
+    def check_collision_pc(self, rect=None):
+        if rect is None:
+            rect = self.hitbox
+        for pc in self.pc:
+            if rect.colliderect(pc):
+                return True
+        return False
+    
     def attack(self) :
         proba = random.randint(self.attack_chance, 1000)
         if proba == 1000 :
             print("combat !", self.attack_chance)
-            self.attack_chance = 0       
+            self.attack_chance = 0

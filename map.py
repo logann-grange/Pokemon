@@ -3,7 +3,6 @@ import pytmx
 import pyscroll
 from entity import Entity
 from switch import Switch
-from interface_pokedex import open_pokedex
 
 class Map :
     def __init__(self, screen):
@@ -18,7 +17,6 @@ class Map :
         self.pc = []
         self.change_map(self.current_map)
         
-        
 
     def change_map(self, switch):
         self.data = pytmx.load_pygame(f"assets/images/map/{switch.name}.tmx")
@@ -29,16 +27,15 @@ class Map :
 
         self.switch = []
         self.collision = []
+        self.pc = []
         for obj in self.data.objects :
+            # ajout des collisions
             if obj.name is not None and obj.name == "collision" :
                 self.collision.append(pygame.Rect(obj.x, obj.y, obj.width, obj.height))
-
-            if self.player and obj.name is not None and obj.name == "pc" :
-                self.player.able_pc = True
-                print(self.player.able_pc) # ajouter un rect à un attribut pc
-
-
-
+            # ajout du pc
+            if obj.name is not None and obj.name == "pc" :
+                self.pc.append(pygame.Rect(obj.x, obj.y, obj.width, obj.height))
+            # ajout des changements de carte
             if obj.name is not None :
                 type = obj.name.split(" ")[0]
                 if type == "switch" :
@@ -48,6 +45,7 @@ class Map :
             self.pos_player(switch)
             self.player.add_switch(self.switch)
             self.player.add_collision(self.collision)
+            self.player.pc = self.pc
 
             self.group.add(self.player)
 
@@ -67,6 +65,7 @@ class Map :
          self.player = player
          self.player.add_switch(self.switch)
          self.player.add_collision(self.collision)
+         self.player.pc = self.pc
     
     def pos_player(self, switch):
         name = f"spawn {self.current_map.name} {switch.port}"

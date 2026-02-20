@@ -4,6 +4,8 @@ from entity import Entity
 from switch import Switch
 from interface_pokedex import open_pokedex
 from Pokedex import Pokedex
+from pc import Pc
+from interface_pc import open_pc
 
 
 pygame.init()
@@ -20,6 +22,7 @@ map = Map(screen)
 player = Entity()
 map.add_player(player)
 pokedex = Pokedex()
+pc = Pc()
 while running:
     clock.tick(60)
     pygame.display.flip()
@@ -48,4 +51,4 @@ while running:
         player.animation_walk = False
         player.image = player.all_images[player.direction][0]
     if keys[pygame.K_f] and player.able_pc:
-        open_pokedex(pokedex, screen)
+        open_pc(pc, screen)
