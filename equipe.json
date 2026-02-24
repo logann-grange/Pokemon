@@ -1,1 +1,17 @@
-[]
+[
+    {
+        "id": 5,
+        "name": "Reptincelle",
+        "type": [
+            "Fire"
+        ],
+        "hp": 122,
+        "hp_base": 58,
+        "attack": 71,
+        "attack_base": 64,
+        "defense": 65,
+        "defense_base": 58,
+        "level": 52,
+        "xp": 23533
+    }
+]

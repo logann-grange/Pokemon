@@ -1,0 +1,14 @@
+{
+    "player": {
+        "pos": [
+            347,
+            425
+        ],
+        "hitbox": [
+            347,
+            441
+        ],
+        "direction": "left"
+    },
+    "map": "foret"
+}

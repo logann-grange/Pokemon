@@ -1,0 +1,1048 @@
+[
+    {
+        "id": "01",
+        "name": "Bulbizarre",
+        "image": "Asset/front/1.png",
+        "type": [
+            "Grass"
+        ],
+        "hidden": false,
+        "stats": {
+            "attack": 49,
+            "defense": 49,
+            "hp": 45
+        },
+        "evo": "02",
+        "sub_evo": ""
+    },
+    {
+        "id": "02",
+        "name": "Herbizarre",
+        "image": "Asset/front/2.png",
+        "type": [
+            "Grass"
+        ],
+        "hidden": false,
+        "stats": {
+            "attack": 62,
+            "defense": 63,
+            "hp": 60
+        },
+        "evo": "03",
+        "sub_evo": "01"
+    },
+    {
+        "id": "03",
+        "name": "Florizarre",
+        "image": "Asset/front/3.png",
+        "type": [
+            "Grass",
+            "Poison"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 82,
+            "defense": 83,
+            "hp": 80
+        },
+        "evo": "",
+        "sub_evo": "02"
+    },
+    {
+        "id": "04",
+        "name": "Salamèche",
+        "image": "Asset/front/4.png",
+        "type": [
+            "Fire"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 52,
+            "defense": 43,
+            "hp": 39
+        },
+        "evo": "05",
+        "sub_evo": ""
+    },
+    {
+        "id": "05",
+        "name": "Reptincelle",
+        "image": "Asset/front/5.png",
+        "type": [
+            "Fire"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 64,
+            "defense": 58,
+            "hp": 58
+        },
+        "evo": "06",
+        "sub_evo": "04"
+    },
+    {
+        "id": "06",
+        "name": "Dracofeu",
+        "image": "Asset/front/6.png",
+        "type": [
+            "Fire, Flying"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 84,
+            "defense": 78,
+            "hp": 78
+        },
+        "evo": "",
+        "sub_evo": "05"
+    },
+    {
+        "id": "07",
+        "name": "Carapuce",
+        "image": "Asset/front/7.png",
+        "type": [
+            "Water"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 48,
+            "defense": 65,
+            "hp": 44
+        },
+        "evo": "08",
+        "sub_evo": ""
+    },
+    {
+        "id": "08",
+        "name": "Carabaffe",
+        "image": "Asset/front/8.png",
+        "type": [
+            "Water"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 63,
+            "defense": 80,
+            "hp": 59
+        },
+        "evo": "09",
+        "sub_evo": "07"
+    },
+    {
+        "id": "09",
+        "name": "Tortank",
+        "image": "Asset/front/9.png",
+        "type": [
+            "Water"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 83,
+            "defense": 100,
+            "hp": 79
+        },
+        "evo": "",
+        "sub_evo": "08"
+    },
+    {
+        "id": "10",
+        "name": "Aspicot",
+        "image": "Asset/front/10.png",
+        "type": [
+            "Insect"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 35,
+            "defense": 30,
+            "hp": 40
+        },
+        "evo": "11",
+        "sub_evo": ""
+    },
+    {
+        "id": "11",
+        "name": "Coconfort",
+        "image": "Asset/front/11.png",
+        "type": [
+            "Insect"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 25,
+            "defense": 50,
+            "hp": 45
+        },
+        "evo": "12",
+        "sub_evo": "10"
+    },
+    {
+        "id": "12",
+        "name": "Dardargnan",
+        "image": "Asset/front/12.png",
+        "type": [
+            "Insect"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 90,
+            "defense": 40,
+            "hp": 65
+        },
+        "evo": "",
+        "sub_evo": "11"
+    },
+    {
+        "id": "13",
+        "name": "Ratata",
+        "image": "Asset/front/13.png",
+        "type": [
+            "Normal"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 80,
+            "defense": 50,
+            "hp": 40
+        },
+        "evo": "14",
+        "sub_evo": ""
+    },
+    {
+        "id": "14",
+        "name": "Ratatac",
+        "image": "Asset/front/14.png",
+        "type": [
+            "Normal"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 120,
+            "defense": 65,
+            "hp": 75
+        },
+        "evo": "",
+        "sub_evo": "13"
+    },
+    {
+        "id": "15",
+        "name": "Roucool",
+        "image": "Asset/front/15.png",
+        "type": [
+            "Flying"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 35,
+            "defense": 35,
+            "hp": 40
+        },
+        "evo": "16",
+        "sub_evo": ""
+    },
+    {
+        "id": "16",
+        "name": "Roucoups",
+        "image": "Asset/front/16.png",
+        "type": [
+            "Flying"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 60,
+            "defense": 55,
+            "hp": 63
+        },
+        "evo": "17",
+        "sub_evo": "15"
+    },
+    {
+        "id": "17",
+        "name": "Roucarnage",
+        "image": "Asset/front/17.png",
+        "type": [
+            "Flying"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 80,
+            "defense": 75,
+            "hp": 83
+        },
+        "evo": "",
+        "sub_evo": "16"
+    },
+    {
+        "id": "18",
+        "name": "Machop",
+        "image": "Asset/front/18.png",
+        "type": [
+            "Figthing"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 80,
+            "defense": 50,
+            "hp": 70
+        },
+        "evo": "19",
+        "sub_evo": ""
+    },
+    {
+        "id": "19",
+        "name": "Machopeur",
+        "image": "Asset/front/19.png",
+        "type": [
+            "Figthing"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 30,
+            "defense": 24,
+            "hp": 80
+        },
+        "evo": "20",
+        "sub_evo": "18"
+    },
+    {
+        "id": "20",
+        "name": "Macogneur",
+        "image": "Asset/front/20.png",
+        "type": [
+            "Figthing"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 130,
+            "defense": 80,
+            "hp": 90
+        },
+        "evo": "",
+        "sub_evo": "19"
+    },
+    {
+        "id": "21",
+        "name": "Tadmorv",
+        "image": "Asset/front/21.png",
+        "type": [
+            "Poison"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 80,
+            "defense": 50,
+            "hp": 80
+        },
+        "evo": "22",
+        "sub_evo": ""
+    },
+    {
+        "id": "22",
+        "name": "Grotadmorv",
+        "image": "Asset/front/22.png",
+        "type": [
+            "Poison"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 105,
+            "defense": 75,
+            "hp": 105
+        },
+        "evo": "",
+        "sub_evo": "21"
+    },
+    {
+        "id": "23",
+        "name": "Abra",
+        "image": "Asset/front/23.png",
+        "type": [
+            "Psy"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 105,
+            "defense": 40,
+            "hp": 25
+        },
+        "evo": "24",
+        "sub_evo": ""
+    },
+    {
+        "id": "24",
+        "name": "Kadabra",
+        "image": "Asset/front/24.png",
+        "type": [
+            "Psy"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 120,
+            "defense": 50,
+            "hp": 40
+        },
+        "evo": "25",
+        "sub_evo": "23"
+    },
+    {
+        "id": "25",
+        "name": "Alakazam",
+        "image": "Asset/front/25.png",
+        "type": [
+            "Psy"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 135,
+            "defense": 50,
+            "hp": 55
+        },
+        "evo": "24",
+        "sub_evo": ""
+    },
+    {
+        "id": "26",
+        "name": "Fantominus",
+        "image": "Asset/front/26.png",
+        "type": [
+            "Ghost",
+            "Poison"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 100,
+            "defense": 35,
+            "hp": 30
+        },
+        "evo": "27",
+        "sub_evo": ""
+    },
+    {
+        "id": "27",
+        "name": "Spectrum",
+        "image": "Asset/front/27.png",
+        "type": [
+            "Ghost",
+            "Poison"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 115,
+            "defense": 55,
+            "hp": 45
+        },
+        "evo": "28",
+        "sub_evo": "26"
+    },
+    {
+        "id": "28",
+        "name": "Ectoplasma",
+        "image": "Asset/front/28.png",
+        "type": [
+            "Ghost",
+            "Poison"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 130,
+            "defense": 75,
+            "hp": 60
+        },
+        "evo": "",
+        "sub_evo": "27"
+    },
+    {
+        "id": "29",
+        "name": "Spykokwak",
+        "image": "Asset/front/29.png",
+        "type": [
+            "Water"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 65,
+            "defense": 50,
+            "hp": 50
+        },
+        "evo": "30",
+        "sub_evo": ""
+    },
+    {
+        "id": "30",
+        "name": "Akwakwak",
+        "image": "Asset/front/30.png",
+        "type": [
+            "Water"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 95,
+            "defense": 80,
+            "hp": 80
+        },
+        "evo": "",
+        "sub_evo": "29"
+    },
+    {
+        "id": "31",
+        "name": "Miaouss",
+        "image": "Asset/front/31.png",
+        "type": [
+            "Normal"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 45,
+            "defense": 40,
+            "hp": 40
+        },
+        "evo": "32",
+        "sub_evo": ""
+    },
+    {
+        "id": "32",
+        "name": "Persian",
+        "image": "Asset/front/32.png",
+        "type": [
+            "Normal"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 70,
+            "defense": 60,
+            "hp": 65
+        },
+        "evo": "",
+        "sub_evo": "31"
+    },
+    {
+        "id": "33",
+        "name": "Magicarpe",
+        "image": "Asset/front/33.png",
+        "type": [
+            "Water"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 15,
+            "defense": 55,
+            "hp": 20
+        },
+        "evo": "34",
+        "sub_evo": ""
+    },
+    {
+        "id": "34",
+        "name": "Leviator",
+        "image": "Asset/front/34.png",
+        "type": [
+            "Water"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 125,
+            "defense": 100,
+            "hp": 95
+        },
+        "evo": "",
+        "sub_evo": "33"
+    },
+    {
+        "id": "35",
+        "name": "Onix",
+        "image": "Asset/front/35.png",
+        "type": [
+            "Rock"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 45,
+            "defense": 160,
+            "hp": 35
+        },
+        "evo": "36",
+        "sub_evo": ""
+    },
+    {
+        "id": "36",
+        "name": "Steelix",
+        "image": "Asset/front/36.png",
+        "type": [
+            "Steel"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 85,
+            "defense": 200,
+            "hp": 75
+        },
+        "evo": "",
+        "sub_evo": "35"
+    },
+    {
+        "id": "37",
+        "name": "Zorua",
+        "image": "Asset/front/37.png",
+        "type": [
+            "Darkness"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 40,
+            "defense": 40,
+            "hp": 75
+        },
+        "evo": "38",
+        "sub_evo": ""
+    },
+    {
+        "id": "38",
+        "name": "Zoruark",
+        "image": "Asset/front/38.png",
+        "type": [
+            "Darkness"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 120,
+            "defense": 60,
+            "hp": 60
+        },
+        "evo": "",
+        "sub_evo": "37"
+    },
+    {
+        "id": "39",
+        "name": "Pichu",
+        "image": "Asset/front/39.png",
+        "type": [
+            "Electric"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 120,
+            "defense": 60,
+            "hp": 60
+        },
+        "evo": "40",
+        "sub_evo": ""
+    },
+    {
+        "id": "40",
+        "name": "Pikachu",
+        "image": "Asset/front/40.png",
+        "type": [
+            "Electric"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 120,
+            "defense": 60,
+            "hp": 60
+        },
+        "evo": "41",
+        "sub_evo": "39"
+    },
+    {
+        "id": "41",
+        "name": "Raichu",
+        "image": "Asset/front/41.png",
+        "type": [
+            "Electric"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 120,
+            "defense": 60,
+            "hp": 60
+        },
+        "evo": "",
+        "sub_evo": "40"
+    },
+    {
+        "id": "42",
+        "name": "Riolu",
+        "image": "Asset/front/42.png",
+        "type": [
+            "Fighting"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 70,
+            "defense": 40,
+            "hp": 40
+        },
+        "evo": "43",
+        "sub_evo": ""
+    },
+    {
+        "id": "43",
+        "name": "Lucario",
+        "image": "Asset/front/43.png",
+        "type": [
+            "Fighting",
+            "Steel"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 115,
+            "defense": 70,
+            "hp": 70
+        },
+        "evo": "",
+        "sub_evo": "42"
+    },
+    {
+        "id": "44",
+        "name": "Fanécire",
+        "image": "Asset/front/44.png",
+        "type": [
+            "Ghost",
+            "Fire"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 65,
+            "defense": 55,
+            "hp": 50
+        },
+        "evo": "45",
+        "sub_evo": ""
+    },
+    {
+        "id": "45",
+        "name": "Mélancolux",
+        "image": "Asset/front/45.png",
+        "type": [
+            "Ghost",
+            "Fire"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 95,
+            "defense": 60,
+            "hp": 60
+        },
+        "evo": "46",
+        "sub_evo": "44"
+    },
+    {
+        "id": "46",
+        "name": "Lugulabre",
+        "image": "Asset/front/46.png",
+        "type": [
+            "Ghost",
+            "Fire"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 140,
+            "defense": 90,
+            "hp": 60
+        },
+        "evo": "",
+        "sub_evo": "45"
+    },
+    {
+        "id": "47",
+        "name": "Marcacrin",
+        "image": "Asset/front/47.png",
+        "type": [
+            "Ice",
+            "Ground"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 50,
+            "defense": 40,
+            "hp": 50
+        },
+        "evo": "48",
+        "sub_evo": ""
+    },
+    {
+        "id": "48",
+        "name": "Cochignon",
+        "image": "Asset/front/48.png",
+        "type": [
+            "Ice",
+            "Ground"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 100,
+            "defense": 80,
+            "hp": 100
+        },
+        "evo": "49",
+        "sub_evo": "47"
+    },
+    {
+        "id": "49",
+        "name": "Mamochon",
+        "image": "Asset/front/49.png",
+        "type": [
+            "Ice",
+            "Ground"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 130,
+            "defense": 80,
+            "hp": 110
+        },
+        "evo": "",
+        "sub_evo": "48"
+    },
+    {
+        "id": "50",
+        "name": "Coupenotte",
+        "image": "Asset/front/50.png",
+        "type": [
+            "Dragon"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 87,
+            "defense": 60,
+            "hp": 46
+        },
+        "evo": "51",
+        "sub_evo": ""
+    },
+    {
+        "id": "51",
+        "name": "Incisache",
+        "image": "Asset/front/51.png",
+        "type": [
+            "Dragon"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 117,
+            "defense": 70,
+            "hp": 66
+        },
+        "evo": "52",
+        "sub_evo": "50"
+    },
+    {
+        "id": "52",
+        "name": "Tranchodon",
+        "image": "Asset/front/52.png",
+        "type": [
+            "Dragon"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 147,
+            "defense": 90,
+            "hp": 76
+        },
+        "evo": "",
+        "sub_evo": "51"
+    },
+    {
+        "id": "53",
+        "name": "Etourmi",
+        "image": "Asset/front/53.png",
+        "type": [
+            "Flying",
+            "Normal"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 55,
+            "defense": 30,
+            "hp": 40
+        },
+        "evo": "54",
+        "sub_evo": ""
+    },
+    {
+        "id": "54",
+        "name": "Etourvol",
+        "image": "Asset/front/54.png",
+        "type": [
+            "Flying",
+            "Normal"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 75,
+            "defense": 50,
+            "hp": 55
+        },
+        "evo": "55",
+        "sub_evo": "53"
+    },
+    {
+        "id": "55",
+        "name": "Etouraptor",
+        "image": "Asset/front/55.png",
+        "type": [
+            "Flying",
+            "Normal"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 120,
+            "defense": 70,
+            "hp": 85
+        },
+        "evo": "",
+        "sub_evo": "54"
+    },
+    {
+        "id": "56",
+        "name": "Granbull",
+        "image": "Asset/front/56.png",
+        "type": [
+            "Fairy"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 120,
+            "defense": 75,
+            "hp": 90
+        },
+        "evo": "",
+        "sub_evo": ""
+    },
+    {
+        "id": "57",
+        "name": "Grinkot",
+        "image": "Asset/front/57.png",
+        "type": [
+            "Dragon",
+            "Ground"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 70,
+            "defense": 45,
+            "hp": 58
+        },
+        "evo": "58",
+        "sub_evo": ""
+    },
+    {
+        "id": "58",
+        "name": "Carmache",
+        "image": "Asset/front/58.png",
+        "type": [
+            "Dragon",
+            "Ground"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 90,
+            "defense": 65,
+            "hp": 68
+        },
+        "evo": "59",
+        "sub_evo": "57"
+    },
+    {
+        "id": "59",
+        "name": "Carchacrok",
+        "image": "Asset/front/59.png",
+        "type": [
+            "Dragon",
+            "Ground"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 130,
+            "defense": 95,
+            "hp": 108
+        },
+        "evo": "",
+        "sub_evo": "58"
+    },
+    {
+        "id": "60",
+        "name": "Embrylex",
+        "image": "Asset/front/60.png",
+        "type": [
+            "Rock",
+            "Ground"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 64,
+            "defense": 50,
+            "hp": 50
+        },
+        "evo": "61",
+        "sub_evo": ""
+    },
+    {
+        "id": "61",
+        "name": "Ymphect",
+        "image": "Asset/front/61.png",
+        "type": [
+            "Rock",
+            "Ground"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 84,
+            "defense": 70,
+            "hp": 70
+        },
+        "evo": "62",
+        "sub_evo": "60"
+    },
+    {
+        "id": "62",
+        "name": "Tyranocif",
+        "image": "Asset/front/62.png",
+        "type": [
+            "Rock",
+            "Darkness"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 134,
+            "defense": 110,
+            "hp": 100
+        },
+        "evo": "",
+        "sub_evo": "61"
+    },
+    {
+        "id": "63",
+        "name": "Scalpion",
+        "image": "Asset/front/63.png",
+        "type": [
+            "Darkness",
+            "Steel"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 85,
+            "defense": 70,
+            "hp": 45
+        },
+        "evo": "64",
+        "sub_evo": ""
+    },
+    {
+        "id": "64",
+        "name": "Scalproie",
+        "image": "Asset/front/64.png",
+        "type": [
+            "Darkness",
+            "Steel"
+        ],
+        "hidden": true,
+        "stats": {
+            "attack": 125,
+            "defense": 100,
+            "hp": 65
+        },
+        "evo": "",
+        "sub_evo": "63"
+    }
+]
