@@ -136,27 +136,24 @@ def fonctionnement(poke, adv, events):
         screen.blit(txt_bttn, (355,543))
         screen.blit(txt_btnn, (355,583))
 
-        for event in events:
-            if event.type==pygame.MOUSEBUTTONUP:
-                if event.button==1:
-                    if btn.collidepoint(event.pos):
-                        if pygame.time.get_ticks()-temps_debut<=1500:
-                            co_poke+=5
-                        co_poke-=5
-                        fight.attack_mult()
-                        fight.poke_turn=False
-                        fight.adv_turn=True
-
-                    elif bttn.collidepoint(event.pos):
-                        if pygame.time.get_ticks()-temps_debut<=1500:
-                            co_poke+=5
-                        co_poke-=5
-                        fight.attack()
-                        fight.poke_turn=False
-                        fight.adv_turn=True
-
-                    elif btnn.collidepoint(event.pos):
-                        fight.attraper()
+        if events.type==pygame.MOUSEBUTTONUP:
+            if events.button==1:
+                if btn.collidepoint(events.pos):
+                    if pygame.time.get_ticks()-temps_debut<=1500:
+                        co_poke+=5
+                    co_poke-=5
+                    fight.attack_mult()
+                    fight.poke_turn=False
+                    fight.adv_turn=True
+                elif bttn.collidepoint(events.pos):
+                    if pygame.time.get_ticks()-temps_debut<=1500:
+                        co_poke+=5
+                    co_poke-=5
+                    fight.attack()
+                    fight.poke_turn=False
+                    fight.adv_turn=True
+                elif btnn.collidepoint(events.pos):
+                    fight.attraper()
 
 #=========BOUCLE DE JEU=========#
 
@@ -164,8 +161,16 @@ confirmation_fuite=False
 running=True
 while running:
 
-    events = pygame.event.get()
-
+    for event in pygame.event.get():
+        if event.type == pygame.MOUSEBUTTONUP:
+            if event.button == 1:
+                if out.collidepoint(event.pos):
+                    confirmation_fuite = True
+        elif event.type==pygame.QUIT:
+            running=False
+            
+        confirmation_fuite = fuite(confirmation_fuite, event)
+            
 
     if fight.etat==COMBAT:
 
@@ -174,7 +179,7 @@ while running:
         fight.hp_lvl()
         draco.afficher()
         cara.afficher()
-        fonctionnement(draco,cara,events)
+        fonctionnement(draco,cara,event)
 
         #clouds
         if x>1080:
@@ -194,16 +199,8 @@ while running:
         x3+=0.2
         sky(x3,50)
 
-        quit = pygame.draw.rect(screen, (0,0,0), (10,10,50,50))
+        out = pygame.draw.rect(screen, (0,0,0), (10,10,50,50))
         if confirmation_fuite:
             fuite_affichage()
 
-        for event in pygame.event.get():
-            if event.type == pygame.MOUSEBUTTONUP:
-                if event.button == 1:
-                    if quit.collidepoint(event.pos):
-                        confirmation_fuite = True
-            confirmation_fuite = fuite(confirmation_fuite, event)
-
-                
     pygame.display.flip()
