@@ -15,7 +15,7 @@
         "evo": "02",
         "sub_evo": "",
         "level": 5,
-        "index_team": 1
+        "index_team": 0
     },
     {
         "id": "02",
@@ -51,7 +51,7 @@
         "evo": "08",
         "sub_evo": "",
         "level": 5,
-        "index_team": 1
+        "index_team": 3
     },
     {
         "id": "04",
@@ -68,14 +68,15 @@
         },
         "evo": "",
         "sub_evo": "13",
-        "index_team": 3
+        "index_team": 1
     },
     {
         "id": "06",
         "name": "Dracofeu",
         "image": "assets/images/pokemon/6.png",
         "type": [
-            "Fire, Flying"
+            "Fire",
+            "Flying"
         ],
         "hidden": true,
         "stats": {
@@ -85,7 +86,7 @@
         },
         "evo": "",
         "sub_evo": "05",
-        "index_team": 3
+        "index_team": 4
     },
     {
         "id": "27",
@@ -120,6 +121,6 @@
         },
         "evo": "30",
         "sub_evo": "",
-        "index_team": 0
+        "index_team": 5
     }
 ]

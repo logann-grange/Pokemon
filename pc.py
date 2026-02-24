@@ -55,42 +55,41 @@ class Pc(Pokedex) :
                 for pokemon in self.pokemon : 
                     if pokemon == self.selected_pokemon :
                         pokemon.index_team = i
-                self.change_team_index_in_json(i)
+                self.selected_pokemon.change_team_index_in_json(i)
             elif self.selected_pokemon == self.team[i]:
                 self.team[i] = None
                 for pokemon in self.pokemon : 
                     if pokemon == self.selected_pokemon :
                         pokemon.index_team = None
-                self.change_team_index_in_json(i)
+                self.selected_pokemon.change_team_index_in_json(None)
                 return
     
-    def switch_to_first_index(self) :
-        for pokemon in self.pokemon : 
-            if pokemon == self.selected_pokemon :
-                old_index = self.selected_pokemon.index_team
-                for poke in self.team :
-                    if poke is not None and poke.index_team == 0 :
-                        poke.index_team = old_index
-                pokemon.index_team = 0
-            
+    def switch_to_first_index(self):
+        if self.selected_pokemon is None:
+            return
+    
+        # Si le pokemon n'est pas dans la team ou deja 1er, on ne fait rien
+        if self.selected_pokemon.index_team is None or self.selected_pokemon.index_team == 0:
+            return
 
-    def change_team_index_in_json(self, index):
-        with open("equipe.json", "r", encoding="utf-8") as file:
-            content = json.load(file)
-    
-        for i, pokemon in enumerate(content):
-            if pokemon["id"] == self.selected_pokemon.id:
-                content[i]["index_team"] = index
+        old_index = self.selected_pokemon.index_team
+
+        for poke in self.team:
+            if poke is not None and poke.index_team == 0:
+                poke.index_team = old_index
+                poke.change_team_index_in_json(old_index)
+                self.team[old_index] = poke
                 break
-    
-        with open("equipe.json", "w", encoding="utf-8") as file:
-            json.dump(content, file, ensure_ascii=False, indent=4)
+
+        self.selected_pokemon.index_team = 0
+        self.selected_pokemon.change_team_index_in_json(0)
+        self.team[0] = self.selected_pokemon
+            
     
     def refresh_team(self) :
         self.team = [None, None, None, None, None, None]
         for pokemon in self.pokemon :
             if pokemon.index_team is not None :
                 self.team[pokemon.index_team] = pokemon
-        #raffraichisement ne fonctionne pas
         return self.team
 

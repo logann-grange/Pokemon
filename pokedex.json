@@ -77,7 +77,7 @@
         "id": "06",
         "name": "Dracofeu",
         "image" : "assets/images/pokemon/6.png",
-        "type": ["Fire, Flying"],
+        "type": ["Fire", "Flying"],
         "hidden" : true,
         "stats": {
             "attack": 84,

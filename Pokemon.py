@@ -1,3 +1,5 @@
+import json
+
 class Pokemon() :
 
     def __init__(self, id, name, pokedex_id, type, image, coord, hp, attack, defense, level, xp, evo=None,sub_evo=None, hidden=False, index_team=None) :
@@ -30,3 +32,16 @@ class Pokemon() :
         for i in range(len(self.family)) :
             if self.family[i] == self.name and i > 0 :
                 return self.family[i-1]
+            
+
+    def change_team_index_in_json(self, index):
+        with open("equipe.json", "r", encoding="utf-8") as file:
+            content = json.load(file)
+    
+        for i, pokemon in enumerate(content):
+            if pokemon["id"] == self.id:
+                content[i]["index_team"] = index
+                break
+    
+        with open("equipe.json", "w", encoding="utf-8") as file:
+            json.dump(content, file, ensure_ascii=False, indent=4)
