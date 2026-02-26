@@ -57,7 +57,7 @@ def draw_animated_background(screen, apng_path, scale_to_screen=True):
     screen.blit(frame, (0, 0))
 
 
-def draw_animated_pokemon(screen, apng_path, position, scale=1.0, white_filter=False):
+def draw_animated_pokemon(screen, apng_path, position, scale=1.0, white_filter=False, flip_horizontal=False):
     if apng_path not in _apng_cache:
         return
 
@@ -78,6 +78,9 @@ def draw_animated_pokemon(screen, apng_path, position, scale=1.0, white_filter=F
 
     if white_filter:
         frame.fill((255, 255, 255), special_flags=pygame.BLEND_RGB_ADD)
+
+    if flip_horizontal:
+        frame = pygame.transform.flip(frame, True, False)
 
     frame_rect = frame.get_rect(center=position)
     screen.blit(frame, frame_rect)

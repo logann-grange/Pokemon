@@ -127,7 +127,7 @@ class Entity(pygame.sprite.Sprite) :
                     break
             
             if pokemon_info:
-                list_pokemon.append(Pokemon(
+                pokemon = Pokemon(
                     pokemon_data["id"], 
                     pokemon_data["name"], 
                     pokemon_data["type"],  
@@ -141,7 +141,9 @@ class Entity(pygame.sprite.Sprite) :
                     pokemon_info.get("evo", ""), 
                     pokemon_info.get("sub_evo", ""), 
                     pokemon_info.get("hidden", True)
-                ))
+                )
+                pokemon.index_team = pokemon_data.get("index_team")
+                list_pokemon.append(pokemon)
 
         return list_pokemon
 
@@ -149,9 +151,18 @@ class Entity(pygame.sprite.Sprite) :
         project_root = os.path.abspath(os.path.dirname(__file__))
         equipe_file = os.path.join(project_root, "equipe.json")
 
+        existing_team = []
+        try:
+            with open(equipe_file, "r", encoding="utf-8") as file:
+                loaded = json.load(file)
+                if isinstance(loaded, list):
+                    existing_team = loaded
+        except (FileNotFoundError, json.JSONDecodeError):
+            existing_team = []
+
         equipe_content = []
-        for pokemon in self.list_pokemon:
-            equipe_content.append({
+        for index, pokemon in enumerate(self.list_pokemon):
+            member_data = {
                 "id": int(pokemon.id),
                 "name": pokemon.name,
                 "type": pokemon.type,
@@ -162,8 +173,31 @@ class Entity(pygame.sprite.Sprite) :
                 "defense": int(pokemon.defense),
                 "defense_base": int(pokemon.defense_base),
                 "level": int(pokemon.level),
-                "xp": int(pokemon.xp)
-            })
+                "xp": int(pokemon.xp),
+                "index_team": getattr(pokemon, "index_team", None)
+            }
+
+            if index < len(existing_team):
+                existing_member = existing_team[index]
+                if str(existing_member.get("id", "")) != str(pokemon.id):
+                    member_data["id"] = int(existing_member.get("id", member_data["id"]))
+                    member_data["name"] = existing_member.get("name", member_data["name"])
+                    member_data["type"] = existing_member.get("type", member_data["type"])
+                    member_data["hp"] = int(existing_member.get("hp", member_data["hp"]))
+                    member_data["hp_base"] = int(existing_member.get("hp_base", member_data["hp_base"]))
+                    member_data["attack"] = int(existing_member.get("attack", member_data["attack"]))
+                    member_data["attack_base"] = int(existing_member.get("attack_base", member_data["attack_base"]))
+                    member_data["defense"] = int(existing_member.get("defense", member_data["defense"]))
+                    member_data["defense_base"] = int(existing_member.get("defense_base", member_data["defense_base"]))
+                    member_data["level"] = int(existing_member.get("level", member_data["level"]))
+                    member_data["xp"] = int(existing_member.get("xp", member_data["xp"]))
+                    member_data["index_team"] = existing_member.get("index_team", member_data["index_team"])
+
+            equipe_content.append(member_data)
+
+        if len(existing_team) > len(equipe_content):
+            for extra_member in existing_team[len(equipe_content):]:
+                equipe_content.append(extra_member)
 
         with open(equipe_file, "w", encoding="utf-8") as file:
             json.dump(equipe_content, file, indent=4, ensure_ascii=False)
@@ -209,8 +243,18 @@ class Entity(pygame.sprite.Sprite) :
     def attack(self) :
         proba = random.randint(self.attack_chance, 1000)
         if proba == 1000 :
+            self.list_pokemon = self.load_pokemon_list()
             if self.list_pokemon and len(self.list_pokemon) > 0:
                 ennemy= apparition_pokemon()
-                interface_combat.game_loop(self.list_pokemon[0], ennemy)
+                pokemon_for_combat = None
+                for pokemon in self.list_pokemon:
+                    if getattr(pokemon, "index_team", None) == 0:
+                        pokemon_for_combat = pokemon
+                        break
+                if pokemon_for_combat is None:
+                    pokemon_for_combat = self.list_pokemon[0]
+
+                interface_combat.game_loop(pokemon_for_combat, ennemy)
                 self.save_pokemon_list()
+                self.list_pokemon = self.load_pokemon_list()
             self.attack_chance = 0

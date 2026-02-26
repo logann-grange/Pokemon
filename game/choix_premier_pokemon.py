@@ -202,6 +202,7 @@ class MenuChoixPokemon:
                     pokemon.get('xp', 0),
                     pokemon.get('evo', None),
                     pokemon.get('sub_evo', None),
+                    
                     ))
     
     def affichage_choix_pokemon(self):
@@ -233,7 +234,8 @@ class MenuChoixPokemon:
                                 "defense": pokemon.defense,
                                 "defense_base": pokemon.defense_base,
                                 "level": pokemon.level,
-                                "xp": pokemon.xp
+                                "xp": pokemon.xp,
+                                "index_team": 0
                             }
                             # Charger l'équipe actuelle
                             try:
@@ -283,3 +285,4 @@ def lancer_choix_pokemon():
     if demarre.dialogue_professeur_chen():
         demarre.affichage_choix_pokemon()
         game_main_module.run_game()
+ 

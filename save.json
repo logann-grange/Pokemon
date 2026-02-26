@@ -1,14 +1,14 @@
 {
     "player": {
         "pos": [
-            347,
-            425
+            518,
+            747
         ],
         "hitbox": [
-            347,
-            441
+            518,
+            763
         ],
-        "direction": "left"
+        "direction": "up"
     },
     "map": "foret"
 }

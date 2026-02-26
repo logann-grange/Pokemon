@@ -1,5 +1,6 @@
 import os
 import sys
+import json
 
 # Ajouter la racine du projet au path pour les imports absolus
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
@@ -31,6 +32,10 @@ class Pokemon() :
         self.degat_recu = 0
         #self.pokedex_id
 
+
+    def __str__(self):
+        return f"{self.name} {self.index_team}"
+
     def level_up(self) :
         while self.xp >= 1000 * self.level * 0.5 :
             self.xp -= int(1000 * self.level * 0.5)
@@ -49,3 +54,15 @@ class Pokemon() :
         if self.evo is not None and self.level % 25 == 0 :
             evolution(self.name, current_level=self.level, current_xp=self.xp)
     
+    
+    def change_team_index_in_json(self, index):
+        with open("equipe.json", "r", encoding="utf-8") as file:
+            content = json.load(file)
+    
+        for i, pokemon in enumerate(content):
+            if pokemon["id"] == self.id:
+                content[i]["index_team"] = index
+                break
+    
+        with open("equipe.json", "w", encoding="utf-8") as file:
+            json.dump(content, file, ensure_ascii=False, indent=4)

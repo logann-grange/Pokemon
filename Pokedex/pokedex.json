@@ -85,7 +85,8 @@
         "name": "Dracofeu",
         "image": "Asset/front/6.png",
         "type": [
-            "Fire, Flying"
+            "Fire",
+            "Flying"
         ],
         "hidden": true,
         "stats": {

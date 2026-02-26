@@ -3,6 +3,8 @@ from map import Map
 from entity import Entity
 from Pokedex.graphic.interface_pokedex import open_pokedex
 from Pokedex.logic.Pokedex import Pokedex
+from Pokedex.logic.pc import Pc
+from Pokedex.graphic.interface_pc import open_pc
 import Sauvegarde
 from display_manager import get_screen
 
@@ -19,7 +21,7 @@ def run_game(load_saved=False):
     running = True
     game_map = Map(screen)
     player = Entity()
-
+    pc= Pc()
     if load_saved:
         player, loaded_switch = Sauvegarde.load_game(player, game_map.current_map)
         game_map.change_map(loaded_switch)
@@ -42,6 +44,12 @@ def run_game(load_saved=False):
                 if event.unicode == "p" :
                     pygame.mixer.Sound("Asset/sons/bouton.mp3").play()
                     open_pokedex(pokedex, screen)
+                elif event.key == pygame.K_f:
+                    pygame.mixer.Sound("Asset/sons/bouton.mp3").play()
+                    open_pc(pc, screen)
+
+        # Maintenir un état de proximité PC plus stable même sans déplacement
+        player.able_pc = player.check_collision_pc(player.hitbox.inflate(4, 4))
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_z]:
@@ -55,7 +63,6 @@ def run_game(load_saved=False):
         if (keys[pygame.K_z], keys[pygame.K_s], keys[pygame.K_q], keys[pygame.K_d]) == (False, False, False, False)  :
             player.animation_walk = False
             player.image = player.all_images[player.direction][0]
-
     pygame.quit()
     return
 

@@ -1,4 +1,6 @@
 import pygame
+import json
+import os
 from Pokedex.logic.Pokedex import Pokedex
 from menue.graphic import menu_option
 from display_manager import get_screen
@@ -243,6 +245,36 @@ pokedex_background = None
 
 def open_pokedex(pokedex, background_surface=None) : 
     _apply_music_volume_for_pokedex()
+
+    pokedex.pokemon = pokedex.load_pokemon_list()
+
+    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+    equipe_file = os.path.join(project_root, "equipe.json")
+    captured_ids = set()
+    try:
+        with open(equipe_file, "r", encoding="utf-8") as file:
+            team_data = json.load(file)
+            if isinstance(team_data, list):
+                for member in team_data:
+                    try:
+                        captured_ids.add(int(member.get("id")))
+                    except (TypeError, ValueError):
+                        continue
+    except (FileNotFoundError, json.JSONDecodeError):
+        pass
+
+    for pokemon in pokedex.pokemon:
+        try:
+            if int(pokemon.id) in captured_ids:
+                pokemon.hidden = False
+        except (TypeError, ValueError):
+            continue
+
+    pokedex.search = ""
+    pokedex.page = 1
+    pokedex.selected_pokemon = None
+    pokedex.displayed_pokemon = pokedex.searching()
+    pokedex.num_unlock = pokedex.get_num_unlock()
     
     list_rect = []
     index_info = None

@@ -55,7 +55,7 @@
         "type": [
             "Fire"
         ],
-        "hidden": false,
+        "hidden": true,
         "stats": {
             "attack": 52,
             "defense": 43,
@@ -71,7 +71,7 @@
         "type": [
             "Fire"
         ],
-        "hidden": false,
+        "hidden": true,
         "stats": {
             "attack": 64,
             "defense": 58,
@@ -87,7 +87,7 @@
         "type": [
             "Fire, Flying"
         ],
-        "hidden": false,
+        "hidden": true,
         "stats": {
             "attack": 84,
             "defense": 78,
@@ -103,7 +103,7 @@
         "type": [
             "Water"
         ],
-        "hidden": true,
+        "hidden": false,
         "stats": {
             "attack": 48,
             "defense": 65,
