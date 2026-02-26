@@ -57,10 +57,10 @@ class Pokemon_Adverse(Pokemon):
 #=========INITIALISATION DES POKEMON=========#
 
 dracofeu = pygame.image.load("Asset/front/dracofeu.png")
-draco = Mon_Pokemon(1,"Dracofeu","Fire",dracofeu,co_poke,250,100,50,9,3500)
+draco = Mon_Pokemon(1,"Dracofeu","Poison",dracofeu,co_poke,500,50,10,9,3500)
 
 carabaffe=pygame.image.load("Asset/front/carabaffe.png")
-cara=Pokemon_Adverse(1,"Carabaffe","Water",carabaffe,co_adv,250,30,20,7,1200)
+cara=Pokemon_Adverse(1,"Carabaffe","Grass",carabaffe,co_adv,500,50,10,9,3500)
 
 fight=Combat(cara,draco,hp_font,end_font,COMBAT,screen=screen)
 
@@ -202,5 +202,8 @@ while running:
         out = pygame.draw.rect(screen, (0,0,0), (10,10,50,50))
         if confirmation_fuite:
             fuite_affichage()
+
+        elif fight.etat==FIN:
+            fight.end_game()
 
     pygame.display.flip()

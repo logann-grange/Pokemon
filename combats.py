@@ -55,7 +55,7 @@ class Combat:
 
     #======ATTAQUE======#
     def attack_mult(self):
-        self.temps_debut=pygame.time.get_ticks()
+       
         mult=1
         for element in type_poke:
             if element==self.poke.type:
@@ -75,7 +75,6 @@ class Combat:
         
     def attack (self):
 
-        self.temps_debut=pygame.time.get_ticks()
         damage=self.poke.attack
         damage-=self.defensive()
         self.opponent.hp-=damage
@@ -85,7 +84,6 @@ class Combat:
         
     def oppo_attack(self):
 
-        self.temps_debut=pygame.time.get_ticks()
         mult=1
         for element in type_poke:
             if element==self.opponent.type:
@@ -105,6 +103,7 @@ class Combat:
 
     #======AFFICHAGE======# 
     def hp_lvl(self):
+
         longueur = 140
         hauteur = 20
     
@@ -126,6 +125,7 @@ class Combat:
         txt_hp_adv  = self.hp_font.render(str(max(self.opponent.hp, 0)) + " HP", True, (0,0,0))
         self.screen.blit(txt_hp_poke, (200, 690))
         self.screen.blit(txt_hp_adv,  (800, 690))
+
 
     def end_game(self):
 
@@ -163,7 +163,7 @@ class Combat:
                 self.screen.blit(txt_win,(50,250))
 
             else:
-                self.screen.blit(txt_catch(50,250))
+                self.screen.blit(txt_catch,(50,250))
 
             
 
