@@ -1,9 +1,8 @@
 import pygame
 from combats import *
 from Pokedex.logic.Pokemon import *
-from display_manager import get_screen
-from evolution.graphic.menu_evolution_graphics import load_animated_background, draw_animated_pokemon
-
+from mon_pokemon import Mon_Pokemon
+from pokemon_adverse import Pokemon_Adverse
 
 etat=COMBAT
 pygame.init()
@@ -35,62 +34,11 @@ big_cloud=pygame.image.load("Asset/big_cloud.png")
 co_poke=150
 co_adv=750
 
-
-
-#=========CLASS=========#
-
-class Mon_Pokemon(Pokemon):
-    def __init__(self, id, name, type, image, coord, hp, attack, defense, level, xp, degat_recu=0, full_hp=True, evo=None, sub_evo=None, hidden=False):
-        super().__init__(id, name, type, image, coord, hp, attack, defense, level, xp, evo, sub_evo, hidden)
-        self.coord=co_poke
-        self.image = pygame.transform.flip(self.image,True,False)
-        self.static_image = self.image.copy()
-        self.image_path = f"Asset/front/{int(self.id)}.png"
-        try:
-            load_animated_background(self.image_path)
-            self.use_apng = True
-        except Exception:
-            self.use_apng = False
-        self.hp_max = self.hp
-        self.degat_recu = degat_recu
-        self.full_hp = full_hp
-    
-    def afficher (self):
-        if self.use_apng:
-            draw_animated_pokemon(screen, self.image_path, (self.coord + 75, 525), scale=1.8, flip_horizontal=True)
-        else:
-            image = pygame.transform.scale(self.static_image,(150,150))
-            screen.blit(image,(self.coord,450))
-
-class Pokemon_Adverse(Pokemon):
-    def __init__(self, id, name, type, image, coord, hp, attack, defense, level, xp, degat_recu=0, full_hp=True, evo=None, sub_evo=None, hidden=False):
-        super().__init__(id, name, type, image, coord, hp, attack, defense, level, xp, evo, sub_evo, hidden)
-        self.coord=co_adv
-        self.static_image = self.image.copy()
-        self.image_path = f"Asset/front/{int(self.id)}.png"
-        try:
-            load_animated_background(self.image_path)
-            self.use_apng = True
-        except Exception:
-            self.use_apng = False
-        self.hp_max = self.hp
-        self.degat_recu = degat_recu
-        self.full_hp = full_hp
-
-    def afficher(self):
-        if self.use_apng:
-            draw_animated_pokemon(screen, self.image_path, (self.coord + 75, 525), scale=1.8)
-        else:
-            image = pygame.transform.scale(self.static_image,(150,150))
-            screen.blit(image,(self.coord,450))
-
-
 #=========FONCTIONS=========#
 
 def sky (x,y):
 
     screen.blit(lil_clouds,(x,y))
-
 
 def fuite_affichage():
     txt_fuite = font.render("Voulez-vous fuir ?", True, (255,255,255))
@@ -123,10 +71,11 @@ def render_combat_scene(mon_poke, adv_pokemon, fight, confirmation_fuite):
     global x, x2, x3, x4
 
     screen.fill((101,211,255))
-    pygame.draw.rect(screen,(0,255,0),(0,360,1080,360))
+    screen.blit(ground,(0,180))
+    #pygame.draw.rect(screen,(0,255,0),(0,360,1080,360))
     fight.hp_lvl()
-    mon_poke.afficher()
-    adv_pokemon.afficher()
+    mon_poke.afficher(screen)
+    adv_pokemon.afficher(screen)
 
     if x>1080:
         x=-250
@@ -237,14 +186,20 @@ def game_loop(poke,adv):
     poke_image = pygame.image.load(f"Asset/front/{int(poke.id)}.png")
     adv_image = pygame.image.load(f"Asset/front/{int(adv.id)}.png")
     
-    mon_poke = Mon_Pokemon(poke.id, poke.name, poke.type, poke_image, poke.coord, 
-                           poke.hp_base, poke.attack_base, poke.defense_base, 
-                           poke.level, poke.xp, poke.evo, poke.sub_evo, poke.hidden)
-    
-    adv_pokemon = Pokemon_Adverse(adv.id, adv.name, adv.type, adv_image, adv.coord,
-                                   adv.hp_base, adv.attack_base, adv.defense_base,
-                                   adv.level, adv.xp, adv.evo, adv.sub_evo, adv.hidden)
-    
+    mon_poke = Mon_Pokemon(
+        poke.id, poke.name, poke.type, poke_image, poke.coord,
+        poke.hp_base, poke.attack_base, poke.defense_base,
+        poke.level, poke.xp,
+        evo=poke.evo, sub_evo=poke.sub_evo, hidden=poke.hidden
+    )
+
+    adv_pokemon = Pokemon_Adverse(
+        adv.id, adv.name, adv.type, adv_image, adv.coord,
+        adv.hp_base, adv.attack_base, adv.defense_base,
+        adv.level, adv.xp,
+        evo=adv.evo, sub_evo=adv.sub_evo, hidden=adv.hidden
+    )
+
     fight = Combat(adv_pokemon, mon_poke, hp_font, end_font, COMBAT, screen=screen)
     poke_turn = True
     adv_turn = False
@@ -273,7 +228,6 @@ def game_loop(poke,adv):
             continue
         
         if fight.etat==COMBAT:
-
             out = render_combat_scene(mon_poke, adv_pokemon, fight, confirmation_fuite)
 
             if enemy_attack_due is not None and pygame.time.get_ticks() >= enemy_attack_due and not confirmation_fuite and fight.poke_turn==False:
@@ -315,4 +269,3 @@ def game_loop(poke,adv):
     poke.hp = mon_poke.hp
     poke.attack = mon_poke.attack
     poke.defense = mon_poke.defense
-        
