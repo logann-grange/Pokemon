@@ -3,7 +3,7 @@ import json
 import os
 from Pokedex.logic.Pokedex import Pokedex
 from menue.graphic import menu_option
-from display_manager import get_screen
+from game.graphic.display_manager import get_screen
 
 
 _sfx_cache = {}
@@ -244,12 +244,23 @@ screen = None
 pokedex_background = None
 
 def open_pokedex(pokedex, background_surface=None) : 
+    global screen, pokedex_background
+
+    if screen is None:
+        screen = get_screen("Pokedex")
+
+    if pokedex_background is None:
+        pokedex_background = pygame.image.load("Asset/image/pokedex2.png")
+
+    if background_surface is not None and background_surface.get_size() != screen.get_size():
+        background_surface = pygame.transform.scale(background_surface, screen.get_size())
+
     _apply_music_volume_for_pokedex()
 
     pokedex.pokemon = pokedex.load_pokemon_list()
 
     project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
-    equipe_file = os.path.join(project_root, "equipe.json")
+    equipe_file = os.path.join(project_root, "data", "equipe.json")
     captured_ids = set()
     try:
         with open(equipe_file, "r", encoding="utf-8") as file:

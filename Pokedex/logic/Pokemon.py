@@ -5,6 +5,7 @@ import json
 # Ajouter la racine du projet au path pour les imports absolus
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 sys.path.insert(0, project_root)
+equipe_file = os.path.join(project_root, "data", "equipe.json")
 
 from evolution.menu_evolution import evolution
 
@@ -56,7 +57,7 @@ class Pokemon() :
     
     
     def change_team_index_in_json(self, index):
-        with open("equipe.json", "r", encoding="utf-8") as file:
+        with open(equipe_file, "r", encoding="utf-8") as file:
             content = json.load(file)
     
         for i, pokemon in enumerate(content):
@@ -64,5 +65,5 @@ class Pokemon() :
                 content[i]["index_team"] = index
                 break
     
-        with open("equipe.json", "w", encoding="utf-8") as file:
+        with open(equipe_file, "w", encoding="utf-8") as file:
             json.dump(content, file, ensure_ascii=False, indent=4)

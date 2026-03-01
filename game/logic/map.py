@@ -1,8 +1,7 @@
 import pygame
 import pytmx
 import pyscroll
-from entity import Entity
-from switch import Switch
+from game.logic.switch import Switch
 
 class Map :
     def __init__(self, screen):

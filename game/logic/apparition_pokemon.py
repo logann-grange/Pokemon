@@ -8,11 +8,11 @@ PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
 
 def apparition_pokemon():
     team_data=[]
-    equipe_file = os.path.join(PROJECT_ROOT, 'equipe.json')
+    equipe_file = os.path.join(PROJECT_ROOT, 'data', 'equipe.json')
     with open(equipe_file, 'r') as f:
         team_data = json.load(f)
     pokedex_data = []
-    pokedex_file = os.path.join(PROJECT_ROOT, 'pokedex.json')
+    pokedex_file = os.path.join(PROJECT_ROOT, 'data', 'pokedex.json')
     with open(pokedex_file, 'r') as f:
         pokedex_data = json.load(f)
     niv=0

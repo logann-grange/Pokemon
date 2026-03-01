@@ -3,9 +3,9 @@ import json
 import os
 from Pokedex.logic.Pokemon import Pokemon
 from game.logic.apparition_pokemon import apparition_pokemon
-from switch import Switch
+from game.logic.switch import Switch
 import random
-import interface_combat
+from combat.graphic import interface_combat
 
 class Entity(pygame.sprite.Sprite) :
 
@@ -108,9 +108,9 @@ class Entity(pygame.sprite.Sprite) :
 
     def load_pokemon_list(self) :
         list_pokemon = []
-        project_root = os.path.abspath(os.path.dirname(__file__))
-        equipe_file = os.path.join(project_root, "equipe.json")
-        pokedex_file = os.path.join(project_root, "pokedex.json")
+        project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+        equipe_file = os.path.join(project_root, "data", "equipe.json")
+        pokedex_file = os.path.join(project_root, "data", "pokedex.json")
         
         with open(equipe_file, "r", encoding="utf-8") as file :
             equipe_content = json.load(file)
@@ -148,8 +148,8 @@ class Entity(pygame.sprite.Sprite) :
         return list_pokemon
 
     def save_pokemon_list(self):
-        project_root = os.path.abspath(os.path.dirname(__file__))
-        equipe_file = os.path.join(project_root, "equipe.json")
+        project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+        equipe_file = os.path.join(project_root, "data", "equipe.json")
 
         existing_team = []
         try:

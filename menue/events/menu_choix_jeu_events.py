@@ -1,16 +1,11 @@
 import json
 import os
-import importlib.util
 import pygame
 from game.choix_premier_pokemon import lancer_choix_pokemon
+from game.graphic.game import run_game
 from Pokedex.graphic.interface_pokedex import afficher_interface_pokedex
 
-# Get project root directory
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
-
-game_spec = importlib.util.spec_from_file_location("game_main_module", os.path.join(PROJECT_ROOT, "game.py"))
-game_main_module = importlib.util.module_from_spec(game_spec)
-game_spec.loader.exec_module(game_main_module)
 
 def handle_menu_choix_event(event, button_rects, screen):
     if event.type == pygame.QUIT:
@@ -22,11 +17,11 @@ def handle_menu_choix_event(event, button_rects, screen):
 
     if event.type == pygame.MOUSEBUTTONDOWN:
         if button_rects["new_game"].collidepoint(event.pos):
-            equipe_file = os.path.join(PROJECT_ROOT, "equipe.json")
+            equipe_file = os.path.join(PROJECT_ROOT, "data", "equipe.json")
             with open(equipe_file, "w") as file:
                 json.dump([], file)
 
-            pokedex_file = os.path.join(PROJECT_ROOT, "pokedex.json")
+            pokedex_file = os.path.join(PROJECT_ROOT, "data", "pokedex.json")
             with open(pokedex_file, "r") as file:
                 pokedex_data = json.load(file)
                 for pokemon in pokedex_data:
@@ -40,7 +35,7 @@ def handle_menu_choix_event(event, button_rects, screen):
 
         if button_rects["load_game"].collidepoint(event.pos):
             print("Charger partie sélectionnée")
-            game_main_module.run_game(load_saved=True)
+            run_game(load_saved=True)
         if button_rects["pokedex"].collidepoint(event.pos):
             afficher_interface_pokedex(screen.copy())
 

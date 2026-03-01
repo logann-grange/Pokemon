@@ -3,11 +3,12 @@ import json
 
 # Get project root directory
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
+DATA_DIR = os.path.join(PROJECT_ROOT, "data")
 
 def load_pokedex_data(pokedex_file="pokedex.json"):
-    # If path is relative (just filename), make it relative to project root
+    # If path is relative (just filename), make it relative to data directory
     if not os.path.isabs(pokedex_file) and not os.path.exists(pokedex_file):
-        pokedex_file = os.path.join(PROJECT_ROOT, pokedex_file)
+        pokedex_file = os.path.join(DATA_DIR, pokedex_file)
     with open(pokedex_file, "r", encoding="utf-8") as file:
         return json.load(file)
 
@@ -36,9 +37,9 @@ def build_pokemon_image_path(pokemon_id):
 
 
 def load_team(team_file="equipe.json"):
-    # If path is relative (just filename), make it relative to project root
+    # If path is relative (just filename), make it relative to data directory
     if not os.path.isabs(team_file) and not os.path.exists(team_file):
-        team_file = os.path.join(PROJECT_ROOT, team_file)
+        team_file = os.path.join(DATA_DIR, team_file)
     try:
         with open(team_file, "r", encoding="utf-8") as file:
             team = json.load(file)
@@ -51,9 +52,9 @@ def load_team(team_file="equipe.json"):
 
 
 def save_team(team, team_file="equipe.json"):
-    # If path is relative (just filename), make it relative to project root
+    # If path is relative (just filename), make it relative to data directory
     if not os.path.isabs(team_file) and not os.path.exists(team_file):
-        team_file = os.path.join(PROJECT_ROOT, team_file)
+        team_file = os.path.join(DATA_DIR, team_file)
     with open(team_file, "w", encoding="utf-8") as file:
         json.dump(team, file, indent=4, ensure_ascii=False)
 
@@ -91,9 +92,9 @@ def update_team_with_evolution(team, pokemon_name, evolved_pokemon, current_leve
 
 
 def reveal_pokedex_entry(pokemon_id, pokedex_file="pokedex.json"):
-    # If path is relative (just filename), make it relative to project root
+    # If path is relative (just filename), make it relative to data directory
     if not os.path.isabs(pokedex_file) and not os.path.exists(pokedex_file):
-        pokedex_file = os.path.join(PROJECT_ROOT, pokedex_file)
+        pokedex_file = os.path.join(DATA_DIR, pokedex_file)
     pokedex_data = load_pokedex_data(pokedex_file)
 
     for entry in pokedex_data:

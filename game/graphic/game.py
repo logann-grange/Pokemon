@@ -1,12 +1,12 @@
 import pygame
-from map import Map
-from entity import Entity
+from game.logic.map import Map
+from game.logic.entity import Entity
 from Pokedex.graphic.interface_pokedex import open_pokedex
 from Pokedex.logic.Pokedex import Pokedex
 from Pokedex.logic.pc import Pc
 from Pokedex.graphic.interface_pc import open_pc
-import Sauvegarde
-from display_manager import get_screen
+import game.logic.Sauvegarde as Sauvegarde
+from game.graphic.display_manager import get_screen
 
 
 def run_game(load_saved=False):

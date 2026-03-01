@@ -1,6 +1,5 @@
 import pygame
-from entity import Entity
-from map import screen
+from game.logic.entity import Entity
 
 class Player(Entity):
     def __init__(self):

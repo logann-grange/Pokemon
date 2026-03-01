@@ -1,8 +1,8 @@
 import pygame
-from combats import *
+from combat.logic.combats import *
 from Pokedex.logic.Pokemon import *
-from mon_pokemon import Mon_Pokemon
-from pokemon_adverse import Pokemon_Adverse
+from combat.logic.mon_pokemon import Mon_Pokemon
+from combat.logic.pokemon_adverse import Pokemon_Adverse
 
 etat=COMBAT
 pygame.init()

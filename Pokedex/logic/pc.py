@@ -14,8 +14,8 @@ class Pc(Pokedex) :
     def load_pokemon_list(self, file="equipe"):
         list_pokemon = []
         project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
-        equipe_file = os.path.join(project_root, f"{file}.json")
-        pokedex_file = os.path.join(project_root, "pokedex.json")
+        equipe_file = os.path.join(project_root, "data", f"{file}.json")
+        pokedex_file = os.path.join(project_root, "data", "pokedex.json")
 
         try:
             with open(equipe_file, "r", encoding="utf-8") as file_handle:

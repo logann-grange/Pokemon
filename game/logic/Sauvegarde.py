@@ -2,7 +2,7 @@ import json
 import os
 
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
-SAVE_FILE = os.path.join(PROJECT_ROOT, "save.json")
+SAVE_FILE = os.path.abspath(os.path.join(PROJECT_ROOT, "..", "..", "data", "save.json"))
 
 def save_game(player,map):
     with open(SAVE_FILE, "w", encoding="utf-8") as file:

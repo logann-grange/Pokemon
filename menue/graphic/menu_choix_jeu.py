@@ -11,7 +11,7 @@ from menue.graphic.Feuille import init_leafs
 from menue.graphic import menu_option
 from menue.events.menu_choix_jeu_events import handle_menu_choix_event
 from menue.graphic.menu_choix_jeu_render import draw_menu_choix_frame
-from display_manager import get_screen
+from game.graphic.display_manager import get_screen
 
 screen = get_screen("Menu Choix Jeu")
 clock = pygame.time.Clock()

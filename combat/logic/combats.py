@@ -1,6 +1,6 @@
 from Pokedex.logic.Pokemon import *
 from random import randint
-from dic_type import type_poke
+from combat.logic.dic_type import type_poke
 import pygame
 import json
 import os
@@ -32,8 +32,8 @@ class Combat:
         self.enemy_accuracy = 85
 
     def add_captured_pokemon_to_team(self):
-        project_root = os.path.abspath(os.path.dirname(__file__))
-        equipe_file = os.path.join(project_root, "equipe.json")
+        project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+        equipe_file = os.path.join(project_root, "data", "equipe.json")
 
         try:
             with open(equipe_file, "r", encoding="utf-8") as file:
@@ -173,13 +173,19 @@ class Combat:
 
         if self.poke_turn:
             while self.opponent.defense>self.poke.attack:
-                self.opponent.defense=self.opponent.defense/1.5
-            return self.opponent.defense
+                self.opponent.defense = int(self.opponent.defense / 1.5)
+                if self.opponent.defense <= 0:
+                    self.opponent.defense = 0
+                    break
+            return int(self.opponent.defense)
         
         elif self.adv_turn:
             while self.poke.defense>self.opponent.attack:
-                self.poke.defense=self.poke.defense/1.5
-            return self.poke.defense
+                self.poke.defense = int(self.poke.defense / 1.5)
+                if self.poke.defense <= 0:
+                    self.poke.defense = 0
+                    break
+            return int(self.poke.defense)
 
 
     #======ATTAQUE======#
@@ -190,15 +196,15 @@ class Combat:
             self.set_battle_message("Votre attaque a rate !", (120, 120, 120))
             return 0
     
-        damage=self.poke.attack
-        damage-=self.defensive()
-        damage=damage*mult
+        damage = self.poke.attack
+        damage -= self.defensive()
+        damage = max(1, int(damage * mult))
         self.set_effectiveness_text(mult)
-        self.opponent.hp-=damage
+        self.opponent.hp = max(0, int(self.opponent.hp - damage))
         self.opponent.full_hp=False
         if self.opponent.hp<=0:
             return self.end_game()
-        return int(damage)
+        return damage
         
     def attack (self):
 
@@ -206,10 +212,11 @@ class Combat:
             self.set_battle_message("Votre attaque a rate !", (120, 120, 120))
             return 0
 
-        damage=self.poke.attack
-        damage-=self.defensive()
+        damage = self.poke.attack
+        damage -= self.defensive()
+        damage = max(1, int(damage))
         self.set_effectiveness_text(1)
-        self.opponent.hp-=damage
+        self.opponent.hp = max(0, int(self.opponent.hp - damage))
         self.opponent.full_hp=False
         if self.opponent.hp<=0:
             return self.end_game()
@@ -221,10 +228,11 @@ class Combat:
             self.set_battle_message("L'attaque ennemie a rate !", (120, 120, 120))
             return 0
 
-        damage=self.opponent.attack
-        damage-=self.defensive()
+        damage = self.opponent.attack
+        damage -= self.defensive()
+        damage = max(1, int(damage * mult))
         self.set_effectiveness_text(mult, enemy=True)
-        self.poke.hp-=damage*mult
+        self.poke.hp = max(0, int(self.poke.hp - damage))
         if self.poke.hp<=0:
             return self.end_game()
         self.poke.full_hp=False
@@ -250,8 +258,8 @@ class Combat:
         pygame.draw.rect(self.screen, (100,100,100), (750, 655, longueur, hauteur))
         pygame.draw.rect(self.screen, couleur_adv, (750, 655, longueur_adv, hauteur))
     
-        txt_hp_poke = self.hp_font.render(str(max(self.poke.hp, 0)) + " HP", True, (0,0,0))
-        txt_hp_adv  = self.hp_font.render(str(max(self.opponent.hp, 0)) + " HP", True, (0,0,0))
+        txt_hp_poke = self.hp_font.render(str(max(int(self.poke.hp), 0)) + " HP", True, (0,0,0))
+        txt_hp_adv  = self.hp_font.render(str(max(int(self.opponent.hp), 0)) + " HP", True, (0,0,0))
         txt_lvl_poke = self.hp_font.render(f"Niv. {self.poke.level}", True, (0,0,0))
         txt_lvl_adv = self.hp_font.render(f"Niv. {self.opponent.level}", True, (0,0,0))
         self.screen.blit(txt_hp_poke, (200, 690))

@@ -1,10 +1,10 @@
-from Pokemon import Pokemon
+from Pokedex.logic.Pokemon import Pokemon
 import json
 import pygame
 import os
 from PIL import Image 
-import menu_option
-import game
+from menue.graphic import menu_option
+from game.graphic import game
 
 class MenuChoixPokemon:
     def __init__(self):

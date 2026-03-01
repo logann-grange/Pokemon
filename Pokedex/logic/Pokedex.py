@@ -20,7 +20,7 @@ class Pokedex() :
 
     def load_pokemon_list(self) :
         list_pokemon = []
-        pokedex_file = os.path.join(PROJECT_ROOT, "pokedex.json")
+        pokedex_file = os.path.join(PROJECT_ROOT, "data", "pokedex.json")
         with open(pokedex_file, "r", encoding="utf-8") as file :
             content = json.load(file)
         

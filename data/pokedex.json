@@ -6,7 +6,7 @@
         "type": [
             "Grass"
         ],
-        "hidden": true,
+        "hidden": false,
         "stats": {
             "attack": 49,
             "defense": 49,
@@ -103,7 +103,7 @@
         "type": [
             "Water"
         ],
-        "hidden": false,
+        "hidden": true,
         "stats": {
             "attack": 48,
             "defense": 65,
@@ -295,7 +295,7 @@
         "type": [
             "Figthing"
         ],
-        "hidden": true,
+        "hidden": false,
         "stats": {
             "attack": 30,
             "defense": 24,

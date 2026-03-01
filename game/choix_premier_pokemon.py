@@ -2,7 +2,6 @@ import os
 import sys
 import json
 import pygame
-import importlib.util
 from PIL import Image 
 
 # Ajouter la racine du projet au path pour les imports absolus
@@ -12,12 +11,8 @@ os.chdir(project_root)
 
 from Pokedex.logic.Pokemon import Pokemon 
 from menue.graphic import menu_option
-from display_manager import get_screen
-
-# Charger le module game.py depuis la racine du projet
-game_spec = importlib.util.spec_from_file_location("game_main_module", os.path.join(project_root, "game.py"))
-game_main_module = importlib.util.module_from_spec(game_spec)
-game_spec.loader.exec_module(game_main_module)
+from game.graphic.display_manager import get_screen
+from game.graphic.game import run_game
 
 class MenuChoixPokemon:
     def __init__(self):
@@ -183,7 +178,7 @@ class MenuChoixPokemon:
     
     
     def choix_premier_pokemon(self):
-        with open(os.path.join(self.project_root, 'pokedex.json')) as f:
+        with open(os.path.join(self.project_root, 'data', 'pokedex.json')) as f:
             data = json.load(f)    
         for pokemon in data:
             pokemon_id = int(pokemon['id'])
@@ -239,7 +234,7 @@ class MenuChoixPokemon:
                             }
                             # Charger l'équipe actuelle
                             try:
-                                with open(os.path.join(self.project_root, 'equipe.json'), 'r') as f:
+                                with open(os.path.join(self.project_root, 'data', 'equipe.json'), 'r') as f:
                                     equipe = json.load(f)
                             except (FileNotFoundError, json.JSONDecodeError):
                                 equipe = []
@@ -249,15 +244,15 @@ class MenuChoixPokemon:
                             # Ajouter le pokémon à l'équipe
                             equipe.append(pokemon_data)
                             # Sauvegarder l'équipe mise à jour
-                            with open(os.path.join(self.project_root, 'equipe.json'), 'w') as f:
+                            with open(os.path.join(self.project_root, 'data', 'equipe.json'), 'w') as f:
                                 json.dump(equipe, f, indent=4, ensure_ascii=False)
-                            with open(os.path.join(self.project_root, 'pokedex.json'), 'r') as f:
+                            with open(os.path.join(self.project_root, 'data', 'pokedex.json'), 'r') as f:
                                 pokedex_data = json.load(f)
                             for p in pokedex_data:
                                 if int(p['id']) == pokemon.id:
                                     p['hidden'] = False
                                     break
-                            with open(os.path.join(self.project_root, 'pokedex.json'), 'w') as f:
+                            with open(os.path.join(self.project_root, 'data', 'pokedex.json'), 'w') as f:
                                 json.dump(pokedex_data, f, indent=4, ensure_ascii=False)
                             running = False
             
@@ -284,5 +279,5 @@ def lancer_choix_pokemon():
     demarre = MenuChoixPokemon()
     if demarre.dialogue_professeur_chen():
         demarre.affichage_choix_pokemon()
-        game_main_module.run_game()
+        run_game()
  
