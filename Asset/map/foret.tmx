@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="105" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="30" nextobjectid="788">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="105" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="30" nextobjectid="791">
  <tileset firstgid="1" source="tileset_pokemon_sdk.tsx"/>
  <tileset firstgid="4257" source="tileset4g.tsx"/>
  <group id="13" name="layer0">
@@ -836,6 +836,9 @@
    <object id="785" name="collision" x="896" y="352" width="16" height="16"/>
    <object id="786" name="collision" x="864" y="304" width="16" height="32"/>
    <object id="787" name="collision" x="848" y="320" width="16" height="16"/>
+   <object id="788" name="collision" x="1008" y="704" width="16" height="32"/>
+   <object id="789" name="collision" x="944" y="720" width="16" height="16"/>
+   <object id="790" name="collision" x="944" y="736" width="80" height="16"/>
   </objectgroup>
   <objectgroup id="22" name="interface">
    <object id="679" name="stairs right" x="112" y="288" width="16" height="48"/>
