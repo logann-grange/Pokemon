@@ -386,6 +386,9 @@ def open_pokedex(pokedex, background_surface=None) :
                     pokedex.select_pokemon(pokedex.displayed_pokemon[pokedex.page-1][index_info])
                     page_info = pokedex.page
                     play_sfx("Asset/sons/bouton.mp3")
+                # fermer le pokedex
+                if event.key == pygame.K_ESCAPE: 
+                    return 0
 
 
 #===== Programme principal =====#
