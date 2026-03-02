@@ -43,7 +43,7 @@ Ces systèmes rendent la progression fidèle à l’expérience Pokémon tout en
 
 2. **Cloner le projet** :
    ```bash
-   git clone <url-du-repo>
+   git clone https://github.com/logann-grange/Pokemon/tree/master
    cd Pokemon_projet
    ```
 
