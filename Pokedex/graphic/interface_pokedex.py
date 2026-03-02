@@ -101,9 +101,9 @@ def display_info(pokedex, page, is_writting):
             txt_type = font.render(str_type, 1, (0, 0, 0))
             screen.blit(txt_type, (660, 200+i*25))
             index = i
-        txt_hp = font.render(f"HP : {pokedex.selected_pokemon.hp}", 1, (0, 0, 0))
-        txt_attack = font.render(f"attaque : {pokedex.selected_pokemon.attack}", 1, (0, 0, 0))
-        txt_defense = font.render(f"défense : {pokedex.selected_pokemon.defense}", 1, (0, 0, 0))
+        txt_hp = font.render(f"HP : {pokedex.selected_pokemon.hp_base}", 1, (0, 0, 0))
+        txt_attack = font.render(f"attaque : {pokedex.selected_pokemon.attack_base}", 1, (0, 0, 0))
+        txt_defense = font.render(f"défense : {pokedex.selected_pokemon.defense_base}", 1, (0, 0, 0))
         txt_type = font.render(f"type :", 1, (0, 0, 0))
 
         #affichage des evo et sub_evo :
