@@ -59,20 +59,22 @@ def display_info(pc, screen):
         for i in range(len(pc.selected_pokemon.type)) :
             str_type = pc.selected_pokemon.type[i]
             txt_type = font.render(str_type, 1, (0, 0, 0))
-            screen.blit(txt_type, (660, 200+i*25))
+            screen.blit(txt_type, (660, 230+i*25))
             index = i
         txt_hp = font.render(f"HP : {pc.selected_pokemon.hp}", 1, (0, 0, 0))
         txt_attack = font.render(f"attaque : {pc.selected_pokemon.attack}", 1, (0, 0, 0))
         txt_defense = font.render(f"défense : {pc.selected_pokemon.defense}", 1, (0, 0, 0))
         txt_type = font.render(f"type :", 1, (0, 0, 0))
+        txt_lvl = font.render(f"niveau : {pc.selected_pokemon.level}", 1, (0, 0, 0))
 
         # affichage des infos
         screen.blit(pygame.transform.scale(pygame.image.load(pc.selected_pokemon.image), (155, 155)), (375, 215))
         screen.blit(txt_name, (78+260+(231-font_name.size(pc.selected_pokemon.name)[0])/2, 190))
-        screen.blit(txt_type, (610, 200))
-        screen.blit(txt_hp, (610, 230+index*25))
-        screen.blit(txt_attack, (610, 260+index*25))
-        screen.blit(txt_defense, (610, 290+index*25))
+        screen.blit(txt_lvl, (610, 200))
+        screen.blit(txt_type, (610, 230))
+        screen.blit(txt_hp, (610, 260+index*25))
+        screen.blit(txt_attack, (610, 290+index*25))
+        screen.blit(txt_defense, (610, 320+index*25))
 
 
 #======= Affichage de l'encadrement de la sélection ========#
